@@ -1,4 +1,3 @@
-# Internal planning docs — not for the public site
-DEMO_SCRIPT.md
-VEO_PROMPTS.md
-storyboard-gemini.md
+# Internal planning docs — not for the public site.
+# The published site is index.html + demo.html only.
+*.md
