@@ -177,17 +177,29 @@
   .join .kicker{justify-content:center;}
   .join h2{font-size:clamp(28px,4.2vw,50px);max-width:18ch;margin-bottom:18px;color:#fff;}
   .join .lead{color:#d6ece6;margin-bottom:36px;}
-  .signup{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%;max-width:600px;}
-  .signup input{
-    flex:1;min-width:220px;background:#fff;border:1px solid transparent;border-radius:9px;
+  .signup{display:flex;flex-direction:column;gap:14px;width:100%;max-width:640px;}
+  .frow{display:flex;gap:10px;flex-wrap:wrap;}
+  .signup input[type=text],.signup input[type=email]{
+    flex:1;min-width:200px;background:#fff;border:1px solid transparent;border-radius:9px;
     padding:15px 18px;font:inherit;font-size:16px;color:var(--ink);
   }
   .signup input::placeholder{color:#8a8377;}
-  .signup input:focus{outline:3px solid rgba(199,93,63,.5);}
-  .signup .btn{flex:0 0 auto;}
+  .signup input:focus,.signup select:focus{outline:3px solid rgba(199,93,63,.5);}
+  .qgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;}
+  @media (max-width:560px){ .qgrid{grid-template-columns:1fr;} }
+  .qfield{display:flex;flex-direction:column;gap:6px;text-align:start;}
+  .qfield label{font-size:13.5px;font-weight:700;color:#d6ece6;}
+  .qfield select{
+    background:#fff;border:1px solid transparent;border-radius:9px;
+    padding:13px 14px;font:inherit;font-size:15.5px;color:var(--ink);cursor:pointer;width:100%;
+  }
+  .signup .btn{align-self:center;margin-top:4px;}
   .note{font-size:13px;color:#bcdcd4;margin-top:18px;max-width:48ch;}
   .ok{display:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:12px;padding:22px 26px;max-width:560px;font-weight:600;font-size:17px;}
   .ok.show{display:block;}
+  .err{display:none;background:rgba(199,93,63,.22);border:1px solid #f0c4b6;color:#ffe6dd;border-radius:12px;padding:16px 22px;max-width:560px;font-weight:600;font-size:15px;margin-top:14px;}
+  .err.show{display:block;}
+  .hp{position:absolute !important;left:-9999px;width:1px;height:1px;opacity:0;}
 
   /* ---------- Footer ---------- */
   footer{background:var(--ink);color:var(--paper);}
@@ -337,12 +349,17 @@
       <h2 class="display" data-i18n="ctaH2">הצטרפו לגרסת הבטא הסגורה של הכלי הראשון לתיעוד קבוצתי — ללא הקלטת המטופלים</h2>
       <p class="lead" data-i18n="ctaLead">מספר המקומות בבטא מוגבל. השאירו פרטים ונחזור אליכם עם גישה מוקדמת.</p>
       <form class="signup" id="signupForm" novalidate>
-        <input type="text"  id="name"  name="name"  data-i18n-ph="phName"  placeholder="שם מלא" autocomplete="name" />
-        <input type="email" id="email" name="email" data-i18n-ph="phEmail" placeholder="אימייל" autocomplete="email" required />
+        <div class="frow">
+          <input type="text"  id="name"  name="name"  data-i18n-ph="phName"  placeholder="שם מלא" autocomplete="name" />
+          <input type="email" id="email" name="email" data-i18n-ph="phEmail" placeholder="אימייל" autocomplete="email" required />
+        </div>
+        <div class="qgrid" id="qFields"></div>
+        <input type="checkbox" id="botcheck" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <button type="submit" class="btn btn-mark lg" data-i18n="ctaBtn">בקשת גישה לבטא</button>
       </form>
       <p class="note" data-i18n="ctaNote">בלחיצה אתם מסכימים שניצור קשר בנוגע לבטא בלבד. ללא ספאם, ניתן להסיר בכל עת.</p>
       <div class="ok" id="formSuccess" data-i18n="ctaSuccess">✓ תודה! קיבלנו את הפרטים ונעדכן אתכם ברגע שהבטא ייפתח לגישה.</div>
+      <div class="err" id="formError" data-i18n="ctaError">אופס — משהו השתבש בשליחה. נסו שוב, או כתבו לנו ישירות.</div>
     </div>
   </section>
 
@@ -387,9 +404,10 @@ const I18N = {
     s4t:"אתם מאשרים", s4b:"עוברים על הטיוטות, עורכים אם צריך, ומאשרים. רק אז הן נשמרות.",
     ctaH2:"הצטרפו לגרסת הבטא הסגורה של הכלי הראשון לתיעוד קבוצתי — ללא הקלטת המטופלים",
     ctaLead:"מספר המקומות בבטא מוגבל. השאירו פרטים ונחזור אליכם עם גישה מוקדמת.",
-    phName:"שם מלא", phEmail:"אימייל", ctaBtn:"בקשת גישה לבטא",
-    ctaNote:"בלחיצה אתם מסכימים שניצור קשר בנוגע לבטא בלבד. ללא ספאם, ניתן להסיר בכל עת.",
+    phName:"שם מלא", phEmail:"אימייל", ctaBtn:"בקשת גישה לבטא", ctaSending:"שולח…",
+    ctaNote:"השאלות אופציונליות ועוזרות לנו למקד את המוצר. בלחיצה אתם מסכימים שניצור קשר בנוגע לבטא בלבד. ללא ספאם, ניתן להסיר בכל עת.",
     ctaSuccess:"✓ תודה! קיבלנו את הפרטים ונעדכן אתכם ברגע שהבטא ייפתח לגישה.",
+    ctaError:"אופס — משהו השתבש בשליחה. נסו שוב, או כתבו לנו ישירות ל-chavi744@gmail.com.",
     footTag:"ללא הקלטת מטופלים · תואם HIPAA/GDPR · המטפל מאשר כל סיכום",
     footCopy:"© 2026 GroupPulse"
   },
@@ -422,9 +440,10 @@ const I18N = {
     s4t:"You approve", s4b:"Review the drafts, edit if needed, and approve. Only then are they saved.",
     ctaH2:"Join the closed beta of the first group-documentation tool — without recording patients",
     ctaLead:"Beta spots are limited. Leave your details and we'll get back to you with early access.",
-    phName:"Full name", phEmail:"Email", ctaBtn:"Request beta access",
-    ctaNote:"By submitting you agree we may contact you regarding the beta only. No spam, unsubscribe anytime.",
+    phName:"Full name", phEmail:"Email", ctaBtn:"Request beta access", ctaSending:"Sending…",
+    ctaNote:"The questions are optional and help us focus the product. By submitting you agree we may contact you regarding the beta only. No spam, unsubscribe anytime.",
     ctaSuccess:"✓ Thanks! We've got your details and will be in touch the moment the beta opens.",
+    ctaError:"Oops — something went wrong. Please try again, or email us at chavi744@gmail.com.",
     footTag:"No patient recording · HIPAA/GDPR compliant · Therapist approves every note",
     footCopy:"© 2026 GroupPulse"
   }
@@ -447,6 +466,53 @@ function setLang(l){
     if(d[key]!==undefined) el.placeholder = d[key];
   });
   buildMarquee(d);
+  buildQuestions(l);
+}
+
+/* ---- Beta qualifying questions (optional) ----
+   Values (v) are language-neutral slugs so the emailed answer is consistent
+   regardless of the visitor's UI language. */
+const QUESTIONS = [
+  { name:"role", he:"מה התפקיד שלך?", en:"Your role?", opts:[
+    {v:"psychologist",  he:"פסיכולוג/ית",          en:"Psychologist"},
+    {v:"social_worker", he:"עובד/ת סוציאלי/ת",     en:"Social worker"},
+    {v:"psychiatrist",  he:"פסיכיאטר/ית",          en:"Psychiatrist"},
+    {v:"cbt_dbt",       he:"מטפל/ת CBT/DBT",        en:"CBT/DBT therapist"},
+    {v:"trainee",       he:"מתמחה / סטודנט/ית",      en:"Trainee / student"},
+    {v:"other",         he:"אחר",                   en:"Other"} ]},
+  { name:"setting", he:"איפה את/ה עובד/ת?", en:"Where do you work?", opts:[
+    {v:"private",        he:"קליניקה פרטית",                en:"Private practice"},
+    {v:"public_clinic",  he:"קופ\"ח / מרפאה ציבורית",       en:"Public clinic / HMO"},
+    {v:"sud",            he:"מרכז גמילה (התמכרויות)",        en:"Addiction (SUD) center"},
+    {v:"psych_hospital", he:"בית חולים פסיכיאטרי",          en:"Psychiatric hospital"},
+    {v:"cmhc",           he:"מרכז בריאות נפש קהילתי",        en:"Community mental health center"},
+    {v:"other",          he:"אחר",                          en:"Other"} ]},
+  { name:"group_load", he:"כמה מפגשים קבוצתיים בשבוע?", en:"Group sessions per week?", opts:[
+    {v:"1-2",  he:"1–2",  en:"1–2"},
+    {v:"3-5",  he:"3–5",  en:"3–5"},
+    {v:"6-10", he:"6–10", en:"6–10"},
+    {v:"10+",  he:"10+",  en:"10+"} ]},
+  { name:"ehr", he:"באיזו תוכנת תיעוד/EHR את/ה משתמש/ת?", en:"Which EHR do you use?", opts:[
+    {v:"none",           he:"אין / נייר / Word",     en:"None / paper / Word"},
+    {v:"simplepractice", he:"SimplePractice",        en:"SimplePractice"},
+    {v:"therapynotes",   he:"TherapyNotes",          en:"TherapyNotes"},
+    {v:"institution",    he:"מערכת של המוסד",         en:"Institution's system"},
+    {v:"other",          he:"אחר",                   en:"Other"} ]}
+];
+
+function buildQuestions(lang){
+  const wrap = document.getElementById('qFields');
+  if(!wrap) return;
+  const ph = lang==='he' ? 'בחר/י…' : 'Select…';
+  // preserve any answers already chosen when toggling language
+  const prev = {};
+  wrap.querySelectorAll('select').forEach(s=>{ if(s.value) prev[s.name]=s.value; });
+  wrap.innerHTML = QUESTIONS.map(q=>{
+    const opts = [`<option value="" disabled${prev[q.name]?'':' selected'}>${ph}</option>`]
+      .concat(q.opts.map(o=>`<option value="${o.v}"${prev[q.name]===o.v?' selected':''}>${o[lang]}</option>`)).join('');
+    return `<div class="qfield"><label for="q_${q.name}">${q[lang]}</label>`+
+           `<select id="q_${q.name}" name="${q.name}">${opts}</select></div>`;
+  }).join('');
 }
 
 function buildMarquee(d){
@@ -456,29 +522,65 @@ function buildMarquee(d){
   track.innerHTML = items.map(t=>`<span class="tok">${t}</span><span class="dot">✦</span>`).join('');
 }
 
-/* ---- Beta signup (front-end only) ----
-   No backend yet. Shows a thank-you state and stores the lead locally.
-   To wire to a real list, set BETA_ENDPOINT to a provider URL
-   (e.g. Formspree / Webflow / a Lambda). */
-const BETA_ENDPOINT = ""; // e.g. "https://formspree.io/f/xxxx"
-document.getElementById('signupForm').addEventListener('submit', async function(e){
+/* ---- Beta signup → Web3Forms backend ----
+   Leads are POSTed to Web3Forms, which emails them to your inbox.
+   Get a free access key at https://web3forms.com (just enter your email),
+   then paste it below. The key is safe to expose in client code —
+   it only allows sending to your verified email address. */
+const WEB3FORMS_KEY = "YOUR_ACCESS_KEY"; // ← paste your Web3Forms access key here
+const form = document.getElementById('signupForm');
+form.addEventListener('submit', async function(e){
   e.preventDefault();
+  const d = I18N[LANG];
   const email = document.getElementById('email').value.trim();
   const name  = document.getElementById('name').value.trim();
+  const errEl = document.getElementById('formError');
+  errEl.classList.remove('show');
   if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
     document.getElementById('email').focus();
     return;
   }
-  if(BETA_ENDPOINT){
-    try{ await fetch(BETA_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,email})}); }catch(_){}
-  } else {
-    try{
-      const leads = JSON.parse(localStorage.getItem('gp_beta_leads')||'[]');
-      leads.push({name,email}); localStorage.setItem('gp_beta_leads', JSON.stringify(leads));
-    }catch(_){}
+
+  // local backup (so a lead is never lost even if the network fails)
+  try{
+    const leads = JSON.parse(localStorage.getItem('gp_beta_leads')||'[]');
+    leads.push({name,email}); localStorage.setItem('gp_beta_leads', JSON.stringify(leads));
+  }catch(_){}
+
+  const btn = form.querySelector('button[type=submit]');
+  const orig = btn.textContent;
+
+  // No key configured yet → still thank the user (lead saved locally)
+  if(!WEB3FORMS_KEY || WEB3FORMS_KEY === "YOUR_ACCESS_KEY"){
+    form.style.display='none';
+    document.getElementById('formSuccess').classList.add('show');
+    return;
   }
-  this.style.display = 'none';
-  document.getElementById('formSuccess').classList.add('show');
+
+  btn.disabled = true; btn.textContent = d.ctaSending;
+  try{
+    // FormData auto-collects every named field (name, email + the 4 answers)
+    const fd = new FormData(form);
+    fd.set("access_key", WEB3FORMS_KEY);
+    fd.set("subject", "GroupPulse — בקשת גישה לבטא / Beta access request");
+    fd.set("from_name", "GroupPulse Landing");
+    if(!name) fd.set("name", "(לא צוין / not provided)");
+    const res = await fetch("https://api.web3forms.com/submit",{
+      method:"POST",
+      headers:{"Accept":"application/json"},
+      body: fd
+    });
+    const json = await res.json();
+    if(json.success){
+      form.style.display='none';
+      document.getElementById('formSuccess').classList.add('show');
+    } else {
+      throw new Error(json.message || 'submit failed');
+    }
+  }catch(err){
+    btn.disabled = false; btn.textContent = orig;
+    errEl.classList.add('show');
+  }
 });
 
 /* ---- Reveal on scroll ---- */
