@@ -193,6 +193,10 @@
     background:#fff;border:1px solid transparent;border-radius:9px;
     padding:13px 14px;font:inherit;font-size:15.5px;color:var(--ink);cursor:pointer;width:100%;
   }
+  .qfield .qtext{
+    margin-top:8px;width:100%;background:#fff;border:1px solid transparent;border-radius:9px;
+    padding:12px 14px;font:inherit;font-size:15px;color:var(--ink);
+  }
   .qfield.qmulti{grid-column:1 / -1;}
   .qlabel{font-size:13.5px;font-weight:700;color:#d6ece6;}
   .qlabel .hint{font-style:normal;font-weight:500;opacity:.8;font-size:12.5px;}
@@ -516,12 +520,10 @@ const QUESTIONS = [
     {v:"ehr_integ",   he:"שילוב עם מערכת EHR",         en:"EHR integration"},
     {v:"supervision", he:"דוחות להדרכה ופיקוח",        en:"Supervision & oversight reports"} ]},
   { name:"ehr", he:"באיזו תוכנת תיעוד/EHR את/ה משתמש/ת?", en:"Which documentation / EHR software do you use?", opts:[
-    {v:"none",           he:"אין",            en:"None"},
-    {v:"paper_word",     he:"נייר / Word",     en:"Paper / Word"},
-    {v:"simplepractice", he:"SimplePractice",  en:"SimplePractice"},
-    {v:"therapynotes",   he:"TherapyNotes",    en:"TherapyNotes"},
-    {v:"institution",    he:"מערכת של המוסד",   en:"Institution's system"},
-    {v:"other",          he:"אחר",            en:"Other"} ]},
+    {v:"none",          he:"אין",                  en:"None"},
+    {v:"paper_word",    he:"דפים / Word",           en:"Pages / Word"},
+    {v:"institution",   he:"מערכת פנימית של המוסד",   en:"Institution's internal system"},
+    {v:"external_paid", he:"מערכת חיצונית בתשלום",    en:"External paid system", withText:true} ]},
   { name:"interview", he:"האם תהיה/י מוכן/ה להשתתף בראיון קצר של 15 דקות?", en:"Open to a short 15-minute interview?", opts:[
     {v:"yes",   he:"כן",   en:"Yes"},
     {v:"maybe", he:"אולי", en:"Maybe"},
@@ -533,10 +535,12 @@ function buildQuestions(lang){
   if(!wrap) return;
   const ph = lang==='he' ? 'בחר/י…' : 'Select…';
   const hint = lang==='he' ? 'אפשר לבחור כמה' : 'select all that apply';
+  const namePh = lang==='he' ? 'שם המערכת…' : 'System name…';
   // preserve any answers already chosen when toggling language
-  const prevS = {}, prevM = {};
+  const prevS = {}, prevM = {}, prevT = {};
   wrap.querySelectorAll('select').forEach(s=>{ if(s.value) prevS[s.name]=s.value; });
   wrap.querySelectorAll('.checks input:checked').forEach(c=>{ (prevM[c.name]=prevM[c.name]||[]).push(c.value); });
+  wrap.querySelectorAll('.qtext').forEach(t=>{ if(t.value) prevT[t.name]=t.value; });
   wrap.innerHTML = QUESTIONS.map(q=>{
     if(q.multi){
       const chks = q.opts.map(o=>{
@@ -548,9 +552,27 @@ function buildQuestions(lang){
     }
     const opts = [`<option value="" disabled${prevS[q.name]?'':' selected'}>${ph}</option>`]
       .concat(q.opts.map(o=>`<option value="${o.v}"${prevS[q.name]===o.v?' selected':''}>${o[lang]}</option>`)).join('');
+    // optional follow-up free-text for an option flagged withText (e.g. external paid system name)
+    const textOpt = q.opts.find(o=>o.withText);
+    let extra = '';
+    if(textOpt){
+      const show = prevS[q.name]===textOpt.v;
+      const tv = prevT[q.name+'_name'] ? ` value="${prevT[q.name+'_name'].replace(/"/g,'&quot;')}"` : '';
+      extra = `<input type="text" class="qtext" id="q_${q.name}__text" name="${q.name}_name" placeholder="${namePh}"${tv} data-show="${textOpt.v}" style="display:${show?'block':'none'}">`;
+    }
     return `<div class="qfield"><label for="q_${q.name}">${q[lang]}</label>`+
-           `<select id="q_${q.name}" name="${q.name}">${opts}</select></div>`;
+           `<select id="q_${q.name}" name="${q.name}">${opts}</select>${extra}</div>`;
   }).join('');
+  // reveal the follow-up text field only when its trigger option is selected
+  wrap.querySelectorAll('.qtext').forEach(t=>{
+    const sel = document.getElementById(t.id.replace('__text',''));
+    if(!sel) return;
+    sel.addEventListener('change', ()=>{
+      const show = sel.value === t.getAttribute('data-show');
+      t.style.display = show ? 'block' : 'none';
+      if(!show) t.value = '';
+    });
+  });
 }
 
 function buildMarquee(d){
