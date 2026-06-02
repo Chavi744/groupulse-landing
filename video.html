@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GroupPulse — 90s Demo Film</title>
+<style>
+  :root{
+    --brand1:#3b82f6; --brand2:#8b5cf6; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --ok:#10b981; --rec:#ef4444;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:#000;color:#fff;min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  }
+  /* Controls (hidden during recording region; click then record) */
+  .bar{display:flex;gap:10px;align-items:center;}
+  .btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;
+    padding:9px 16px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;}
+  .btn.primary{background:linear-gradient(135deg,var(--brand1),var(--brand2));border-color:transparent;}
+  .lang-toggle{display:flex;border:1px solid rgba(255,255,255,.18);border-radius:999px;overflow:hidden;}
+  .lang-toggle button{background:transparent;border:0;color:#cbd5e1;padding:9px 14px;cursor:pointer;font-weight:700;font-size:13px;}
+  .lang-toggle button.active{background:rgba(255,255,255,.16);color:#fff;}
+  .hint{font-size:12px;color:#94a3b8;}
+
+  /* 16:9 cinematic stage */
+  .stage{
+    position:relative;width:min(96vw,1100px);aspect-ratio:16/9;background:#0b1020;
+    border-radius:16px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.6);
+  }
+  .layer{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;}
+  .layer.show{opacity:1;}
+
+  /* Watermark logo */
+  .wm{position:absolute;top:18px;inset-inline-start:20px;display:flex;align-items:center;gap:8px;z-index:40;
+    font-weight:800;font-size:16px;color:#fff;opacity:.92;}
+  .wm .dot{width:18px;height:18px;border-radius:6px;background:linear-gradient(135deg,var(--brand1),var(--brand2));}
+
+  /* Title card */
+  #titleCard{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;
+    background:radial-gradient(700px 400px at 50% 40%, #1e293b, #0b1020);text-align:center;z-index:30;}
+  #titleCard .big{font-size:46px;font-weight:800;letter-spacing:.3px;
+    background:linear-gradient(90deg,#fff,#c7b8ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  #titleCard .sub{font-size:17px;color:#aab4c5;}
+
+  /* Room scene (illustrated) */
+  #room{background:linear-gradient(180deg,#2b2440 0%,#3a2f52 45%,#241d36 100%);}
+  .window{position:absolute;top:14%;inset-inline-end:10%;width:24%;height:42%;border-radius:10px;
+    background:linear-gradient(180deg,#ffe9b8,#ffd07a);box-shadow:0 0 80px 24px rgba(255,200,120,.35);opacity:.85;}
+  .window::before,.window::after{content:"";position:absolute;background:rgba(60,40,20,.35);}
+  .window::before{inset-inline-start:50%;top:0;bottom:0;width:3px;}
+  .window::after{left:0;right:0;top:50%;height:3px;}
+  .floor{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg,#1d1830,#15101f);}
+  .chair{position:absolute;bottom:30%;width:46px;height:30px;border-radius:8px 8px 4px 4px;background:#4a4063;box-shadow:0 8px 18px rgba(0,0,0,.35);}
+  .chair::after{content:"";position:absolute;left:6px;right:6px;top:-14px;height:18px;border-radius:6px;background:#564a72;}
+  .c1{inset-inline-start:14%;transform:scale(.9);} .c2{inset-inline-start:26%;}
+  .c3{inset-inline-start:60%;} .c4{inset-inline-start:72%;transform:scale(.9);}
+  /* therapist figure (seated) */
+  .person{position:absolute;bottom:31%;inset-inline-start:42%;width:90px;height:150px;transform-origin:bottom center;}
+  .person .head{position:absolute;top:0;left:50%;transform:translateX(-50%);width:38px;height:38px;border-radius:50%;background:#f1c7a5;}
+  .person .hair{position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:44px;height:30px;border-radius:50% 50% 40% 40%;background:#3a2c25;}
+  .person .body{position:absolute;top:34px;left:50%;transform:translateX(-50%);width:64px;height:78px;border-radius:26px 26px 14px 14px;background:#d9c39a;}
+  .person .arm{position:absolute;top:46px;width:18px;height:54px;border-radius:12px;background:#cdb78e;}
+  .person .arm.l{inset-inline-start:8px;} .person .arm.r{inset-inline-end:8px;transition:transform .8s ease;}
+  .person.reach .arm.r{transform:rotate(-55deg) translateY(-8px);}
+  .floatlabel{position:absolute;top:18%;inset-inline-start:50%;transform:translateX(-50%);
+    background:rgba(255,255,255,.95);color:#065f46;font-weight:800;font-size:15px;padding:8px 16px;border-radius:999px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:20;}
+
+  /* Phone (continuous element: in room -> centered) */
+  .phone{position:absolute;z-index:25;
+    inset-inline-start:46%;bottom:30%;width:120px;height:250px;
+    background:#0b1220;border-radius:22px;border:6px solid #1e293b;
+    box-shadow:0 18px 50px rgba(0,0,0,.5);overflow:hidden;
+    transition:all 1s cubic-bezier(.6,.1,.2,1);opacity:0;transform:translateY(40px);}
+  .phone.visible{opacity:1;transform:none;}
+  .phone.centered{
+    inset-inline-start:50%;bottom:50%;width:240px;height:500px;
+    transform:translate(50%,50%);border-radius:34px;border-width:9px;
+  }
+  html[dir=rtl] .phone.centered{transform:translate(-50%,50%);}
+  .pscreen{position:absolute;inset:0;background:#f4f6fb;display:flex;flex-direction:column;color:var(--ink);}
+  .pbar{height:8%;display:flex;align-items:flex-end;justify-content:space-between;padding:0 12px 3px;font-size:9px;font-weight:700;color:#111;}
+  .pbar.big{font-size:11px;}
+  .papp{background:linear-gradient(135deg,var(--brand1),var(--brand2));color:#fff;padding:7px 10px;font-weight:700;font-size:10px;display:flex;align-items:center;gap:6px;}
+  .papp.big{font-size:13px;padding:11px 14px;}
+  .pbody{flex:1;position:relative;overflow:hidden;}
+  .pscene{position:absolute;inset:0;padding:10px;opacity:0;transition:opacity .5s;overflow:hidden;}
+  .pscene.on{opacity:1;}
+  .pbody.big .pscene{padding:16px;}
+
+  /* phone ready */
+  .ready{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px;text-align:center;}
+  .ready .b{background:#ecfdf5;color:#047857;padding:3px 8px;border-radius:999px;font-size:9px;font-weight:800;}
+  .pbody.big .ready .b{font-size:12px;padding:5px 12px;}
+  .ready h3{font-size:11px;} .pbody.big .ready h3{font-size:16px;}
+  .recbtn{margin-top:8px;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--rec),#dc2626);
+    box-shadow:0 8px 22px rgba(239,68,68,.5);display:flex;align-items:center;justify-content:center;font-size:18px;}
+  .pbody.big .recbtn{width:84px;height:84px;font-size:30px;}
+  .recbtn.tap{animation:tap .5s ease;}
+  @keyframes tap{50%{transform:scale(.86);}}
+  .ripple{position:absolute;border-radius:50%;border:2px solid rgba(239,68,68,.6);animation:rip 1s ease-out;}
+  @keyframes rip{from{width:0;height:0;opacity:.8;}to{width:120px;height:120px;opacity:0;}}
+
+  /* phone recording */
+  .rhead{display:flex;align-items:center;justify-content:center;gap:5px;color:var(--rec);font-weight:700;font-size:11px;}
+  .pbody.big .rhead{font-size:14px;}
+  .live{width:7px;height:7px;border-radius:50%;background:var(--rec);animation:blink 1s infinite;}
+  @keyframes blink{50%{opacity:.25;}}
+  .ptimer{text-align:center;font-weight:800;font-size:15px;margin:2px 0;font-variant-numeric:tabular-nums;}
+  .pbody.big .ptimer{font-size:26px;}
+  .wave{display:flex;align-items:center;justify-content:center;gap:2px;height:24px;margin:4px 0;}
+  .pbody.big .wave{height:40px;gap:3px;}
+  .wave span{width:3px;background:linear-gradient(180deg,var(--brand1),var(--brand2));border-radius:3px;animation:bar 1s infinite ease-in-out;}
+  .pbody.big .wave span{width:4px;}
+  @keyframes bar{0%,100%{height:5px;}50%{height:22px;}}
+  .pbody.big @keyframes bar{}
+  .tlabel{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin:2px 0;}
+  .pbody.big .tlabel{font-size:10px;}
+  .ptrans{font-size:9px;line-height:1.5;color:#374151;overflow:hidden;}
+  .pbody.big .ptrans{font-size:12.5px;}
+  .chip{margin-top:6px;font-size:7.5px;color:var(--muted);background:#eef2ff;border:1px solid #e0e7ff;padding:3px 6px;border-radius:6px;display:inline-block;}
+  .pbody.big .chip{font-size:10px;padding:5px 9px;}
+
+  /* phone processing */
+  .proc{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;text-align:center;}
+  .spin{width:32px;height:32px;border-radius:50%;border:4px solid #e5e7eb;border-top-color:var(--brand2);animation:spin 1s linear infinite;}
+  .pbody.big .spin{width:56px;height:56px;border-width:5px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .proc h3{font-size:10px;} .pbody.big .proc h3{font-size:15px;}
+  .steps{list-style:none;text-align:start;display:flex;flex-direction:column;gap:4px;margin-top:2px;}
+  .pbody.big .steps{gap:7px;}
+  .steps li{font-size:8.5px;color:var(--muted);display:flex;gap:5px;align-items:center;opacity:.4;transition:opacity .3s;}
+  .pbody.big .steps li{font-size:11.5px;gap:7px;}
+  .steps li.done{opacity:1;color:var(--ink);}
+  .tick{width:13px;height:13px;border-radius:50%;border:2px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font-size:7px;color:#fff;}
+  .pbody.big .tick{width:17px;height:17px;font-size:10px;}
+  .steps li.done .tick{background:var(--ok);border-color:var(--ok);}
+
+  /* Results layer (full screen, beside phone) */
+  #results{background:radial-gradient(900px 500px at 70% 0%, #1b2440, #0b1020);}
+  .res-wrap{position:absolute;inset:0;display:flex;gap:3%;padding:5% 5% 4%;align-items:stretch;}
+  html[dir=rtl] .res-wrap{flex-direction:row-reverse;}
+  .res-left{flex:0 0 22%;display:flex;align-items:center;justify-content:center;}
+  .res-right{flex:1;display:flex;flex-direction:column;min-width:0;}
+  .res-h{font-size:clamp(13px,1.7vw,21px);font-weight:800;margin-bottom:2%;color:#fff;}
+  .res-h small{display:block;font-weight:600;font-size:.62em;color:#9fb0c9;margin-top:4px;}
+  .docs{display:flex;flex-direction:column;gap:2.4%;overflow:hidden;}
+  .doc{background:#fff;color:var(--ink);border-radius:10px;overflow:hidden;opacity:0;transform:translateY(14px);
+    transition:all .6s ease;box-shadow:0 14px 34px rgba(0,0,0,.35);}
+  .doc.show{opacity:1;transform:none;}
+  .dh{padding:2.4% 3.4%;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;}
+  .dh .t{font-weight:800;font-size:clamp(10px,1.05vw,14px);}
+  .tag{font-size:clamp(8px,.8vw,11px);font-weight:700;padding:3px 9px;border-radius:999px;}
+  .tag.group{background:#eef2ff;color:#4338ca;} .tag.indiv{background:#ecfdf5;color:#047857;}
+  .db{padding:2.2% 3.4%;font-size:clamp(8.5px,.92vw,12.5px);line-height:1.5;}
+  .db .seg{display:flex;gap:8px;margin-bottom:5px;}
+  .db .seg .k{font-weight:800;color:var(--brand1);min-width:16px;}
+  .indiv-row{display:flex;gap:2.2%;}
+  .indiv-row .doc{flex:1;}
+  .avatar{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--brand1),var(--brand2));color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;margin-inline-end:6px;}
+  .draftpill{position:absolute;top:5%;inset-inline-end:5%;background:#fffbeb;border:1px solid #fde68a;color:#92400e;
+    font-size:clamp(8px,.85vw,11px);font-weight:700;padding:5px 11px;border-radius:999px;z-index:5;}
+
+  /* End card */
+  #endcard{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;text-align:center;
+    background:radial-gradient(700px 400px at 50% 45%, #1e293b, #0b1020);z-index:35;}
+  #endcard .big{font-size:34px;font-weight:800;background:linear-gradient(90deg,#fff,#c7b8ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  #endcard .tg{font-size:16px;color:#c7d0de;max-width:70%;}
+  #endcard .foot{font-size:12px;color:#8ea0bb;}
+  #endcard .cta{margin-top:6px;background:linear-gradient(135deg,var(--brand1),var(--brand2));padding:11px 26px;border-radius:999px;font-weight:800;font-size:15px;}
+
+  /* Caption (lower third, burned-in) */
+  .caption{position:absolute;left:6%;right:6%;bottom:5%;text-align:center;z-index:45;pointer-events:none;}
+  .caption span{display:inline;background:rgba(8,12,24,.72);color:#fff;font-size:clamp(13px,1.7vw,20px);
+    font-weight:600;line-height:1.5;padding:6px 14px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.4);
+    box-decoration-break:clone;-webkit-box-decoration-break:clone;opacity:0;transition:opacity .35s;}
+  .caption.show span{opacity:1;}
+
+  /* progress */
+  .pgwrap{width:min(96vw,1100px);height:4px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;}
+  .pgwrap > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand1),var(--brand2));}
+</style>
+</head>
+<body>
+  <div class="bar">
+    <div class="lang-toggle">
+      <button id="heBtn" class="active" onclick="setLang('he')">עברית</button>
+      <button id="enBtn" onclick="setLang('en')">English</button>
+    </div>
+    <button class="btn primary" onclick="start()">▶ <span id="startLbl">הפעל סרטון</span></button>
+    <button class="btn" onclick="location.reload()"><span id="resetLbl">איפוס</span></button>
+  </div>
+  <div class="hint" id="hint">טיפ: F11 למסך מלא · התחל הקלטת מסך (Win+Alt+R) ואז לחץ "הפעל סרטון"</div>
+
+  <div class="stage" id="stage">
+    <div class="wm"><span class="dot"></span><span>GroupPulse</span></div>
+
+    <!-- Title card -->
+    <div class="layer" id="titleCard">
+      <div class="big">GroupPulse</div>
+      <div class="sub" id="titleSub">תיעוד טיפול קבוצתי — בלי הנטל</div>
+    </div>
+
+    <!-- Room scene -->
+    <div class="layer" id="room">
+      <div class="window"></div>
+      <div class="floor"></div>
+      <div class="chair c1"></div><div class="chair c2"></div>
+      <div class="chair c3"></div><div class="chair c4"></div>
+      <div class="person" id="person">
+        <div class="hair"></div><div class="head"></div>
+        <div class="arm l"></div><div class="arm r"></div>
+        <div class="body"></div>
+      </div>
+      <div class="floatlabel" id="floatLabel">המפגש הסתיים ✓</div>
+    </div>
+
+    <!-- Phone (continuous) -->
+    <div class="phone" id="phone">
+      <div class="pscreen">
+        <div class="pbar" id="pbar"><span id="pclock">21:04</span><span>📶</span></div>
+        <div class="papp" id="papp"><span style="width:12px;height:12px;border-radius:4px;background:rgba(255,255,255,.3)"></span>GroupPulse</div>
+        <div class="pbody" id="pbody">
+          <div class="pscene" id="pReady">
+            <div class="ready">
+              <span class="b" id="pBadge">המפגש הסתיים ✓</span>
+              <h3 id="pReadyTitle">קבוצת חרדה — שלישי</h3>
+              <div class="recbtn" id="recbtn">🎙️</div>
+            </div>
+          </div>
+          <div class="pscene" id="pRec">
+            <div class="rhead"><span class="live"></span><span id="pRecNow">מקליט…</span></div>
+            <div class="ptimer" id="pTimer">00:00</div>
+            <div class="wave" id="wave"></div>
+            <div class="tlabel" id="pTlabel">תמלול חי</div>
+            <div class="ptrans" id="pTrans"></div>
+            <div class="chip" id="pChip">🔒 השמע נמחק לאחר התמלול</div>
+          </div>
+          <div class="pscene" id="pProc">
+            <div class="proc">
+              <div class="spin"></div>
+              <h3 id="pProcTitle">מעבד את ההכתבה…</h3>
+              <ul class="steps" id="pSteps"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="layer" id="results">
+      <div class="draftpill" id="draftPill">⚠️ טיוטות — לאישור המטפל</div>
+      <div class="res-wrap">
+        <div class="res-right">
+          <div class="res-h" id="resH">מהכתבה אחת — תיעוד מלא<small id="resHsub">סיכום קבוצתי + 3 סיכומים אישיים</small></div>
+          <div class="docs">
+            <div class="doc" id="docGroup">
+              <div class="dh"><span class="t" id="dgT">סיכום מפגש קבוצתי — SOAP</span><span class="tag group" id="dgTag">קבוצתי</span></div>
+              <div class="db" id="dgBody"></div>
+            </div>
+            <div class="indiv-row" id="indivRow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End card -->
+    <div class="layer" id="endcard">
+      <div class="big">GroupPulse</div>
+      <div class="tg" id="endTag">מהכתבה אחת — סיכום קבוצתי ו-3 סיכומים אישיים</div>
+      <div class="cta" id="endCta">להצטרפות לבטא →</div>
+      <div class="foot" id="endFoot">ללא הקלטת מטופלים · תואם HIPAA/GDPR · המטפל מאשר כל סיכום</div>
+    </div>
+
+    <!-- Caption -->
+    <div class="caption" id="caption"><span id="capText"></span></div>
+  </div>
+
+  <div class="pgwrap"><i id="pg"></i></div>
+
+<script>
+/* ===================== CONTENT ===================== */
+const C = {
+  he:{ dir:"rtl",
+    startLbl:"הפעל סרטון", resetLbl:"איפוס",
+    hint:'טיפ: F11 למסך מלא · התחל הקלטת מסך (Win+Alt+R) ואז לחץ "הפעל סרטון"',
+    titleSub:"תיעוד טיפול קבוצתי — בלי הנטל",
+    floatLabel:"המפגש הסתיים ✓",
+    pBadge:"המפגש הסתיים ✓", pReadyTitle:"קבוצת חרדה — שלישי",
+    pRecNow:"מקליט…", pTlabel:"תמלול חי", pChip:"🔒 השמע נמחק לאחר התמלול",
+    pProcTitle:"מעבד את ההכתבה…",
+    steps:["מתמלל הכתבה","מזהה משתתפים ונושאים","בונה סיכום SOAP","מקשר לתוכניות טיפול","יוצר 3 סיכומי מעקב"],
+    draftPill:"⚠️ טיוטות — לאישור המטפל",
+    resH:"מהכתבה אחת — תיעוד מלא", resHsub:"סיכום קבוצתי + 3 סיכומים אישיים",
+    dgT:"סיכום מפגש קבוצתי — SOAP", dgTag:"קבוצתי", indivTag:"אישי",
+    endTag:"מהכתבה אחת — סיכום קבוצתי ו-3 סיכומים אישיים",
+    endCta:"להצטרפות לבטא →",
+    endFoot:"ללא הקלטת מטופלים · תואם HIPAA/GDPR · המטפל מאשר כל סיכום",
+    dictation:"אוקיי, סיכום למפגש של היום — קבוצת החרדה של שלישי בערב, שמונה משתתפים, כולם נכחו. האנרגיה הייתה גבוהה, מעורבות טובה. המשכנו על מודול הארגון הקוגניטיבי. דויד שיתף על התקף פאניקה בעבודה — הוא הצליח להשתמש בטכניקת הנשימה שתרגלנו, והחרדה ירדה משמונה לארבע. מאיה הייתה שקטה וציינה שהיא מדלגת על יומני המחשבות; אעקוב איתה אישית. רחל אתגרה בפעם הראשונה את אמונת הליבה 'אני נטל', והקבוצה נתנה משוב תומך מאוד. אין חששות בטיחותיים. במפגש הבא — מניעת הישנות.",
+    soap:[["S","הקבוצה דיווחה על מעורבות גבוהה; יישום טכניקות בין המפגשים, כולל נשימה סרעפתית בהתקף פאניקה (SUDS ‎8→4‎)."],
+          ["O","‎8/8‎ נוכחים, אפקט מלוכד. משתתפת אחת (מ׳) עם פחות מעורבות ואי-עמידה בשיעורי בית. ללא סימני סיכון."],
+          ["A","התקדמות טובה במודול ה-CBT; לכידות ותמיכת עמיתים חזקות. סימני התרחקות מוקדמים אצל משתתפת אחת."],
+          ["P","מפגש הבא — מניעת הישנות. צ'ק-אין אישי עם מ׳. המשך מעקב."]],
+    indiv:[{i:"ד",n:"דויד ק.",b:"התקף פאניקה בעבודה; יישם נשימה סרעפתית עצמאית (SUDS ‎8→4‎). חיזוק וחשיפה הדרגתית."},
+           {i:"מ",n:"מאיה ל.",b:"ירידה בהשתתפות, אי-עמידה ביומני מחשבות. צ'ק-אין אישי ועדכון שיעורי בית."},
+           {i:"ר",n:"רחל ב.",b:"אתגור ראשון של אמונת ליבה 'אני נטל'; משוב תומך. המשך ארגון קוגניטיבי."}],
+    caps:[
+      [3.0, 8.5, "סוף יום. המפגש הקבוצתי הרגע הסתיים."],
+      [9.0, 13.8,"במקום שעה של תיעוד —"],
+      [14.0,17.6,"המטפלת פשוט לוחצת על הקלטה ומכתיבה."],
+      [18.5,25.0,"\"סיכום למפגש של היום — קבוצת החרדה, שמונה משתתפים, כולם נכחו.\""],
+      [25.2,32.5,"\"האנרגיה הייתה גבוהה. המשכנו על מודול הארגון הקוגניטיבי.\""],
+      [32.7,41.0,"\"דויד שיתף על התקף פאניקה — והשתמש בטכניקת הנשימה שתרגלנו.\""],
+      [41.2,47.0,"\"החרדה ירדה משמונה לארבע. התקדמות יפה.\""],
+      [47.2,55.0,"\"מאיה הייתה שקטה ומדלגת על יומני המחשבות; אעקוב איתה אישית.\""],
+      [55.2,63.5,"\"רחל אתגרה בפעם הראשונה את אמונת הליבה 'אני נטל'.\""],
+      [63.7,69.0,"\"אין חששות בטיחותיים. במפגש הבא — מניעת הישנות.\""],
+      [70.5,77.5,"וזהו. ה-AI מתמלל ובונה את התיעוד הקליני."],
+      [78.5,87.0,"סיכום SOAP קבוצתי — פלוס סיכום מעקב אישי לכל חבר בקבוצה."],
+      [88.0,90.0,"GroupPulse — חוט הזהב של הטיפול הקבוצתי."]
+    ]
+  },
+  en:{ dir:"ltr",
+    startLbl:"Play film", resetLbl:"Reset",
+    hint:'Tip: F11 for fullscreen · start screen recording (Win+Alt+R), then click "Play film"',
+    titleSub:"Group-therapy documentation — without the burden",
+    floatLabel:"Session ended ✓",
+    pBadge:"Session ended ✓", pReadyTitle:"Anxiety Group — Tue",
+    pRecNow:"Recording…", pTlabel:"Live transcript", pChip:"🔒 Audio deleted after transcription",
+    pProcTitle:"Processing dictation…",
+    steps:["Transcribing dictation","Identifying members & themes","Building SOAP note","Linking care plans","Generating 3 follow-ups"],
+    draftPill:"⚠️ Drafts — for therapist approval",
+    resH:"From one dictation — full documentation", resHsub:"Group note + 3 individual summaries",
+    dgT:"Group session note — SOAP", dgTag:"Group", indivTag:"Individual",
+    endTag:"From one dictation — a group note and 3 individual summaries",
+    endCta:"Join the beta →",
+    endFoot:"No patient recording · HIPAA/GDPR compliant · Therapist approves every note",
+    dictation:"Okay, summary for today — the Tuesday anxiety group, eight members, all present. Energy was high, good engagement. We continued the cognitive-restructuring module. David shared about a panic episode at work — he used the breathing technique we practiced, and his anxiety dropped from an eight to a four. Maya was quiet and mentioned she's skipping her thought records; I'll follow up one-on-one. Rachel challenged her core belief 'I'm a burden' for the first time, and the group gave supportive feedback. No safety concerns. Next session — relapse prevention.",
+    soap:[["S","Group reported high engagement; applied techniques between sessions incl. diaphragmatic breathing during a panic episode (SUDS 8→4)."],
+          ["O","8/8 present, cohesive affect. One member (M.) with reduced engagement and homework non-adherence. No risk indicators."],
+          ["A","Good progress in the CBT module; strong cohesion and peer support. Early disengagement signs in one member."],
+          ["P","Next session — relapse prevention. Individual check-in with M. Continue monitoring."]],
+    indiv:[{i:"D",n:"David K.",b:"Workplace panic episode; independently applied diaphragmatic breathing (SUDS 8→4). Reinforce + advance exposure."},
+           {i:"M",n:"Maya L.",b:"Reduced participation, thought-record non-adherence. Individual check-in, revise homework."},
+           {i:"R",n:"Rachel B.",b:"First core-belief challenge ('I'm a burden'); supportive feedback. Continue restructuring."}],
+    caps:[
+      [3.0, 8.5, "End of the day. The group session just ended."],
+      [9.0, 13.8,"Instead of an hour of paperwork —"],
+      [14.0,17.6,"the therapist simply taps record and speaks."],
+      [18.5,25.0,"\"Summary for today — the anxiety group, eight members, all present.\""],
+      [25.2,32.5,"\"Energy was high. We continued the cognitive-restructuring module.\""],
+      [32.7,41.0,"\"David shared about a panic episode — he used the breathing technique we practiced.\""],
+      [41.2,47.0,"\"His anxiety dropped from an eight to a four. Nice progress.\""],
+      [47.2,55.0,"\"Maya was quiet and skipping thought records; I'll follow up one-on-one.\""],
+      [55.2,63.5,"\"Rachel challenged her core belief 'I'm a burden' for the first time.\""],
+      [63.7,69.0,"\"No safety concerns. Next session — relapse prevention.\""],
+      [70.5,77.5,"That's it. The AI transcribes and builds the clinical note."],
+      [78.5,87.0,"A group SOAP note — plus a personal follow-up note for every member."],
+      [88.0,90.0,"GroupPulse — the golden thread of group therapy."]
+    ]
+  }
+};
+
+/* ===================== STATE ===================== */
+let LANG="he", t0=null, raf=null, lastCap=-1;
+const $ = id=>document.getElementById(id);
+const show = (id,on=true)=>$(id).classList.toggle('show',on);
+
+/* build wave + steps + static text */
+function buildWave(){ const w=$('wave'); w.innerHTML=''; for(let i=0;i<16;i++){const s=document.createElement('span');s.style.animationDelay=(i*0.06)+'s';w.appendChild(s);} }
+
+function renderStatic(){
+  const d=C[LANG];
+  document.documentElement.lang=LANG; document.documentElement.dir=d.dir;
+  $('heBtn').classList.toggle('active',LANG==='he'); $('enBtn').classList.toggle('active',LANG==='en');
+  const map=['startLbl','resetLbl','hint','titleSub','floatLabel','pBadge','pReadyTitle','pRecNow','pTlabel','pChip','pProcTitle','draftPill','resHsub','dgT','dgTag','endTag','endCta','endFoot'];
+  map.forEach(k=>{ const el=$(k); if(el) el.textContent=d[k]; });
+  $('resH').childNodes[0].nodeValue=d.resH;
+  // steps
+  const ul=$('pSteps'); ul.innerHTML='';
+  d.steps.forEach(s=>{const li=document.createElement('li');li.innerHTML=`<span class="tick">✓</span><span>${s}</span>`;ul.appendChild(li);});
+  // group SOAP
+  const gb=$('dgBody'); gb.innerHTML='';
+  d.soap.forEach(([k,v])=>{const r=document.createElement('div');r.className='seg';r.innerHTML=`<span class="k">${k}</span><span>${v}</span>`;gb.appendChild(r);});
+  // individuals
+  const row=$('indivRow'); row.innerHTML='';
+  d.indiv.forEach((p,idx)=>{const c=document.createElement('div');c.className='doc';c.id='ind'+idx;
+    c.innerHTML=`<div class="dh"><span class="t"><span class="avatar">${p.i}</span>${p.n}</span><span class="tag indiv">${d.indivTag}</span></div><div class="db">${p.b}</div>`;
+    row.appendChild(c);});
+}
+
+function setLang(l){ LANG=l; renderStatic(); }
+
+/* ===================== TIMELINE ===================== */
+// events: [time, fn]
+function timeline(){
+  return [
+    [0.0, ()=>{ resetVisuals(); show('titleCard',true); }],
+    [2.6, ()=>{ show('titleCard',false); }],
+    [3.0, ()=>{ show('room',true); }],
+    [9.0, ()=>{ $('phone').classList.add('visible'); pScene('pReady'); }],         // phone appears in room
+    [13.6,()=>{ $('person').classList.add('reach'); }],                            // reach for phone
+    [14.4,()=>{ $('recbtn').classList.add('tap'); ripple(); }],                    // tap record
+    [16.4,()=>{ $('phone').classList.add('centered'); $('pbody').classList.add('big'); $('pbar').classList.add('big'); $('papp').classList.add('big'); }],
+    [17.4,()=>{ show('room',false); }],                                            // zoom into phone
+    [18.2,()=>{ pScene('pRec'); recStart=performance.now(); }],                    // recording begins
+    [70.0,()=>{ pScene('pProc'); runSteps(); }],                                   // processing
+    [77.8,()=>{ $('phone').classList.remove('centered'); }],
+    [78.2,()=>{ show('results',true); }],
+    [79.0,()=>{ $('docGroup').classList.add('show'); }],
+    [80.6,()=>{ $('ind0').classList.add('show'); }],
+    [81.4,()=>{ $('ind1').classList.add('show'); }],
+    [82.2,()=>{ $('ind2').classList.add('show'); }],
+    [87.6,()=>{ show('results',false); show('endcard',true); }],
+    [90.0,()=>{ stop(); }]
+  ];
+}
+let fired=[], recStart=null;
+
+function resetVisuals(){
+  ['titleCard','room','results','endcard','caption'].forEach(id=>show(id,false));
+  $('phone').classList.remove('visible','centered');
+  $('pbody').classList.remove('big'); $('pbar').classList.remove('big'); $('papp').classList.remove('big');
+  $('person').classList.remove('reach'); $('recbtn').classList.remove('tap');
+  ['pReady','pRec','pProc'].forEach(id=>$(id).classList.remove('on'));
+  $('docGroup').classList.remove('show'); ['ind0','ind1','ind2'].forEach(id=>$(id)&&$(id).classList.remove('show'));
+  $('pTrans').textContent=''; $('pTimer').textContent='00:00'; $('pg').style.width='0';
+  $('pSteps').querySelectorAll('li').forEach(li=>li.classList.remove('done'));
+}
+function pScene(id){ ['pReady','pRec','pProc'].forEach(s=>$(s).classList.toggle('on',s===id)); }
+function ripple(){ const r=document.createElement('div'); r.className='ripple'; const b=$('recbtn'); b.appendChild(r); setTimeout(()=>r.remove(),1000); }
+
+function runSteps(){
+  const lis=$('pSteps').querySelectorAll('li'); let k=0;
+  (function nx(){ if(k<lis.length){ lis[k].classList.add('done'); k++; setTimeout(nx,1300);} })();
+}
+
+/* main loop — driven by setInterval (robust even if the tab loses focus during recording) */
+function loop(){
+  const now=performance.now();
+  const el=(now-t0)/1000;
+  // fire events
+  const tl=timeline();
+  tl.forEach((ev,i)=>{ if(!fired[i] && el>=ev[0]){ fired[i]=true; ev[1](); } });
+  // progress
+  $('pg').style.width=Math.min(100,(el/90)*100)+'%';
+  // recording timer + streaming transcript
+  if(recStart!==null){
+    const rel=(now-recStart)/1000;
+    if(rel>=0 && el<70){
+      const m=Math.floor(rel/60), s=Math.floor(rel%60);
+      $('pTimer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+      const words=C[LANG].dictation.split(' ');
+      const frac=Math.min(1, rel/50);
+      const n=Math.floor(frac*words.length);
+      $('pTrans').textContent=words.slice(0,n).join(' ');
+    }
+  }
+  // captions
+  const caps=C[LANG].caps; let active=-1;
+  for(let i=0;i<caps.length;i++){ if(el>=caps[i][0] && el<=caps[i][1]){ active=i; break; } }
+  if(active!==lastCap){
+    lastCap=active;
+    if(active===-1){ $('caption').classList.remove('show'); }
+    else { $('capText').textContent=caps[active][2]; $('caption').classList.add('show'); }
+  }
+  if(el>=90.2) stop();
+}
+
+function start(){
+  stop(); renderStatic(); resetVisuals();
+  fired=[]; lastCap=-1; recStart=null;
+  t0=performance.now();
+  raf=setInterval(loop,33);
+}
+function stop(){ if(raf) clearInterval(raf); raf=null; }
+
+/* clock */
+function clk(){ const n=new Date(); $('pclock').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0'); }
+
+buildWave(); renderStatic(); clk(); setInterval(clk,30000);
+</script>
+</body>
+</html>
