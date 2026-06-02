@@ -486,31 +486,46 @@ function setLang(l){
    Values (v) are language-neutral slugs so the emailed answer is consistent
    regardless of the visitor's UI language. */
 const QUESTIONS = [
-  { name:"role", he:"מה התפקיד שלך?", en:"Your role?", opts:[
-    {v:"psychologist",  he:"פסיכולוג/ית",          en:"Psychologist"},
-    {v:"social_worker", he:"עובד/ת סוציאלי/ת",     en:"Social worker"},
-    {v:"psychiatrist",  he:"פסיכיאטר/ית",          en:"Psychiatrist"},
-    {v:"cbt_dbt",       he:"מטפל/ת CBT/DBT",        en:"CBT/DBT therapist"},
-    {v:"trainee",       he:"מתמחה / סטודנט/ית",      en:"Trainee / student"},
-    {v:"other",         he:"אחר",                   en:"Other"} ]},
-  { name:"setting", multi:true, he:"איפה את/ה עובד/ת?", en:"Where do you work?", opts:[
-    {v:"private",        he:"קליניקה פרטית",                en:"Private practice"},
-    {v:"public_clinic",  he:"קופ\"ח / מרפאה ציבורית",       en:"Public clinic / HMO"},
-    {v:"sud",            he:"מרכז גמילה (התמכרויות)",        en:"Addiction (SUD) center"},
-    {v:"psych_hospital", he:"בית חולים פסיכיאטרי",          en:"Psychiatric hospital"},
-    {v:"cmhc",           he:"מרכז בריאות נפש קהילתי",        en:"Community mental health center"},
-    {v:"other",          he:"אחר",                          en:"Other"} ]},
-  { name:"group_load", he:"כמה מפגשים קבוצתיים בשבוע?", en:"Group sessions per week?", opts:[
-    {v:"1-2",  he:"1–2",  en:"1–2"},
-    {v:"3-5",  he:"3–5",  en:"3–5"},
-    {v:"6-10", he:"6–10", en:"6–10"},
-    {v:"10+",  he:"10+",  en:"10+"} ]},
-  { name:"ehr", multi:true, he:"באיזו תוכנת תיעוד/EHR את/ה משתמש/ת?", en:"Which EHR do you use?", opts:[
-    {v:"none",           he:"אין / נייר / Word",     en:"None / paper / Word"},
-    {v:"simplepractice", he:"SimplePractice",        en:"SimplePractice"},
-    {v:"therapynotes",   he:"TherapyNotes",          en:"TherapyNotes"},
-    {v:"institution",    he:"מערכת של המוסד",         en:"Institution's system"},
-    {v:"other",          he:"אחר",                   en:"Other"} ]}
+  { name:"role", multi:true, he:"מה התפקיד שלך?", en:"Your role?", opts:[
+    {v:"independent", he:"מטפל/ת עצמאי/ת",      en:"Independent therapist"},
+    {v:"facilitator", he:"מנחה קבוצות",          en:"Group facilitator"},
+    {v:"director",    he:"מנהל/ת מרכז טיפולי",    en:"Clinic / center director"},
+    {v:"supervisor",  he:"מדריך/ה קליני/ת",       en:"Clinical supervisor"},
+    {v:"other",       he:"אחר",                  en:"Other"} ]},
+  { name:"groups_per_month", he:"כמה קבוצות טיפוליות את/ה מנחה בממוצע בחודש?", en:"Therapy groups you facilitate per month (avg)?", opts:[
+    {v:"1-4",   he:"1–4",   en:"1–4"},
+    {v:"5-10",  he:"5–10",  en:"5–10"},
+    {v:"11-20", he:"11–20", en:"11–20"},
+    {v:"20+",   he:"20+",   en:"20+"} ]},
+  { name:"doc_time", he:"כמה זמן את/ה משקיע/ה כיום בתיעוד לאחר מפגש קבוצתי?", en:"Time you spend on documentation after a group session today?", opts:[
+    {v:"under_15", he:"פחות מ-15 דקות", en:"Under 15 min"},
+    {v:"15-30",    he:"15–30 דקות",     en:"15–30 min"},
+    {v:"30-60",    he:"30–60 דקות",     en:"30–60 min"},
+    {v:"over_60",  he:"יותר משעה",       en:"Over an hour"} ]},
+  { name:"pain", multi:true, he:"מה הכאב הגדול ביותר בתהליך התיעוד?", en:"Biggest pain in the documentation process?", opts:[
+    {v:"time",        he:"גוזל יותר מדי זמן",         en:"Takes too much time"},
+    {v:"repetitive",  he:"כתיבה חוזרת ומונוטונית",    en:"Repetitive, monotonous writing"},
+    {v:"accuracy",    he:"חשש מאי דיוק",              en:"Worry about inaccuracy"},
+    {v:"per_patient", he:"קושי לתעד כל משתתף בנפרד",  en:"Hard to document each participant"},
+    {v:"compliance",  he:"דרישות רגולציה/ביטוח",       en:"Regulatory / insurance requirements"},
+    {v:"other",       he:"אחר",                      en:"Other"} ]},
+  { name:"outputs", multi:true, he:"אילו תוצרים היו הכי עוזרים לך?", en:"Which outputs would help you most?", opts:[
+    {v:"soap",        he:"סיכום SOAP/DAP אוטומטי",    en:"Automatic SOAP/DAP note"},
+    {v:"individual",  he:"סיכומים אישיים לכל משתתף",   en:"Individual summary per participant"},
+    {v:"goals",       he:"מעקב אחר מטרות טיפול",       en:"Treatment-goal tracking"},
+    {v:"ehr_integ",   he:"שילוב עם מערכת EHR",         en:"EHR integration"},
+    {v:"supervision", he:"דוחות להדרכה ופיקוח",        en:"Supervision & oversight reports"} ]},
+  { name:"ehr", he:"באיזו תוכנת תיעוד/EHR את/ה משתמש/ת?", en:"Which documentation / EHR software do you use?", opts:[
+    {v:"none",           he:"אין",            en:"None"},
+    {v:"paper_word",     he:"נייר / Word",     en:"Paper / Word"},
+    {v:"simplepractice", he:"SimplePractice",  en:"SimplePractice"},
+    {v:"therapynotes",   he:"TherapyNotes",    en:"TherapyNotes"},
+    {v:"institution",    he:"מערכת של המוסד",   en:"Institution's system"},
+    {v:"other",          he:"אחר",            en:"Other"} ]},
+  { name:"interview", he:"האם תהיה/י מוכן/ה להשתתף בראיון קצר של 15 דקות?", en:"Open to a short 15-minute interview?", opts:[
+    {v:"yes",   he:"כן",   en:"Yes"},
+    {v:"maybe", he:"אולי", en:"Maybe"},
+    {v:"no",    he:"לא",   en:"No"} ]}
 ];
 
 function buildQuestions(lang){
