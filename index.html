@@ -193,6 +193,19 @@
     background:#fff;border:1px solid transparent;border-radius:9px;
     padding:13px 14px;font:inherit;font-size:15.5px;color:var(--ink);cursor:pointer;width:100%;
   }
+  .qfield.qmulti{grid-column:1 / -1;}
+  .qlabel{font-size:13.5px;font-weight:700;color:#d6ece6;}
+  .qlabel .hint{font-style:normal;font-weight:500;opacity:.8;font-size:12.5px;}
+  .checks{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+  .chk{
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);
+    border-radius:8px;padding:9px 13px;font-size:14.5px;color:#eaf4f1;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .chk:hover{background:rgba(255,255,255,.18);}
+  .chk input{accent-color:var(--mark);width:16px;height:16px;cursor:pointer;margin:0;}
+  .chk:has(input:checked){background:#fff;color:var(--ink);border-color:#fff;}
   .signup .btn{align-self:center;margin-top:4px;}
   .note{font-size:13px;color:#bcdcd4;margin-top:18px;max-width:48ch;}
   .ok{display:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:12px;padding:22px 26px;max-width:560px;font-weight:600;font-size:17px;}
@@ -480,7 +493,7 @@ const QUESTIONS = [
     {v:"cbt_dbt",       he:"מטפל/ת CBT/DBT",        en:"CBT/DBT therapist"},
     {v:"trainee",       he:"מתמחה / סטודנט/ית",      en:"Trainee / student"},
     {v:"other",         he:"אחר",                   en:"Other"} ]},
-  { name:"setting", he:"איפה את/ה עובד/ת?", en:"Where do you work?", opts:[
+  { name:"setting", multi:true, he:"איפה את/ה עובד/ת?", en:"Where do you work?", opts:[
     {v:"private",        he:"קליניקה פרטית",                en:"Private practice"},
     {v:"public_clinic",  he:"קופ\"ח / מרפאה ציבורית",       en:"Public clinic / HMO"},
     {v:"sud",            he:"מרכז גמילה (התמכרויות)",        en:"Addiction (SUD) center"},
@@ -492,7 +505,7 @@ const QUESTIONS = [
     {v:"3-5",  he:"3–5",  en:"3–5"},
     {v:"6-10", he:"6–10", en:"6–10"},
     {v:"10+",  he:"10+",  en:"10+"} ]},
-  { name:"ehr", he:"באיזו תוכנת תיעוד/EHR את/ה משתמש/ת?", en:"Which EHR do you use?", opts:[
+  { name:"ehr", multi:true, he:"באיזו תוכנת תיעוד/EHR את/ה משתמש/ת?", en:"Which EHR do you use?", opts:[
     {v:"none",           he:"אין / נייר / Word",     en:"None / paper / Word"},
     {v:"simplepractice", he:"SimplePractice",        en:"SimplePractice"},
     {v:"therapynotes",   he:"TherapyNotes",          en:"TherapyNotes"},
@@ -504,12 +517,22 @@ function buildQuestions(lang){
   const wrap = document.getElementById('qFields');
   if(!wrap) return;
   const ph = lang==='he' ? 'בחר/י…' : 'Select…';
+  const hint = lang==='he' ? 'אפשר לבחור כמה' : 'select all that apply';
   // preserve any answers already chosen when toggling language
-  const prev = {};
-  wrap.querySelectorAll('select').forEach(s=>{ if(s.value) prev[s.name]=s.value; });
+  const prevS = {}, prevM = {};
+  wrap.querySelectorAll('select').forEach(s=>{ if(s.value) prevS[s.name]=s.value; });
+  wrap.querySelectorAll('.checks input:checked').forEach(c=>{ (prevM[c.name]=prevM[c.name]||[]).push(c.value); });
   wrap.innerHTML = QUESTIONS.map(q=>{
-    const opts = [`<option value="" disabled${prev[q.name]?'':' selected'}>${ph}</option>`]
-      .concat(q.opts.map(o=>`<option value="${o.v}"${prev[q.name]===o.v?' selected':''}>${o[lang]}</option>`)).join('');
+    if(q.multi){
+      const chks = q.opts.map(o=>{
+        const on = (prevM[q.name]||[]).includes(o.v) ? ' checked' : '';
+        return `<label class="chk"><input type="checkbox" name="${q.name}" value="${o.v}"${on}><span>${o[lang]}</span></label>`;
+      }).join('');
+      return `<div class="qfield qmulti"><span class="qlabel">${q[lang]} <em class="hint">(${hint})</em></span>`+
+             `<div class="checks">${chks}</div></div>`;
+    }
+    const opts = [`<option value="" disabled${prevS[q.name]?'':' selected'}>${ph}</option>`]
+      .concat(q.opts.map(o=>`<option value="${o.v}"${prevS[q.name]===o.v?' selected':''}>${o[lang]}</option>`)).join('');
     return `<div class="qfield"><label for="q_${q.name}">${q[lang]}</label>`+
            `<select id="q_${q.name}" name="${q.name}">${opts}</select></div>`;
   }).join('');
@@ -561,6 +584,8 @@ form.addEventListener('submit', async function(e){
   try{
     // FormData auto-collects every named field (name, email + the 4 answers)
     const fd = new FormData(form);
+    // collapse multi-select questions into one comma-joined value
+    QUESTIONS.filter(q=>q.multi).forEach(q=>{ fd.set(q.name, fd.getAll(q.name).join(", ")); });
     fd.set("access_key", WEB3FORMS_KEY);
     fd.set("subject", "GroupPulse — בקשת גישה לבטא / Beta access request");
     fd.set("from_name", "GroupPulse Landing");
