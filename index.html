@@ -132,7 +132,7 @@
   .cap a{color:var(--accent);font-weight:700;border-bottom:1px solid var(--accent);}
 
   /* ---------- Bento value grid ---------- */
-  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
   .tile{background:var(--paper-2);padding:36px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;transition:background .2s ease;}
   .tile:hover{background:#fff;}
   .tile .num{font-family:var(--serif);font-weight:900;font-size:16px;color:var(--accent);letter-spacing:.05em;}
@@ -154,6 +154,16 @@
     .bento{grid-template-columns:1fr;}
     .tile.big,.tile.wide,.tile.third{grid-column:span 1;}
   }
+
+  /* ---------- Who it's for ---------- */
+  .who-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media (max-width:820px){ .who-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:460px){ .who-grid{grid-template-columns:1fr;} }
+  .who{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:30px 22px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;transition:background .2s ease, transform .2s ease;}
+  .who:hover{background:#fff;transform:translateY(-3px);}
+  .who-ic{font-size:30px;margin-bottom:4px;}
+  .who h3{font-family:var(--serif);font-weight:700;font-size:20px;}
+  .who p{font-size:14.5px;color:var(--ink-2);line-height:1.6;}
 
   /* ---------- How it works ---------- */
   .flow{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);}
@@ -241,6 +251,7 @@
         <a href="#demo" data-i18n="navDemo">הדגמה</a>
         <a href="#value" data-i18n="navValue">למה זה שונה</a>
         <a href="#how" data-i18n="navHow">איך זה עובד</a>
+        <a href="#who" data-i18n="navWho">למי זה מתאים</a>
       </nav>
       <div class="nav-r">
         <div class="lang">
@@ -255,17 +266,17 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero wrap" id="top">
-    <div class="kicker"><span class="idx">01</span><span data-i18n="kHero">תיעוד קבוצתי</span></div>
-    <h1 class="display" data-i18n="heroH1">הכלי הראשון לתיעוד טיפול קבוצתי — <span class="mark">בלי להקליט אף מטופל</span></h1>
-    <p class="lead" data-i18n="heroSub">אחרי המפגש אתם מכתיבים סיכום קצר. ה-AI מתמלל ומנסח עבורכם מסמך קבוצתי מובנה (SOAP/DAP) וסיכום מעקב אישי לכל משתתף — מקושר אוטומטית לתוכנית הטיפול שלו. אתם מאשרים. זהו.</p>
+    <div class="kicker"><span class="idx">01</span><span data-i18n="kHero">נשמע מוכר?</span></div>
+    <h1 class="display" data-i18n="heroH1">סיימתם קבוצה טיפולית? <span class="mark">אל תתחילו עכשיו 8 דוחות מאפס.</span></h1>
+    <p class="lead" data-i18n="heroSub">GroupPulse הופכת הכתבה קולית קצרה של המטפל לדוח קבוצתי ולסיכומי מעקב אישיים לכל משתתף — בלי להקליט מטופלים, ועם אישור מלא של המטפל לפני שמירה.</p>
     <div class="cta-row">
       <a href="#join" class="btn btn-solid lg" data-i18n="heroCta1">הצטרפו לגרסת הבטא הסגורה</a>
       <a href="#demo" class="btn btn-ghost lg" data-i18n="heroCta2">▶ צפו בהדגמה</a>
     </div>
     <ul class="facts">
-      <li data-i18n="trust1">פורמט DSM-5 · CBT/DBT</li>
-      <li data-i18n="trust2">חוט הזהב — קישור להיסטוריית הטיפול</li>
-      <li data-i18n="trust3">המטפל מאשר כל סיכום</li>
+      <li data-i18n="trust1">דוח קבוצתי + דוחות אישיים מהכתבה אחת</li>
+      <li data-i18n="trust2">חוט הזהב — מותאם ליעדים של כל משתתף</li>
+      <li data-i18n="trust3">המטפל מאשר כל דוח לפני שמירה</li>
     </ul>
   </section>
 
@@ -291,39 +302,23 @@
     <div class="sec-head">
       <div class="kicker"><span class="idx">03</span><span data-i18n="kValue">למה זה שונה</span></div>
       <h2 class="display" data-i18n="valueH2">למה GroupPulse שונה</h2>
-      <p class="lead" data-i18n="valueLead">בנוי מהיסוד לטיפול קבוצתי, עם פרטיות וביטחון קליני כברירת מחדל.</p>
+      <p class="lead" data-i18n="valueLead">שלושה דברים שאף כלי תיעוד גנרי לא נותן לטיפול קבוצתי.</p>
     </div>
     <div class="bento">
-      <article class="tile big">
+      <article class="tile">
         <span class="num">01</span>
-        <h3 data-i18n="f1t">אפס הקלטת מטופלים</h3>
-        <p data-i18n="f1b">לא מקליטים את החדר ולא את המשתתפים. רק ההכתבה הקצרה שלכם אחרי המפגש נקלטת — והשמע נמחק אוטומטית מיד אחרי התמלול.</p>
-        <span class="accent-line"><span class="pin"></span><span data-i18n="f1tag">הכתבה אחת בלבד. אפס מיקרופון בחדר.</span></span>
+        <h3 data-i18n="f3t">קבוצתי + אישי, מהכתבה אחת</h3>
+        <p data-i18n="f3b">הכתבה קולית קצרה אחת הופכת לדוח קבוצתי מובנה ולסיכום מעקב אישי נפרד לכל משתתף.</p>
       </article>
-      <article class="tile wide">
+      <article class="tile">
         <span class="num">02</span>
         <h3 data-i18n="f2t">חוט הזהב</h3>
-        <p data-i18n="f2b">כל סיכום חדש מתקשר אוטומטית לתוכנית הטיפול וליעדים ההיסטוריים של כל משתתף — מונע קיזוזים מחברות הביטוח ותומך בפיקוח על מתמחים.</p>
+        <p data-i18n="f2b">כל דוח חדש מתחבר אוטומטית ליעדים ולהיסטוריית הטיפול של כל משתתף — כדי שהמעקב יישאר רציף.</p>
       </article>
-      <article class="tile wide">
+      <article class="tile">
         <span class="num">03</span>
-        <h3 data-i18n="f3t">מהכתבה אחת → קבוצתי + אישי</h3>
-        <p data-i18n="f3b">הכתבה אחת הופכת למסמך קבוצתי מובנה ולנספח מעקב אישי נפרד לכל משתתף — מוכן לשיבוץ בתיק הרפואי.</p>
-      </article>
-      <article class="tile third">
-        <span class="num">04</span>
-        <h3 data-i18n="f4t">המטפל מחליט תמיד</h3>
-        <p data-i18n="f4b">ה-AI מייצר טיוטות בלבד. אף סיכום ואף אבחנה לא נשמרים ללא אישור מפורש שלכם. הסמכות הקלינית נשארת אצלכם.</p>
-      </article>
-      <article class="tile third">
-        <span class="num">05</span>
-        <h3 data-i18n="f5t">תואם HIPAA ו-GDPR</h3>
-        <p data-i18n="f5b">הצפנת AES-256 מקצה לקצה, ענן מאובטח, ואפס שימוש בנתוני מטופלים לאימון מודלים חיצוניים.</p>
-      </article>
-      <article class="tile third">
-        <span class="num">06</span>
-        <h3 data-i18n="f6t">משתלב ב-EHR שלכם</h3>
-        <p data-i18n="f6b">פיצול הסיכום הקבוצתי לנספחים אישיים והזרקתם לתוכנת התיק הרפואי שלכם (כגון SimplePractice) — בלי הקלדה כפולה.</p>
+        <h3 data-i18n="f4t">המטפל מאשר הכל</h3>
+        <p data-i18n="f4b">ה-AI מייצר טיוטות בלבד. שום דוח לא נשמר בלי אישור מפורש שלכם — הסמכות הקלינית נשארת אצלכם.</p>
       </article>
     </div>
   </section>
@@ -359,10 +354,25 @@
     </ol>
   </section>
 
+  <!-- ===== Who it's for ===== -->
+  <section class="section wrap reveal" id="who" style="padding-top:0;">
+    <div class="sec-head">
+      <div class="kicker"><span class="idx">05</span><span data-i18n="kWho">למי זה מתאים</span></div>
+      <h2 class="display" data-i18n="whoH2">למי GroupPulse מתאים</h2>
+      <p class="lead" data-i18n="whoLead">לכל מי שמתעד טיפול קבוצתי — וטובע בדוחות אחרי כל מפגש.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who"><span class="who-ic">👥</span><h3 data-i18n="w1t">מטפלים קבוצתיים</h3><p data-i18n="w1b">פסיכולוגים, עו"ס ומנחי קבוצות שמעבירים כמה קבוצות בשבוע.</p></div>
+      <div class="who"><span class="who-ic">🏥</span><h3 data-i18n="w2t">מרכזים טיפוליים</h3><p data-i18n="w2b">מרכזי טיפול וגמילה שצריכים תיעוד עקבי לכל הצוות.</p></div>
+      <div class="who"><span class="who-ic">🎓</span><h3 data-i18n="w3t">הכשרות והדרכה</h3><p data-i18n="w3b">תוכניות הכשרה שצריכות תיעוד ברור לפיקוח על מתמחים.</p></div>
+      <div class="who"><span class="who-ic">🩺</span><h3 data-i18n="w4t">מרפאות וקליניקות</h3><p data-i18n="w4b">מרפאות שרוצות לקצר את זמן התיעוד בלי לוותר על איכות.</p></div>
+    </div>
+  </section>
+
   <!-- ===== Join / CTA ===== -->
   <section class="join reveal" id="join">
     <div class="join-in">
-      <div class="kicker light"><span class="idx">05</span><span data-i18n="kJoin">בטא סגורה</span></div>
+      <div class="kicker light"><span class="idx">06</span><span data-i18n="kJoin">בטא סגורה</span></div>
       <h2 class="display" data-i18n="ctaH2">הצטרפו לגרסת הבטא הסגורה של הכלי הראשון לתיעוד קבוצתי — ללא הקלטת המטופלים</h2>
       <p class="lead" data-i18n="ctaLead">מספר המקומות בבטא מוגבל. השאירו פרטים ונחזור אליכם עם גישה מוקדמת.</p>
       <form class="signup" id="signupForm" novalidate>
@@ -384,7 +394,7 @@
   <footer>
     <div class="foot-in wrap">
       <div class="brand"><span class="glyph"></span>GroupPulse</div>
-      <div class="foot-tag" data-i18n="footTag">ללא הקלטת מטופלים · תואם HIPAA/GDPR · המטפל מאשר כל סיכום</div>
+      <div class="foot-tag" data-i18n="footTag">לא מקליטים מטופלים · פרטיות מהיסוד · המטפל מאשר כל דוח</div>
       <div class="foot-copy" data-i18n="footCopy">© 2026 GroupPulse</div>
     </div>
   </footer>
@@ -394,74 +404,76 @@
 const I18N = {
   he:{
     dir:"rtl",
-    navDemo:"הדגמה", navValue:"למה זה שונה", navHow:"איך זה עובד", navCta:"הצטרפו לבטא",
-    kHero:"תיעוד קבוצתי", kDemo:"הדגמה", kValue:"למה זה שונה", kHow:"התהליך", kJoin:"בטא סגורה",
-    heroH1:'הכלי הראשון לתיעוד טיפול קבוצתי — <span class="mark">בלי להקליט אף מטופל</span>',
-    heroSub:"אחרי המפגש אתם מכתיבים סיכום קצר. ה-AI מתמלל ומנסח עבורכם מסמך קבוצתי מובנה (SOAP/DAP) וסיכום מעקב אישי לכל משתתף — מקושר אוטומטית לתוכנית הטיפול שלו. אתם מאשרים. זהו.",
+    navDemo:"הדגמה", navValue:"למה זה שונה", navHow:"איך זה עובד", navWho:"למי זה מתאים", navCta:"הצטרפו לבטא",
+    kHero:"נשמע מוכר?", kDemo:"הדגמה", kValue:"למה זה שונה", kHow:"התהליך", kWho:"למי זה מתאים", kJoin:"בטא סגורה",
+    heroH1:'סיימתם קבוצה טיפולית? <span class="mark">אל תתחילו עכשיו 8 דוחות מאפס.</span>',
+    heroSub:"GroupPulse הופכת הכתבה קולית קצרה של המטפל לדוח קבוצתי ולסיכומי מעקב אישיים לכל משתתף — בלי להקליט מטופלים, ועם אישור מלא של המטפל לפני שמירה.",
     heroCta1:"הצטרפו לגרסת הבטא הסגורה", heroCta2:"▶ צפו בהדגמה",
-    trust1:"פורמט DSM-5 · CBT/DBT", trust2:"חוט הזהב — קישור להיסטוריית הטיפול", trust3:"המטפל מאשר כל סיכום",
-    marquee:["ללא הקלטת מטופלים","תואם HIPAA / GDPR","הצפנת AES-256","פורמט DSM-5","CBT / DBT","חוט הזהב","המטפל מאשר כל סיכום","אינטגרציית EHR"],
+    trust1:"דוח קבוצתי + דוחות אישיים מהכתבה אחת", trust2:"חוט הזהב — מותאם ליעדים של כל משתתף", trust3:"המטפל מאשר כל דוח לפני שמירה",
+    marquee:["לא מקליטים מטופלים","הכתבה קולית קצרה אחת","דוח קבוצתי + דוחות אישיים","מותאם ליעדי כל משתתף","המטפל מאשר כל דוח","פרטיות מהיסוד"],
     demoH2:"ראו איך זה עובד — ב-90 שניות",
-    demoLead:"ממפגש שהסתיים, דרך הכתבה אחת, ועד מסמך קבוצתי + שלושה סיכומי מעקב אישיים. כל מה שצריך לעשות בסוף — לאשר.",
+    demoLead:"ממפגש שהסתיים, דרך הכתבה קולית קצרה אחת, ועד דוח קבוצתי + סיכומי מעקב אישיים לכל משתתף. כל מה שנשאר — לאשר.",
     demoNote:'ההדגמה אינטראקטיבית — לחצו ▶ <b>הפעל</b> בתוך המסגרת. אפשר גם <a href="demo.html" target="_blank" rel="noopener">לפתוח במסך מלא</a>.',
     valueH2:"למה GroupPulse שונה",
-    valueLead:"בנוי מהיסוד לטיפול קבוצתי, עם פרטיות וביטחון קליני כברירת מחדל.",
-    f1t:"אפס הקלטת מטופלים", f1b:"לא מקליטים את החדר ולא את המשתתפים. רק ההכתבה הקצרה שלכם אחרי המפגש נקלטת — והשמע נמחק אוטומטית מיד אחרי התמלול.",
-    f1tag:"הכתבה אחת בלבד. אפס מיקרופון בחדר.",
-    f2t:"חוט הזהב", f2b:"כל סיכום חדש מתקשר אוטומטית לתוכנית הטיפול וליעדים ההיסטוריים של כל משתתף — מונע קיזוזים מחברות הביטוח ותומך בפיקוח על מתמחים.",
-    f3t:"מהכתבה אחת → קבוצתי + אישי", f3b:"הכתבה אחת הופכת למסמך קבוצתי מובנה ולנספח מעקב אישי נפרד לכל משתתף — מוכן לשיבוץ בתיק הרפואי.",
-    f4t:"המטפל מחליט תמיד", f4b:"ה-AI מייצר טיוטות בלבד. אף סיכום ואף אבחנה לא נשמרים ללא אישור מפורש שלכם. הסמכות הקלינית נשארת אצלכם.",
-    f5t:"תואם HIPAA ו-GDPR", f5b:"הצפנת AES-256 מקצה לקצה, ענן מאובטח, ואפס שימוש בנתוני מטופלים לאימון מודלים חיצוניים.",
-    f6t:"משתלב ב-EHR שלכם", f6b:"פיצול הסיכום הקבוצתי לנספחים אישיים והזרקתם לתוכנת התיק הרפואי שלכם (כגון SimplePractice) — בלי הקלדה כפולה.",
+    valueLead:"שלושה דברים שאף כלי תיעוד גנרי לא נותן לטיפול קבוצתי.",
+    f2t:"חוט הזהב", f2b:"כל דוח חדש מתחבר אוטומטית ליעדים ולהיסטוריית הטיפול של כל משתתף — כדי שהמעקב יישאר רציף.",
+    f3t:"קבוצתי + אישי, מהכתבה אחת", f3b:"הכתבה קולית קצרה אחת הופכת לדוח קבוצתי מובנה ולסיכום מעקב אישי נפרד לכל משתתף.",
+    f4t:"המטפל מאשר הכל", f4b:"ה-AI מייצר טיוטות בלבד. שום דוח לא נשמר בלי אישור מפורש שלכם — הסמכות הקלינית נשארת אצלכם.",
+    w1t:"מטפלים קבוצתיים", w1b:"פסיכולוגים, עו\"ס ומנחי קבוצות שמעבירים כמה קבוצות בשבוע.",
+    w2t:"מרכזים טיפוליים", w2b:"מרכזי טיפול וגמילה שצריכים תיעוד עקבי לכל הצוות.",
+    w3t:"הכשרות והדרכה", w3b:"תוכניות הכשרה שצריכות תיעוד ברור לפיקוח על מתמחים.",
+    w4t:"מרפאות וקליניקות", w4b:"מרפאות שרוצות לקצר את זמן התיעוד בלי לוותר על איכות.",
+    whoH2:"למי GroupPulse מתאים", whoLead:"לכל מי שמתעד טיפול קבוצתי — וטובע בדוחות אחרי כל מפגש.",
     howH2:"איך זה עובד",
     howLead:"ארבעה צעדים, פחות משתי דקות אחרי שהמשתתפים יוצאים מהחדר.",
-    s1t:"מכתיבים", s1b:"אחרי המפגש אתם מקליטים סיכום מילולי קצר — בקול חופשי, כמו שאתם חושבים.",
-    s2t:"מתמלל", s2b:"המערכת מתמללת בדיוק רפואי גבוה, והשמע נמחק מיד אחר כך.",
-    s3t:"מנסח ומקשר", s3b:"ה-AI בונה מסמך קבוצתי + סיכום אישי לכל משתתף, מקושרים לתוכניות הטיפול.",
-    s4t:"אתם מאשרים", s4b:"עוברים על הטיוטות, עורכים אם צריך, ומאשרים. רק אז הן נשמרות.",
-    ctaH2:"הצטרפו לגרסת הבטא הסגורה של הכלי הראשון לתיעוד קבוצתי — ללא הקלטת המטופלים",
+    s1t:"מכתיבים", s1b:"אחרי המפגש מקליטים הכתבה קולית קצרה — בקול חופשי, כמו שחושבים.",
+    s2t:"מתמלל", s2b:"המערכת מתמללת את ההכתבה, והשמע נמחק מיד אחר כך.",
+    s3t:"מנסח ומחבר", s3b:"ה-AI בונה דוח קבוצתי + דוח אישי לכל משתתף, מחוברים ליעדי הטיפול.",
+    s4t:"אתם מאשרים", s4b:"עוברים על הטיוטות, עורכים אם צריך, ומאשרים. רק אז נשמרות.",
+    ctaH2:"הצטרפו לגרסת הבטא הסגורה — הכלי הראשון לתיעוד קבוצתי בלי להקליט מטופלים",
     ctaLead:"מספר המקומות בבטא מוגבל. השאירו פרטים ונחזור אליכם עם גישה מוקדמת.",
     phName:"שם מלא", phEmail:"אימייל", ctaBtn:"בקשת גישה לבטא", ctaSending:"שולח…",
     ctaNote:"השאלות אופציונליות ועוזרות לנו למקד את המוצר. בלחיצה אתם מסכימים שניצור קשר בנוגע לבטא בלבד. ללא ספאם, ניתן להסיר בכל עת.",
     ctaSuccess:"✓ תודה! קיבלנו את הפרטים ונעדכן אתכם ברגע שהבטא ייפתח לגישה.",
     ctaError:"אופס — משהו השתבש בשליחה. נסו שוב, או כתבו לנו ישירות ל-chavi744@gmail.com.",
-    footTag:"ללא הקלטת מטופלים · תואם HIPAA/GDPR · המטפל מאשר כל סיכום",
+    footTag:"לא מקליטים מטופלים · פרטיות מהיסוד · המטפל מאשר כל דוח",
     footCopy:"© 2026 GroupPulse"
   },
   en:{
     dir:"ltr",
-    navDemo:"Demo", navValue:"Why it's different", navHow:"How it works", navCta:"Join the beta",
-    kHero:"Group documentation", kDemo:"Demo", kValue:"Why different", kHow:"The process", kJoin:"Closed beta",
-    heroH1:'The first documentation tool for group therapy — <span class="mark">without recording a single patient</span>',
-    heroSub:"After the session, you dictate a short summary. The AI transcribes it and drafts a structured group note (SOAP/DAP) plus a personalized follow-up note for every participant — auto-linked to their care plan. You approve. Done.",
+    navDemo:"Demo", navValue:"Why it's different", navHow:"How it works", navWho:"Who it's for", navCta:"Join the beta",
+    kHero:"Sound familiar?", kDemo:"Demo", kValue:"Why different", kHow:"The process", kWho:"Who it's for", kJoin:"Closed beta",
+    heroH1:'Just finished a group session? <span class="mark">Don\'t start 8 reports from scratch.</span>',
+    heroSub:"GroupPulse turns the therapist's short voice dictation into a group report and personalized follow-up notes for every participant — without recording patients, and with full therapist approval before anything is saved.",
     heroCta1:"Join the closed beta", heroCta2:"▶ Watch the demo",
-    trust1:"DSM-5 format · CBT/DBT", trust2:"Golden thread — linked to care history", trust3:"Therapist approves every note",
-    marquee:["No patient recording","HIPAA / GDPR compliant","AES-256 encryption","DSM-5 format","CBT / DBT","The golden thread","Therapist approves every note","EHR integration"],
+    trust1:"Group report + individual reports from one dictation", trust2:"Golden thread — tailored to each participant's goals", trust3:"Therapist approves every report before it's saved",
+    marquee:["We never record patients","One short voice dictation","Group report + individual reports","Tailored to each participant's goals","Therapist approves every report","Privacy by design"],
     demoH2:"See how it works — in 90 seconds",
-    demoLead:"From a session that just ended, through one dictation, to a group note + three individual follow-up summaries. All that's left to do — approve.",
+    demoLead:"From a session that just ended, through one short voice dictation, to a group report + individual follow-up notes per participant. All that's left — approve.",
     demoNote:'The demo is interactive — click ▶ <b>Play</b> inside the frame. You can also <a href="demo.html" target="_blank" rel="noopener">open it full-screen</a>.',
     valueH2:"Why GroupPulse is different",
-    valueLead:"Built from the ground up for group therapy, with privacy and clinical safety by default.",
-    f1t:"Zero patient recording", f1b:"We never record the room or the participants. Only your short post-session dictation is captured — and the audio is auto-deleted right after transcription.",
-    f1tag:"One dictation only. Zero mic in the room.",
-    f2t:"The golden thread", f2b:"Every new summary auto-links to each participant's care plan and historical goals — preventing insurance clawbacks and supporting supervision of trainees.",
-    f3t:"One dictation → group + individual", f3b:"A single dictation becomes a structured group note and a separate personalized follow-up appendix per participant — ready to drop into the EHR.",
-    f4t:"The therapist always decides", f4b:"The AI produces drafts only. No note and no diagnosis is saved without your explicit approval. Clinical authority stays with you.",
-    f5t:"HIPAA & GDPR compliant", f5b:"End-to-end AES-256 encryption, secure cloud, and zero use of patient data to train external models.",
-    f6t:"Fits into your EHR", f6b:"Split the group summary into individual appendices and inject them into your EHR software (e.g. SimplePractice) — no double typing.",
+    valueLead:"Three things no generic documentation tool gives group therapy.",
+    f2t:"The golden thread", f2b:"Every new report auto-connects to each participant's goals and care history — so follow-up stays continuous.",
+    f3t:"Group + individual, from one dictation", f3b:"One short voice dictation becomes a structured group report and a separate personalized follow-up note for every participant.",
+    f4t:"The therapist approves everything", f4b:"The AI produces drafts only. No report is saved without your explicit approval — clinical authority stays with you.",
+    w1t:"Group therapists", w1b:"Psychologists, social workers and facilitators running several groups a week.",
+    w2t:"Treatment centers", w2b:"Treatment and rehab centers that need consistent documentation across staff.",
+    w3t:"Training & supervision", w3b:"Training programs that need clear documentation for supervising trainees.",
+    w4t:"Clinics", w4b:"Clinics that want to cut documentation time without losing quality.",
+    whoH2:"Who GroupPulse is for", whoLead:"Anyone documenting group therapy — and drowning in reports after every session.",
     howH2:"How it works",
     howLead:"Four steps, under two minutes after participants leave the room.",
-    s1t:"Dictate", s1b:"After the session you record a short verbal summary — freely, the way you think.",
-    s2t:"Transcribe", s2b:"The system transcribes with high medical accuracy, and the audio is deleted right after.",
-    s3t:"Draft & link", s3b:"The AI builds a group note + an individual summary per participant, linked to their care plans.",
+    s1t:"Dictate", s1b:"After the session you record a short voice dictation — freely, the way you think.",
+    s2t:"Transcribe", s2b:"The system transcribes the dictation, and the audio is deleted right after.",
+    s3t:"Draft & connect", s3b:"The AI builds a group report + an individual report per participant, connected to their goals.",
     s4t:"You approve", s4b:"Review the drafts, edit if needed, and approve. Only then are they saved.",
-    ctaH2:"Join the closed beta of the first group-documentation tool — without recording patients",
+    ctaH2:"Join the closed beta — the first group-documentation tool without recording patients",
     ctaLead:"Beta spots are limited. Leave your details and we'll get back to you with early access.",
     phName:"Full name", phEmail:"Email", ctaBtn:"Request beta access", ctaSending:"Sending…",
     ctaNote:"The questions are optional and help us focus the product. By submitting you agree we may contact you regarding the beta only. No spam, unsubscribe anytime.",
     ctaSuccess:"✓ Thanks! We've got your details and will be in touch the moment the beta opens.",
     ctaError:"Oops — something went wrong. Please try again, or email us at chavi744@gmail.com.",
-    footTag:"No patient recording · HIPAA/GDPR compliant · Therapist approves every note",
+    footTag:"We never record patients · Privacy by design · Therapist approves every report",
     footCopy:"© 2026 GroupPulse"
   }
 };
