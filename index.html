@@ -195,6 +195,17 @@ button{font-family:inherit;}
 .step h3{font-size:16.5px;font-weight:600;margin:20px 0 8px;}
 .step p{font-size:14px;color:var(--text-muted);line-height:var(--leading-relaxed);}
 
+/* screens walkthrough */
+.screens-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-top:48px;}
+.screen-card{text-align:center;margin:0;}
+.screen-shot{border-radius:var(--radius-lg);overflow:hidden;}
+.screen-shot img{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 32px rgba(14,59,46,.16));}
+.screen-step{display:inline-block;color:var(--brand);font-size:12px;font-weight:600;margin-top:20px;}
+.screen-card h3{font-size:16px;font-weight:600;margin:3px 0 6px;}
+.screen-card p{font-size:13.5px;color:var(--text-muted);line-height:var(--leading-relaxed);}
+@media (max-width:1000px){ .screens-grid{grid-template-columns:repeat(3,1fr);gap:28px;} }
+@media (max-width:620px){ .screens-grid{grid-template-columns:repeat(2,1fr);} }
+
 /* who for */
 .who-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;}
 .who-card{background:var(--surface-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px 24px;box-shadow:var(--shadow-xs);transition:box-shadow var(--duration-base) var(--ease-standard),transform var(--duration-base) var(--ease-standard);}
@@ -452,14 +463,40 @@ button{font-family:inherit;}
 <section class="section reveal" id="how">
   <div class="wrap center">
     <div class="eyebrow"><span class="eyebrow__num">05</span><span class="eyebrow__label" data-i18n="howEyebrow">התהליך</span></div>
-    <div class="section-head"><h2 data-i18n="howTitle">איך זה עובד</h2><p class="lede" data-i18n="howBody">ארבעה צעדים, פחות משתי דקות אחרי שהמשתתפים יוצאים מהחדר.</p></div>
+    <div class="section-head"><h2 data-i18n="howTitle">איך זה עובד</h2><p class="lede" data-i18n="howBody">מהכתבה הקולית ועד אישור המטפל — חמישה מסכים, פחות משתי דקות.</p></div>
   </div>
   <div class="wrap">
-    <div class="steps">
-      <div class="step"><span class="step__line"></span><span class="step__num"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></span><h3 data-i18n="s1t">מכתיבים</h3><p data-i18n="s1b">אחרי המפגש מקליטים הכתבה קולית קצרה — בקול חופשי, כמו שחושבים.</p></div>
-      <div class="step"><span class="step__line"></span><span class="step__num"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h2"/><path d="M6 8v8"/><path d="M10 5v14"/><path d="M14 9v6"/><path d="M18 7v10"/><path d="M22 11v2"/></svg></span><h3 data-i18n="s2t">מתמלל</h3><p data-i18n="s2b">המערכת מתמללת את ההכתבה ומכינה אותה לעיבוד, והשמע נמחק לאחר מכן.</p></div>
-      <div class="step"><span class="step__line"></span><span class="step__num"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/></svg></span><h3 data-i18n="s3t">מנסח ומחבר</h3><p data-i18n="s3b">ה-AI בונה דוח קבוצתי + דוח אישי לכל משתתף, מחוברים ליעדי הטיפול.</p></div>
-      <div class="step"><span class="step__line"></span><span class="step__num"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span><h3 data-i18n="s4t">אתם מאשרים</h3><p data-i18n="s4b">עוברים על הטיוטות, עורכים אם צריך, ומאשרים. רק אז נשמרות.</p></div>
+    <div class="screens-grid">
+      <figure class="screen-card">
+        <div class="screen-shot"><img src="screens/1-dictate.png" alt="GroupPulse — מסך הכתבה קולית" loading="lazy"></div>
+        <span class="screen-step mono">01</span>
+        <h3 data-i18n="scr1t">מכתיבים</h3>
+        <p data-i18n="scr1c">הכתבה קולית קצרה אחרי המפגש</p>
+      </figure>
+      <figure class="screen-card">
+        <div class="screen-shot"><img src="screens/2-process.png" alt="GroupPulse — עיבוד AI" loading="lazy"></div>
+        <span class="screen-step mono">02</span>
+        <h3 data-i18n="scr2t">מעבד</h3>
+        <p data-i18n="scr2c">תמלול ועיבוד אוטומטי של ההכתבה</p>
+      </figure>
+      <figure class="screen-card">
+        <div class="screen-shot"><img src="screens/3-group.png" alt="GroupPulse — דוח קבוצתי" loading="lazy"></div>
+        <span class="screen-step mono">03</span>
+        <h3 data-i18n="scr3t">דוח קבוצתי</h3>
+        <p data-i18n="scr3c">מסמך קבוצתי מובנה</p>
+      </figure>
+      <figure class="screen-card">
+        <div class="screen-shot"><img src="screens/4-individual.png" alt="GroupPulse — דוחות אישיים" loading="lazy"></div>
+        <span class="screen-step mono">04</span>
+        <h3 data-i18n="scr4t">דוחות אישיים</h3>
+        <p data-i18n="scr4c">סיכום מעקב לכל משתתף, מותאם יעדים</p>
+      </figure>
+      <figure class="screen-card">
+        <div class="screen-shot"><img src="screens/5-approve.png" alt="GroupPulse — אישור מטפל" loading="lazy"></div>
+        <span class="screen-step mono">05</span>
+        <h3 data-i18n="scr5t">אישור מטפל</h3>
+        <p data-i18n="scr5c">המטפל עובר, עורך ומאשר — ורק אז נשמר</p>
+      </figure>
     </div>
   </div>
 </section>
@@ -593,7 +630,12 @@ const I18N = {
     v1t:"קבוצתי + אישי, מהכתבה אחת", v1b:"הכתבה קולית קצרה אחת הופכת לדוח קבוצתי מובנה ולסיכום מעקב אישי נפרד לכל משתתף.",
     v2t:"רצף טיפולי", v2b:"כל דוח חדש מתחבר אוטומטית ליעדים ולהיסטוריית הטיפול של כל משתתף — כדי שהמעקב יישאר רציף.",
     v3t:"המטפל מאשר הכל", v3b:"ה-AI מייצר טיוטות בלבד. שום דוח לא נשמר בלי אישור מפורש שלכם — הסמכות הקלינית נשארת אצלכם.",
-    howEyebrow:"התהליך", howTitle:"איך זה עובד", howBody:"ארבעה צעדים, פחות משתי דקות אחרי שהמשתתפים יוצאים מהחדר.",
+    howEyebrow:"התהליך", howTitle:"איך זה עובד", howBody:"מהכתבה הקולית ועד אישור המטפל — חמישה מסכים, פחות משתי דקות.",
+    scr1t:"מכתיבים", scr1c:"הכתבה קולית קצרה אחרי המפגש",
+    scr2t:"מעבד", scr2c:"תמלול ועיבוד אוטומטי של ההכתבה",
+    scr3t:"דוח קבוצתי", scr3c:"מסמך קבוצתי מובנה",
+    scr4t:"דוחות אישיים", scr4c:"סיכום מעקב לכל משתתף, מותאם יעדים",
+    scr5t:"אישור מטפל", scr5c:"המטפל עובר, עורך ומאשר — ורק אז נשמר",
     s1t:"מכתיבים", s1b:"אחרי המפגש מקליטים הכתבה קולית קצרה — בקול חופשי, כמו שחושבים.",
     s2t:"מתמלל", s2b:"המערכת מתמללת את ההכתבה ומכינה אותה לעיבוד, והשמע נמחק לאחר מכן.",
     s3t:"מנסח ומחבר", s3b:"ה-AI בונה דוח קבוצתי + דוח אישי לכל משתתף, מחוברים ליעדי הטיפול.",
@@ -642,7 +684,12 @@ const I18N = {
     v1t:"Group + individual, from one dictation", v1b:"One short dictation becomes a structured group report and a separate personalized follow-up for each participant.",
     v2t:"Continuity of care", v2b:"Every new report links automatically to each participant's goals and treatment history — so follow-up stays continuous.",
     v3t:"The therapist approves everything", v3b:"The AI generates drafts only. Nothing is saved without your explicit approval — clinical authority stays with you.",
-    howEyebrow:"The process", howTitle:"How it works", howBody:"Four steps, under two minutes after participants leave the room.",
+    howEyebrow:"The process", howTitle:"How it works", howBody:"From voice dictation to therapist approval — five screens, under two minutes.",
+    scr1t:"Dictate", scr1c:"A short voice dictation after the session",
+    scr2t:"Process", scr2c:"Automatic transcription & processing",
+    scr3t:"Group report", scr3c:"A structured group document",
+    scr4t:"Individual reports", scr4c:"A goal-tailored follow-up per participant",
+    scr5t:"Therapist approval", scr5c:"The therapist reviews, edits and approves — then it's saved",
     s1t:"Dictate", s1b:"After the session you record a short voice dictation — freely, the way you think.",
     s2t:"Transcribe", s2b:"The system transcribes the dictation and prepares it for processing; the audio is deleted afterwards.",
     s3t:"Draft & connect", s3b:"The AI builds a group report + an individual report per participant, connected to their goals.",
