@@ -153,6 +153,7 @@ button{font-family:inherit;}
 .demo-dots i{width:11px;height:11px;border-radius:50%;background:var(--neutral-200);display:block;}
 .demo-url{margin-inline:auto;font-family:var(--font-mono);font-size:12.5px;color:var(--text-subtle);background:var(--surface-sunken);border-radius:var(--radius-pill);padding:5px 16px;display:inline-flex;align-items:center;gap:7px;}
 .demo-frame iframe{display:block;width:100%;height:620px;border:0;border-radius:var(--radius-md);background:var(--green-950);}
+.demo-video{display:block;width:100%;height:auto;border-radius:var(--radius-md);background:var(--green-950);}
 .demo-cap{margin-top:14px;text-align:center;font-size:13.5px;color:var(--text-muted);}
 .demo-cap a{color:var(--text-link);font-weight:600;border-bottom:1px solid var(--green-200);}
 @media (max-width:760px){ .demo-frame iframe{height:520px;} }
@@ -396,13 +397,11 @@ button{font-family:inherit;}
   </div>
   <div class="wrap">
     <div class="demo-frame">
-      <div class="demo-bar">
-        <div class="demo-dots"><i></i><i></i><i></i></div>
-        <span class="demo-url mono">groupulse.ai/demo</span>
-      </div>
-      <iframe src="demo.html" title="GroupPulse interactive demo" loading="lazy"></iframe>
+      <video class="demo-video" controls preload="metadata" playsinline title="GroupPulse explainer">
+        <source src="groupulse-explainer.mp4" type="video/mp4">
+      </video>
     </div>
-    <p class="demo-cap" data-i18n="demoNote">ההדגמה אינטראקטיבית — לחצו ▶ הפעל בתוך המסגרת. אפשר גם <a href="demo.html" target="_blank" rel="noopener">לפתוח במסך מלא</a>.</p>
+    <p class="demo-cap" data-i18n="demoNote">סרטון הסבר קצר — כך GroupPulse הופך הכתבה אחת לדוחות מוכנים.</p>
   </div>
 </section>
 
@@ -622,7 +621,7 @@ const I18N = {
     hpInitial:"ד", hpName:"דנה א׳", hpSub:"סיכום מעקב אישי", hpGoal:"יעד: הרחבת ביטוי רגשי בקבוצה", hpProgress:"מגמה: שיפור",
     demoEyebrow:"הדגמה", demoTitle:"ראו איך זה עובד — ב-90 שניות",
     demoBody:"ממפגש שהסתיים, דרך הכתבה אחת, ועד דוח קבוצתי + סיכומי מעקב אישיים. כל מה שנשאר — לאשר.",
-    demoNote:'ההדגמה אינטראקטיבית — לחצו ▶ הפעל בתוך המסגרת. אפשר גם <a href="demo.html" target="_blank" rel="noopener">לפתוח במסך מלא</a>.',
+    demoNote:"סרטון הסבר קצר — כך GroupPulse הופך הכתבה אחת לדוחות מוכנים.",
     baEyebrow:"לפני / אחרי", baTitle:"במקום להתחיל מדף ריק", baBody:"במקום להתחיל מדף ריק אחרי כל קבוצה — מתחילים מטיוטות מוכנות לעריכה.",
     baBeforeL:"לפני GroupPulse", baBeforeB:"דוח קבוצתי, כמה סיכומים אישיים, התאמה ליעדי הטיפול והעתקה לתיק — והכול מתחיל מדף ריק, אחרי כל מפגש.", baBeforeTag:"שעות של תיעוד ידני",
     baAfterL:"אחרי GroupPulse", baAfterB:"הכתבה קולית קצרה אחת ← טיוטות מוכנות. המטפל רק עובר, עורך ומאשר.", baAfterTag:"דקות עד לאישור",
@@ -676,7 +675,7 @@ const I18N = {
     hpInitial:"D", hpName:"Dana A.", hpSub:"Personal follow-up", hpGoal:"Goal: broaden emotional expression in group", hpProgress:"Trend: improving",
     demoEyebrow:"Demo", demoTitle:"See how it works — in 90 seconds",
     demoBody:"From a finished session, through one dictation, to a group report plus individual follow-ups. All that's left to do — approve.",
-    demoNote:'The demo is interactive — click ▶ Play inside the frame. You can also <a href="demo.html" target="_blank" rel="noopener">open it full-screen</a>.',
+    demoNote:"A short explainer — how GroupPulse turns one dictation into ready reports.",
     baEyebrow:"Before / After", baTitle:"Instead of starting from a blank page", baBody:"Instead of a blank page after every group — you start from ready-to-edit drafts.",
     baBeforeL:"Before GroupPulse", baBeforeB:"A group report, several personal summaries, alignment to treatment goals and copying into the file — all from a blank page, after every session.", baBeforeTag:"Hours of manual writing",
     baAfterL:"After GroupPulse", baAfterB:"One short dictation → ready drafts. The therapist just reviews, edits and approves.", baAfterTag:"Minutes to approval",
