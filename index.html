@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GroupPulse — הבית המקצועי למנחי קבוצות טיפוליות</title>
-<meta name="description" content="GroupPulse — מערכת AI ייעודית שעוזרת למנחי קבוצות להפוך תיאור קצר אחרי מפגש לטיוטת תיעוד מקצועית: סיכום קבוצתי, נקודות אישיות, דינמיקות ותובנות להמשך. הצטרפו לפיילוט." />
-<meta property="og:title" content="GroupPulse — הבית המקצועי למנחי קבוצות טיפוליות" />
-<meta property="og:description" content="לתעד קבוצה טיפולית זה מורכב. GroupPulse עוזרת לעשות בזה סדר. הצטרפו לפיילוט." />
+<title>GrouPulse — הבית המקצועי למנחי קבוצות טיפוליות</title>
+<meta name="description" content="GrouPulse — מערכת AI ייעודית שעוזרת למנחי קבוצות להפוך תיאור קצר אחרי מפגש לטיוטת תיעוד מקצועית: סיכום קבוצתי, נקודות אישיות, דינמיקות ותובנות להמשך. הצטרפו לפיילוט." />
+<meta property="og:title" content="GrouPulse — הבית המקצועי למנחי קבוצות טיפוליות" />
+<meta property="og:description" content="לתעד קבוצה טיפולית זה מורכב. GrouPulse עוזרת לעשות בזה סדר. הצטרפו לפיילוט." />
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,10 +19,8 @@
   --neutral-950:#16221C; --neutral-900:#1E2B25; --neutral-800:#2A3832; --neutral-700:#3C4A43;
   --neutral-600:#5E7269; --neutral-500:#7A8D84; --neutral-400:#9DAEA6; --neutral-300:#C2CFC9;
   --neutral-200:#DCE6E0; --neutral-150:#E6EEE9; --neutral-100:#EEF3F0; --neutral-50:#F4F8F5; --white:#fff;
-  --positive-600:#1E8E63; --positive-100:#D6EFE1; --warning-600:#C98A2B; --warning-100:#F6E9CF;
-  --danger-600:#C0492F; --danger-100:#F4DDD6; --info-600:#2E6F8E; --info-100:#D7E8EE;
-  --surface-app:var(--neutral-50); --surface-card:var(--white); --surface-sunken:var(--neutral-100);
-  --surface-tint:var(--green-50);
+  --positive-600:#1E8E63; --positive-100:#D6EFE1; --danger-600:#C0492F; --danger-100:#F4DDD6;
+  --surface-app:var(--neutral-50); --surface-card:var(--white); --surface-sunken:var(--neutral-100); --surface-tint:var(--green-50);
   --text-strong:var(--neutral-950); --text-body:var(--neutral-800); --text-muted:var(--neutral-600); --text-subtle:var(--neutral-500); --text-link:var(--green-700);
   --border-subtle:var(--neutral-150); --border:var(--neutral-200); --border-strong:var(--neutral-300);
   --brand:var(--green-600); --brand-hover:var(--green-700); --brand-soft:var(--green-50); --text-brand:var(--green-900);
@@ -71,8 +69,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 .gp-btn[disabled]{opacity:.6;cursor:default;transform:none;}
 
 .nav{position:sticky;top:0;z-index:50;background:color-mix(in oklab,var(--surface-app) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color var(--duration-base),background-color var(--duration-base);}
-.nav--scrolled{border-bottom-color:var(--border);background:color-mix(in oklab,var(--surface-app) 92%,transparent);}
-.nav__inner{display:flex;align-items:center;gap:28px;height:72px;}
+.nav__inner{display:flex;align-items:center;gap:24px;height:72px;}
 .brand{display:inline-flex;align-items:center;gap:11px;}
 .brand__mark{width:34px;height:34px;flex:none;}
 .brand__word{font-family:var(--font-brand);font-weight:800;font-size:21px;letter-spacing:-0.02em;color:var(--text-brand);}
@@ -80,6 +77,12 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 .nav__links{display:flex;align-items:center;gap:4px;margin-inline-start:auto;}
 .nav__link{font-size:14.5px;font-weight:600;color:var(--text-muted);padding:8px 12px;border-radius:var(--radius-sm);transition:color var(--duration-fast),background var(--duration-fast);}
 .nav__link:hover{color:var(--text-strong);background:var(--surface-sunken);}
+.nav__right{display:flex;align-items:center;gap:12px;margin-inline-start:16px;}
+.lang-toggle{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--border-strong);border-radius:var(--radius-pill);background:var(--surface-card);padding:3px;font-size:12px;font-weight:700;color:var(--text-muted);}
+.lang-toggle span{padding:4px 10px;border-radius:var(--radius-pill);line-height:1.3;cursor:pointer;}
+.lang-toggle span.on{background:var(--brand);color:#fff;}
+.nav--scrolled{border-bottom-color:var(--border);background:color-mix(in oklab,var(--surface-app) 92%,transparent);}
+@media(max-width:880px){.nav__links{display:none;}}
 
 .hero{padding-block:84px 80px;overflow:hidden;}
 .hero::before{content:"";position:absolute;inset-block-start:-180px;inset-inline-end:-120px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,color-mix(in oklab,var(--green-200) 32%,transparent),transparent 68%);pointer-events:none;z-index:0;}
@@ -98,23 +101,20 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 .demo-video{display:block;width:100%;height:auto;border-radius:var(--radius-md);background:var(--green-950);}
 .demo-cap{margin-top:14px;text-align:center;font-size:13.5px;color:var(--text-muted);}
 
-/* checklist + panel */
 .panel{background:var(--surface-card);border:1px solid var(--border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);padding:36px;margin-top:40px;}
 .panel h3{font-size:18px;font-weight:600;margin-bottom:20px;}
 .checklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;}
 @media(max-width:680px){.checklist{grid-template-columns:1fr;}}
 .checklist li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:var(--text-body);line-height:1.5;}
 .checklist li svg{color:var(--brand);flex:none;margin-top:3px;}
-.note-line{margin-top:24px;font-size:15px;color:var(--text-muted);line-height:var(--leading-relaxed);max-width:760px;}
+.note-line{margin-top:24px;font-size:15px;color:var(--text-muted);line-height:var(--leading-relaxed);max-width:780px;}
 
-/* pain grid */
 .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;}
 @media(max-width:900px){.pain-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:600px){.pain-grid{grid-template-columns:1fr;}}
 .pain-card{background:var(--surface-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-xs);font-size:15px;color:var(--text-body);line-height:var(--leading-relaxed);}
 .pain-card::before{content:"";display:block;width:28px;height:3px;background:var(--green-200);border-radius:2px;margin-bottom:14px;}
 
-/* value cards */
 .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;}
 @media(max-width:900px){.cards-3{grid-template-columns:1fr;}}
 .vcard{background:var(--surface-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);transition:box-shadow var(--duration-base),transform var(--duration-base),border-color var(--duration-base);}
@@ -123,7 +123,6 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 .vcard h3{font-size:18px;font-weight:600;margin-bottom:10px;}
 .vcard p{font-size:14.5px;color:var(--text-muted);line-height:var(--leading-relaxed);}
 
-/* screens walkthrough */
 .screens-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-top:48px;}
 .screen-card{text-align:center;margin:0;}
 .screen-shot{border-radius:var(--radius-lg);overflow:hidden;}
@@ -134,7 +133,6 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 @media(max-width:1000px){.screens-grid{grid-template-columns:repeat(3,1fr);gap:28px;}}
 @media(max-width:620px){.screens-grid{grid-template-columns:repeat(2,1fr);}}
 
-/* who */
 .who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
 @media(max-width:900px){.who-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.who-grid{grid-template-columns:1fr;}}
@@ -144,12 +142,10 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 .who-card h3{font-size:16.5px;font-weight:600;margin-bottom:8px;}
 .who-card p{font-size:14px;color:var(--text-muted);line-height:var(--leading-relaxed);}
 
-/* pilot includes */
 .pilot-note{display:flex;align-items:flex-start;gap:12px;margin-top:24px;padding:18px 22px;background:var(--surface-tint);border:1px solid var(--green-100);border-radius:var(--radius-lg);}
 .pilot-note svg{color:var(--brand);flex:none;margin-top:2px;}
 .pilot-note p{font-size:14.5px;color:var(--text-body);line-height:var(--leading-relaxed);}
 
-/* join + form */
 .join{background:var(--green-900);position:relative;overflow:hidden;}
 .join__grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
 @media(max-width:1000px){.join__grid{grid-template-columns:1fr;gap:40px;}}
@@ -173,6 +169,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 .gp-textarea{padding:12px 14px;min-height:84px;resize:vertical;line-height:1.5;}
 .gp-input::placeholder,.gp-textarea::placeholder{color:var(--text-subtle);}
 .gp-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A8D84' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 14px center;}
+[dir="ltr"] .gp-select{background-position:right 14px center;}
 .gp-input:focus,.gp-select:focus,.gp-textarea:focus{outline:none;border-color:var(--brand);box-shadow:var(--shadow-focus);}
 .gp-input:hover,.gp-select:hover,.gp-textarea:hover{border-color:var(--neutral-400);}
 .chips{display:flex;flex-wrap:wrap;gap:8px;}
@@ -193,7 +190,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 
 .footer{background:var(--green-950);color:#fff;padding-block:52px 40px;}
 .footer__top{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap;}
-.footer__brand{display:flex;flex-direction:column;gap:14px;max-width:420px;}
+.footer__brand{display:flex;flex-direction:column;gap:14px;max-width:440px;}
 .footer .brand__word{color:#fff;}
 .footer .brand__word .p{color:var(--green-200);}
 .footer__tag{color:var(--green-200);font-size:14px;line-height:var(--leading-relaxed);}
@@ -205,365 +202,411 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out);}
 .reveal.in{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
-@media(max-width:720px){.wrap{padding-inline:20px;}.section{padding-block:64px;}.nav__links{display:none;}}
+@media(max-width:720px){.wrap{padding-inline:20px;}.section{padding-block:64px;}}
 </style>
 </head>
 <body>
 
-<!-- Nav -->
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
     <a href="#top" class="brand">
-      <svg class="brand__mark" viewBox="0 0 100 100" fill="none" aria-label="GroupPulse"><circle cx="50" cy="50" r="33" stroke="#0E3B2E" stroke-width="6" stroke-linecap="round" stroke-dasharray="150 207" transform="rotate(-58 50 50)"></circle><circle cx="84" cy="50" r="6.5" fill="#1E8E63"></circle><circle cx="73" cy="76" r="6.5" fill="#1E8E63"></circle><circle cx="50" cy="83" r="6.5" fill="#1E8E63"></circle><circle cx="27" cy="76" r="6.5" fill="#1E8E63"></circle><circle cx="16" cy="50" r="6.5" fill="#1E8E63"></circle><circle cx="27" cy="24" r="6.5" fill="#8FD3B0"></circle><path d="M30 50 H42 L46 38 L52 64 L57 50 H70" stroke="#23A06F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      <span class="brand__word">Group<span class="p">Pulse</span></span>
+      <svg class="brand__mark" viewBox="0 0 100 100" fill="none" aria-label="GrouPulse"><circle cx="50" cy="50" r="33" stroke="#0E3B2E" stroke-width="6" stroke-linecap="round" stroke-dasharray="150 207" transform="rotate(-58 50 50)"></circle><circle cx="84" cy="50" r="6.5" fill="#1E8E63"></circle><circle cx="73" cy="76" r="6.5" fill="#1E8E63"></circle><circle cx="50" cy="83" r="6.5" fill="#1E8E63"></circle><circle cx="27" cy="76" r="6.5" fill="#1E8E63"></circle><circle cx="16" cy="50" r="6.5" fill="#1E8E63"></circle><circle cx="27" cy="24" r="6.5" fill="#8FD3B0"></circle><path d="M30 50 H42 L46 38 L52 64 L57 50 H70" stroke="#23A06F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <span class="brand__word">Grou<span class="p">Pulse</span></span>
     </a>
     <nav class="nav__links">
-      <a class="nav__link" href="#problem">המורכבות</a>
-      <a class="nav__link" href="#solution">הפתרון</a>
-      <a class="nav__link" href="#how">איך זה עובד</a>
-      <a class="nav__link" href="#who">למי זה מיועד</a>
+      <a class="nav__link" href="#problem" data-i18n="navProblem">המורכבות</a>
+      <a class="nav__link" href="#solution" data-i18n="navSolution">הפתרון</a>
+      <a class="nav__link" href="#how" data-i18n="navHow">איך זה עובד</a>
+      <a class="nav__link" href="#who" data-i18n="navWho">למי זה מיועד</a>
     </nav>
-    <a href="#join" class="gp-btn gp-btn--primary">אני רוצה להצטרף לפיילוט</a>
+    <div class="nav__right">
+      <div class="lang-toggle"><span id="he" onclick="setLang('he')">עב</span><span id="en" onclick="setLang('en')">EN</span></div>
+      <a href="#join" class="gp-btn gp-btn--primary" data-i18n="navCta">הצטרפו לפיילוט</a>
+    </div>
   </div>
 </header>
 
-<!-- Hero -->
 <section class="hero wrap" id="top">
   <div class="hero__inner">
-    <span class="trust-chip"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/></svg>הבית המקצועי למנחי קבוצות טיפוליות</span>
-    <h1>לתעד קבוצה טיפולית לא אמור לקחת יותר מהמפגש עצמו</h1>
-    <p class="hero__sub">GroupPulse — הבית המקצועי למנחי קבוצות טיפוליות</p>
-    <p class="hero__body">אחרי כל מפגש קבוצתי צריך לתעד גם את מה שקרה בקבוצה, גם את התהליך של כל משתתף, וגם את הדינמיקה שנוצרה ביניהם. בפועל, התיעוד נדחה, מתקצר, נשאר טכני — או פשוט הולך לאיבוד. GroupPulse נבנית כדי לעזור למנחים להפוך תיאור קצר אחרי מפגש לטיוטת תיעוד מקצועית: סיכום קבוצתי, נקודות אישיות, דינמיקות מרכזיות ותובנות להמשך.</p>
+    <span class="trust-chip"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/></svg><span data-i18n="heroChip">הבית המקצועי למנחי קבוצות טיפוליות</span></span>
+    <h1 data-i18n="heroH1">לתעד קבוצה טיפולית לא אמור לקחת יותר מהמפגש עצמו</h1>
+    <p class="hero__sub" data-i18n="heroSub">GrouPulse — הבית המקצועי למנחי קבוצות טיפוליות</p>
+    <p class="hero__body" data-i18n="heroBody">אחרי כל מפגש קבוצתי צריך לתעד גם את מה שקרה בקבוצה, גם את התהליך של כל משתתף, וגם את הדינמיקה שנוצרה ביניהם. בפועל, התיעוד נדחה, מתקצר, נשאר טכני — או פשוט הולך לאיבוד. GrouPulse נבנית כדי לעזור למנחים להפוך תיאור קצר אחרי מפגש לטיוטת תיעוד מקצועית.</p>
     <div class="hero__cta">
-      <a href="#join" class="gp-btn gp-btn--primary gp-btn--lg">אני רוצה להצטרף לפיילוט</a>
-      <a href="#demo" class="gp-btn gp-btn--ghost gp-btn--lg">▶ צפו בהדגמה</a>
+      <a href="#join" class="gp-btn gp-btn--primary gp-btn--lg" data-i18n="heroCta1">אני רוצה להצטרף לפיילוט</a>
+      <a href="#demo" class="gp-btn gp-btn--ghost gp-btn--lg" data-i18n="heroCta2">▶ צפו בהדגמה</a>
     </div>
     <ul class="hero__bullets">
-      <li><span class="tick"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>סיכום קבוצתי + נקודות אישיות — מתיאור קצר אחד</li>
-      <li><span class="tick"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>דינמיקות מרכזיות, תמות חוזרות ונקודות למעקב</li>
-      <li><span class="tick"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>המנחה עורך ומאשר — שיקול הדעת תמיד שלו</li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="heroB1">סיכום קבוצתי + נקודות אישיות — מתיאור קצר אחד</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="heroB2">דינמיקות מרכזיות, תמות חוזרות ונקודות למעקב</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="heroB3">המנחה עורך ומאשר — שיקול הדעת תמיד שלו</span></li>
     </ul>
   </div>
 </section>
 
-<!-- Demo video -->
 <section class="section reveal" id="demo">
   <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">02</span><span class="eyebrow__label">הדגמה</span></div>
-    <div class="section-head"><h2>ראו איך זה עובד</h2><p class="lede">ממפגש שהסתיים, דרך תיאור קצר אחד, ועד טיוטת תיעוד מסודרת — קבוצתית ואישית.</p></div>
+    <div class="eyebrow"><span class="eyebrow__num">02</span><span class="eyebrow__label" data-i18n="demoEyebrow">הדגמה</span></div>
+    <div class="section-head"><h2 data-i18n="demoTitle">ראו איך זה עובד</h2><p class="lede" data-i18n="demoLede">ממפגש שהסתיים, דרך תיאור קצר אחד, ועד טיוטת תיעוד מסודרת — קבוצתית ואישית.</p></div>
   </div>
   <div class="wrap">
     <div class="demo-frame">
-      <video class="demo-video" controls preload="metadata" playsinline title="GroupPulse explainer">
-        <source src="groupulse-explainer.mp4" type="video/mp4">
-      </video>
+      <video class="demo-video" controls preload="metadata" playsinline title="GrouPulse explainer"><source src="groupulse-explainer.mp4" type="video/mp4"></video>
     </div>
-    <p class="demo-cap">סרטון הסבר קצר — כך GroupPulse עוזרת לעשות סדר בתיעוד הקבוצתי.</p>
+    <p class="demo-cap" data-i18n="demoCap">סרטון הסבר קצר — כך GrouPulse עוזרת לעשות סדר בתיעוד הקבוצתי.</p>
   </div>
 </section>
 
-<!-- Problem / complexity -->
 <section class="section reveal" id="problem">
   <div class="wrap">
-    <div class="eyebrow"><span class="eyebrow__num">03</span><span class="eyebrow__label">המורכבות</span></div>
-    <div class="section-head">
-      <h2>לתעד קבוצה טיפולית זה הרבה יותר מלכתוב "מה היה במפגש"</h2>
-      <p class="lede">בתיעוד אישי יש מטופל אחד, תהליך אחד, מוקד אחד. בתיעוד קבוצתי יש כמה משתתפים, כמה תהליכים במקביל, ודינמיקה קבוצתית שמשפיעה על כולם.</p>
-    </div>
+    <div class="eyebrow"><span class="eyebrow__num">03</span><span class="eyebrow__label" data-i18n="probEyebrow">המורכבות</span></div>
+    <div class="section-head"><h2 data-i18n="probTitle">לתעד קבוצה טיפולית זה הרבה יותר מלכתוב "מה היה במפגש"</h2><p class="lede" data-i18n="probLede">בתיעוד אישי יש מטופל אחד, תהליך אחד, מוקד אחד. בתיעוד קבוצתי יש כמה משתתפים, כמה תהליכים במקביל, ודינמיקה קבוצתית שמשפיעה על כולם.</p></div>
     <div class="panel">
-      <h3>מה המנחה צריך להחזיק אחרי כל מפגש</h3>
+      <h3 data-i18n="probPanelH">מה המנחה צריך להחזיק אחרי כל מפגש</h3>
       <ul class="checklist">
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>מה היה הנושא המרכזי של המפגש</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>אילו דינמיקות הופיעו בקבוצה</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>איך כל משתתף היה נוכח</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>מה השתנה לעומת מפגשים קודמים</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>מי דורש תשומת לב מיוחדת</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>מה כדאי להמשיך לבדוק בפעם הבאה</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>איך לנסח את כל זה בצורה מקצועית, קצרה וברורה</li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p1">מה היה הנושא המרכזי של המפגש</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p2">אילו דינמיקות הופיעו בקבוצה</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p3">איך כל משתתף היה נוכח</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p4">מה השתנה לעומת מפגשים קודמים</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p5">מי דורש תשומת לב מיוחדת</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p6">מה כדאי להמשיך לבדוק בפעם הבאה</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p7">איך לנסח את כל זה בצורה מקצועית, קצרה וברורה</span></li>
       </ul>
     </div>
-    <p class="note-line">בפועל, התיעוד נעשה לא פעם אחרי יום עמוס, בין פגישות או בלילה — כשהפרטים כבר מתחילים להתערבב. כך ידע מקצועי חשוב נשאר בראש של המנחה, במקום להפוך לתיעוד שמסייע למעקב, להדרכה ולהכנה למפגש הבא.</p>
+    <p class="note-line" data-i18n="probNote">בפועל, התיעוד נעשה לא פעם אחרי יום עמוס, בין פגישות או בלילה — כשהפרטים כבר מתחילים להתערבב. כך ידע מקצועי חשוב נשאר בראש של המנחה, במקום להפוך לתיעוד שמסייע למעקב, להדרכה ולהכנה למפגש הבא.</p>
   </div>
 </section>
 
-<!-- Sound familiar -->
 <section class="section reveal" id="familiar">
   <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">04</span><span class="eyebrow__label">נשמע מוכר?</span></div>
-    <div class="section-head"><h2>האם זה מוכר לך?</h2><p class="lede">הרבה מנחים מתעדים פחות ממה שהם באמת יודעים — לא כי אין מה לומר, אלא כי אין זמן וקשה להתחיל.</p></div>
+    <div class="eyebrow"><span class="eyebrow__num">04</span><span class="eyebrow__label" data-i18n="famEyebrow">נשמע מוכר?</span></div>
+    <div class="section-head"><h2 data-i18n="famTitle">האם זה מוכר לך?</h2><p class="lede" data-i18n="famLede">הרבה מנחים מתעדים פחות ממה שהם באמת יודעים — לא כי אין מה לומר, אלא כי אין זמן וקשה להתחיל.</p></div>
   </div>
   <div class="wrap">
     <div class="pain-grid">
-      <div class="pain-card">מסיימים מפגש ויודעים שהיה שם הרבה חומר חשוב — אבל אין כוח לפתוח מסמך.</div>
-      <div class="pain-card">כותבים כמה שורות כלליות, למרות שקרו דברים משמעותיים עם כמה משתתפים.</div>
-      <div class="pain-card">זוכרים שהייתה דינמיקה חשובה — אבל קשה לנסח אותה באופן מקצועי.</div>
-      <div class="pain-card">דוחים את התיעוד לאחר כך — ואז חלק מהפרטים פשוט נעלמים.</div>
-      <div class="pain-card">צריך לכתוב גם סיכום קבוצתי וגם התייחסות אישית לכל משתתף.</div>
-      <div class="pain-card">התיעוד הקיים טכני מדי — לא מחזיק את העומק של העבודה הקבוצתית.</div>
+      <div class="pain-card" data-i18n="fam1">מסיימים מפגש ויודעים שהיה שם הרבה חומר חשוב — אבל אין כוח לפתוח מסמך.</div>
+      <div class="pain-card" data-i18n="fam2">כותבים כמה שורות כלליות, למרות שקרו דברים משמעותיים עם כמה משתתפים.</div>
+      <div class="pain-card" data-i18n="fam3">זוכרים שהייתה דינמיקה חשובה — אבל קשה לנסח אותה באופן מקצועי.</div>
+      <div class="pain-card" data-i18n="fam4">דוחים את התיעוד לאחר כך — ואז חלק מהפרטים פשוט נעלמים.</div>
+      <div class="pain-card" data-i18n="fam5">צריך לכתוב גם סיכום קבוצתי וגם התייחסות אישית לכל משתתף.</div>
+      <div class="pain-card" data-i18n="fam6">התיעוד הקיים טכני מדי — לא מחזיק את העומק של העבודה הקבוצתית.</div>
     </div>
   </div>
 </section>
 
-<!-- Solution -->
 <section class="section reveal" id="solution">
   <div class="wrap">
-    <div class="eyebrow"><span class="eyebrow__num">05</span><span class="eyebrow__label">הפתרון</span></div>
-    <div class="section-head">
-      <h2>כאן GroupPulse נכנסת לתמונה</h2>
-      <p class="lede">במקום לשבת מול מסמך ריק, המנחה מכתיב או כותב בכמה דקות תיאור חופשי של מה שקרה במפגש. המערכת מסייעת להפוך אותו לתיעוד מסודר:</p>
-    </div>
+    <div class="eyebrow"><span class="eyebrow__num">05</span><span class="eyebrow__label" data-i18n="solEyebrow">הפתרון</span></div>
+    <div class="section-head"><h2 data-i18n="solTitle">כאן GrouPulse נכנסת לתמונה</h2><p class="lede" data-i18n="solLede">במקום לשבת מול מסמך ריק, המנחה מכתיב או כותב בכמה דקות תיאור חופשי של מה שקרה במפגש. המערכת מסייעת להפוך אותו לתיעוד מסודר:</p></div>
     <div class="panel">
       <ul class="checklist">
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>סיכום קבוצתי של המפגש</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>הערות אישיות לכל משתתף</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ניסוח דינמיקות מרכזיות</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>נקודות למעקב</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>סימון משתתפים שדורשים תשומת לב</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>תובנות לקראת המפגש הבא</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>בסיס לדוח מקצועי ברור וקצר</li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o1">סיכום קבוצתי של המפגש</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o2">הערות אישיות לכל משתתף</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o3">ניסוח דינמיקות מרכזיות</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o4">נקודות למעקב</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o5">סימון משתתפים שדורשים תשומת לב</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o6">תובנות לקראת המפגש הבא</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o7">בסיס לדוח מקצועי ברור וקצר</span></li>
       </ul>
     </div>
-    <p class="note-line">המטרה אינה להחליף את שיקול הדעת של המנחה — אלא לעזור לו להפוך את מה שכבר ראה, הרגיש והבין לתיעוד מקצועי שאפשר להשתמש בו.</p>
+    <p class="note-line" data-i18n="solNote">המטרה אינה להחליף את שיקול הדעת של המנחה — אלא לעזור לו להפוך את מה שכבר ראה, הרגיש והבין לתיעוד מקצועי שאפשר להשתמש בו.</p>
   </div>
 </section>
 
-<!-- Not a generic form -->
 <section class="section reveal" id="different">
   <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">06</span><span class="eyebrow__label">למה זה שונה</span></div>
-    <div class="section-head"><h2>לא עוד טופס כללי</h2><p class="lede">רוב מערכות התיעוד נבנו סביב טיפול פרטני, אדמיניסטרציה או ניהול תיק. קבוצה טיפולית דורשת תיעוד מסוג אחר.</p></div>
+    <div class="eyebrow"><span class="eyebrow__num">06</span><span class="eyebrow__label" data-i18n="difEyebrow">למה זה שונה</span></div>
+    <div class="section-head"><h2 data-i18n="difTitle">לא עוד טופס כללי</h2><p class="lede" data-i18n="difLede">רוב מערכות התיעוד נבנו סביב טיפול פרטני, אדמיניסטרציה או ניהול תיק. קבוצה טיפולית דורשת תיעוד מסוג אחר.</p></div>
   </div>
   <div class="wrap">
     <div class="cards-3">
       <div class="vcard">
         <span class="vcard__icn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51 15.42 17.49"/><path d="M15.41 6.51 8.59 10.49"/></svg></span>
-        <h3>לא רק מה נאמר</h3>
-        <p>אלא מה התרחש בין המשתתפים — האינטראקציות והדינמיקה שנוצרה בקבוצה.</p>
+        <h3 data-i18n="d1t">לא רק מה נאמר</h3><p data-i18n="d1b">אלא מה התרחש בין המשתתפים — האינטראקציות והדינמיקה שנוצרה בקבוצה.</p>
       </div>
       <div class="vcard">
         <span class="vcard__icn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
-        <h3>לא רק מי דיבר</h3>
-        <p>אלא מי התקדם, מי נמנע, מי השפיע על האקלים הקבוצתי, ואיזו תנועה נוצרה בקבוצה.</p>
+        <h3 data-i18n="d2t">לא רק מי דיבר</h3><p data-i18n="d2b">אלא מי התקדם, מי נמנע, מי השפיע על האקלים הקבוצתי, ואיזו תנועה נוצרה בקבוצה.</p>
       </div>
       <div class="vcard">
         <span class="vcard__icn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/></svg></span>
-        <h3>לא רק רשומה מנהלית</h3>
-        <p>אלא תיעוד שמשרת את החשיבה המקצועית של המנחה — לא רק את הארכיון.</p>
+        <h3 data-i18n="d3t">לא רק רשומה מנהלית</h3><p data-i18n="d3b">אלא תיעוד שמשרת את החשיבה המקצועית של המנחה — לא רק את הארכיון.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- How it works (screens) -->
 <section class="section reveal" id="how">
   <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">07</span><span class="eyebrow__label">התהליך</span></div>
-    <div class="section-head"><h2>איך זה עובד</h2><p class="lede">שלושה צעדים: מתארים את המפגש, המערכת מארגנת את החומר, והמנחה עורך ומאשר.</p></div>
+    <div class="eyebrow"><span class="eyebrow__num">07</span><span class="eyebrow__label" data-i18n="howEyebrow">התהליך</span></div>
+    <div class="section-head"><h2 data-i18n="howTitle">איך זה עובד</h2><p class="lede" data-i18n="howLede">שלושה צעדים: מתארים את המפגש, המערכת מארגנת את החומר, והמנחה עורך ומאשר.</p></div>
   </div>
   <div class="wrap">
     <div class="screens-grid">
-      <figure class="screen-card">
-        <div class="screen-shot"><img src="screens/1-dictate.png" alt="GroupPulse — מסך הכתבה קולית" loading="lazy"></div>
-        <span class="screen-step mono">01</span><h3>מתארים</h3>
-        <p>בקול או בכתב — תיאור חופשי וקצר של המפגש</p>
-      </figure>
-      <figure class="screen-card">
-        <div class="screen-shot"><img src="screens/2-process.png" alt="GroupPulse — עיבוד וארגון" loading="lazy"></div>
-        <span class="screen-step mono">02</span><h3>המערכת מארגנת</h3>
-        <p>הפיכת התיאור הגולמי לתיעוד מובנה</p>
-      </figure>
-      <figure class="screen-card">
-        <div class="screen-shot"><img src="screens/3-group.png" alt="GroupPulse — סיכום קבוצתי" loading="lazy"></div>
-        <span class="screen-step mono">03</span><h3>סיכום קבוצתי</h3>
-        <p>תמונת המפגש כולה ודינמיקות מרכזיות</p>
-      </figure>
-      <figure class="screen-card">
-        <div class="screen-shot"><img src="screens/4-individual.png" alt="GroupPulse — נקודות אישיות" loading="lazy"></div>
-        <span class="screen-step mono">04</span><h3>נקודות אישיות</h3>
-        <p>התייחסות לכל משתתף ונקודות למעקב</p>
-      </figure>
-      <figure class="screen-card">
-        <div class="screen-shot"><img src="screens/5-approve.png" alt="GroupPulse — עריכה ואישור" loading="lazy"></div>
-        <span class="screen-step mono">05</span><h3>עריכה ואישור</h3>
-        <p>המנחה עורך לפי שיקול דעתו ומאשר</p>
-      </figure>
+      <figure class="screen-card"><div class="screen-shot"><img src="screens/1-dictate.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">01</span><h3 data-i18n="scr1t">מתארים</h3><p data-i18n="scr1c">בקול או בכתב — תיאור חופשי וקצר של המפגש</p></figure>
+      <figure class="screen-card"><div class="screen-shot"><img src="screens/2-process.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">02</span><h3 data-i18n="scr2t">המערכת מארגנת</h3><p data-i18n="scr2c">הפיכת התיאור הגולמי לתיעוד מובנה</p></figure>
+      <figure class="screen-card"><div class="screen-shot"><img src="screens/3-group.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">03</span><h3 data-i18n="scr3t">סיכום קבוצתי</h3><p data-i18n="scr3c">תמונת המפגש כולה ודינמיקות מרכזיות</p></figure>
+      <figure class="screen-card"><div class="screen-shot"><img src="screens/4-individual.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">04</span><h3 data-i18n="scr4t">נקודות אישיות</h3><p data-i18n="scr4c">התייחסות לכל משתתף ונקודות למעקב</p></figure>
+      <figure class="screen-card"><div class="screen-shot"><img src="screens/5-approve.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">05</span><h3 data-i18n="scr5t">עריכה ואישור</h3><p data-i18n="scr5c">המנחה עורך לפי שיקול דעתו ומאשר</p></figure>
     </div>
   </div>
 </section>
 
-<!-- Who for -->
 <section class="section reveal" id="who">
   <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">08</span><span class="eyebrow__label">למי זה מיועד</span></div>
-    <div class="section-head"><h2>למי GroupPulse מיועדת</h2><p class="lede">הפיילוט הראשוני מיועד למנחים שמרגישים שהתיעוד הקבוצתי גוזל זמן, נשאר חלקי, או לא באמת משקף את מורכבות המפגש.</p></div>
+    <div class="eyebrow"><span class="eyebrow__num">08</span><span class="eyebrow__label" data-i18n="whoEyebrow">למי זה מיועד</span></div>
+    <div class="section-head"><h2 data-i18n="whoTitle">למי GrouPulse מיועדת</h2><p class="lede" data-i18n="whoLede">הפיילוט הראשוני מיועד למנחים שמרגישים שהתיעוד הקבוצתי גוזל זמן, נשאר חלקי, או לא באמת משקף את מורכבות המפגש.</p></div>
   </div>
   <div class="wrap">
     <div class="who-grid">
-      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>מנחי קבוצות טיפוליות</h3><p>מנחים שמעבירים קבוצות טיפוליות באופן קבוע.</p></div>
-      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span><h3>מטפלים רגשיים בקבוצות</h3><p>מטפלים רגשיים שעובדים גם בפורמט קבוצתי.</p></div>
-      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><h3>מנחי קבוצות בבתי ספר</h3><p>אנשי חינוך וטיפול שמובילים קבוצות בבית הספר.</p></div>
-      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span><h3>מסגרות חינוכיות וטיפוליות</h3><p>מנחים במסגרות חינוכיות וטיפוליות מגוונות.</p></div>
-      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg></span><h3>מדריכים בהכשרות</h3><p>מדריכים בהכשרות טיפוליות שצריכים תיעוד ברור.</p></div>
-      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></span><h3>ארגונים שמפעילים קבוצות</h3><p>ארגונים שנדרשים לתיעוד, מעקב והדרכה סביב קבוצות.</p></div>
+      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3 data-i18n="w1t">מנחי קבוצות טיפוליות</h3><p data-i18n="w1b">מנחים שמעבירים קבוצות טיפוליות באופן קבוע.</p></div>
+      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span><h3 data-i18n="w2t">מטפלים רגשיים בקבוצות</h3><p data-i18n="w2b">מטפלים רגשיים שעובדים גם בפורמט קבוצתי.</p></div>
+      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><h3 data-i18n="w3t">מנחי קבוצות בבתי ספר</h3><p data-i18n="w3b">אנשי חינוך וטיפול שמובילים קבוצות בבית הספר.</p></div>
+      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span><h3 data-i18n="w4t">מסגרות חינוכיות וטיפוליות</h3><p data-i18n="w4b">מנחים במסגרות חינוכיות וטיפוליות מגוונות.</p></div>
+      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg></span><h3 data-i18n="w5t">מדריכים בהכשרות</h3><p data-i18n="w5b">מדריכים בהכשרות טיפוליות שצריכים תיעוד ברור.</p></div>
+      <div class="who-card"><span class="who-card__icn"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></span><h3 data-i18n="w6t">ארגונים שמפעילים קבוצות</h3><p data-i18n="w6b">ארגונים שנדרשים לתיעוד, מעקב והדרכה סביב קבוצות.</p></div>
     </div>
   </div>
 </section>
 
-<!-- Pilot includes -->
 <section class="section reveal" id="pilot">
   <div class="wrap">
-    <div class="eyebrow"><span class="eyebrow__num">09</span><span class="eyebrow__label">מה מקבלים בפיילוט</span></div>
-    <div class="section-head"><h2>מה כולל הפיילוט</h2><p class="lede">משתתפי הפיילוט יוזמנו לשיחת היכרות קצרה, שבה נבין יחד את אופן העבודה שלכם:</p></div>
+    <div class="eyebrow"><span class="eyebrow__num">09</span><span class="eyebrow__label" data-i18n="pilEyebrow">מה מקבלים בפיילוט</span></div>
+    <div class="section-head"><h2 data-i18n="pilTitle">מה כולל הפיילוט</h2><p class="lede" data-i18n="pilLede">משתתפי הפיילוט יוזמנו לשיחת היכרות קצרה, שבה נבין יחד את אופן העבודה שלכם:</p></div>
     <div class="panel">
       <ul class="checklist">
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>איך אתם מתעדים כיום מפגשים קבוצתיים</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>מה החלק הכי קשה בתיעוד</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>כמה זמן התיעוד לוקח</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>איזה מידע הולך לאיבוד</li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>איזה פלט היה באמת עוזר לכם אחרי מפגש</li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pc1">איך אתם מתעדים כיום מפגשים קבוצתיים</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pc2">מה החלק הכי קשה בתיעוד</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pc3">כמה זמן התיעוד לוקח</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pc4">איזה מידע הולך לאיבוד</span></li>
+        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="pc5">איזה פלט היה באמת עוזר לכם אחרי מפגש</span></li>
       </ul>
-      <div class="pilot-note"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><p>בהמשך, מנחים מתאימים יוכלו להתנסות בגרסה ראשונית של GroupPulse ולהשפיע ישירות על הפיתוח.</p></div>
+      <div class="pilot-note"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><p data-i18n="pilNote">בהמשך, מנחים מתאימים יוכלו להתנסות בגרסה ראשונית של GrouPulse ולהשפיע ישירות על הפיתוח.</p></div>
     </div>
   </div>
 </section>
 
-<!-- Join -->
 <section class="section join" id="join">
   <div class="wrap join__grid">
     <div>
-      <div class="eyebrow"><span class="eyebrow__num">10</span><span class="eyebrow__label">הצטרפות לפיילוט</span></div>
-      <h2>אנחנו בונים את GroupPulse עם מנחים מהשטח</h2>
-      <p class="join__sub">GroupPulse נמצאת בשלבי פיתוח ראשוניים — ואנחנו רוצים לבנות אותה איתכם.</p>
-      <p class="join__body">השאירו פרטים ונחזור אליכם לשיחת היכרות קצרה. המטרה היא לבנות כלי שמתאים לעבודה האמיתית של מנחי קבוצות — לא עוד מערכת כללית שצריך להתאים אליה את העבודה.</p>
+      <div class="eyebrow"><span class="eyebrow__num">10</span><span class="eyebrow__label" data-i18n="joinEyebrow">הצטרפות לפיילוט</span></div>
+      <h2 data-i18n="joinTitle">אנחנו בונים את GrouPulse עם מנחים מהשטח</h2>
+      <p class="join__sub" data-i18n="joinSub">GrouPulse נמצאת בשלבי פיתוח ראשוניים — ואנחנו רוצים לבנות אותה איתכם.</p>
+      <p class="join__body" data-i18n="joinBody">השאירו פרטים ונחזור אליכם לשיחת היכרות קצרה. המטרה היא לבנות כלי שמתאים לעבודה האמיתית של מנחי קבוצות — לא עוד מערכת כללית שצריך להתאים אליה את העבודה.</p>
       <div class="join__trust">
-        <div class="t"><span class="ti"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>כלי שמתאים לעבודה האמיתית של מנחי קבוצות</div>
-        <div class="t"><span class="ti"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>המנחה תמיד עורך ומאשר</div>
-        <div class="t"><span class="ti"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>השפעה ישירה על הפיתוח</div>
+        <div class="t"><span class="ti"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="joinT1">כלי שמתאים לעבודה האמיתית של מנחי קבוצות</span></div>
+        <div class="t"><span class="ti"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="joinT2">המנחה תמיד עורך ומאשר</span></div>
+        <div class="t"><span class="ti"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="joinT3">השפעה ישירה על הפיתוח</span></div>
       </div>
     </div>
     <div>
       <div class="form-card">
         <form id="signupForm" novalidate>
           <div class="form-row">
-            <div class="gp-field"><label for="name">שם מלא</label><input class="gp-input" type="text" id="name" name="name" placeholder="לדוגמה: דנה לוי" autocomplete="name"></div>
-            <div class="gp-field"><label for="email">אימייל</label><input class="gp-input" type="email" id="email" name="email" placeholder="name@clinic.co.il" autocomplete="email" required></div>
+            <div class="gp-field"><label for="name" data-i18n="fName">שם מלא</label><input class="gp-input" type="text" id="name" name="name" data-i18n-ph="fNamePh" placeholder="לדוגמה: דנה לוי" autocomplete="name"></div>
+            <div class="gp-field"><label for="email" data-i18n="fEmail">אימייל</label><input class="gp-input" type="email" id="email" name="email" data-i18n-ph="fEmailPh" placeholder="name@clinic.co.il" autocomplete="email" required></div>
           </div>
           <div class="form-stack" id="qFields"></div>
           <div class="gp-field" style="margin-top:16px">
-            <label for="open_wish">אם הייתה לך מערכת שעוזרת בתיעוד קבוצות — מה היית רוצה שהיא תכתוב עבורך אחרי כל מפגש?</label>
-            <textarea class="gp-textarea" id="open_wish" name="open_wish" rows="3" placeholder="כמה מילים חופשיות…"></textarea>
+            <label for="open_wish" data-i18n="openLabel">אם הייתה לך מערכת שעוזרת בתיעוד קבוצות — מה היית רוצה שהיא תכתוב עבורך אחרי כל מפגש?</label>
+            <textarea class="gp-textarea" id="open_wish" name="open_wish" rows="3" data-i18n-ph="openPh" placeholder="כמה מילים חופשיות…"></textarea>
           </div>
           <input type="checkbox" id="botcheck" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <p class="form-consent">השאלות אופציונליות ועוזרות לנו להבין את הצורך. בלחיצה אתם מסכימים שניצור קשר בנוגע לפיילוט בלבד. ללא ספאם, ניתן להסיר בכל עת.</p>
-          <div class="form-submit-wrap"><button type="submit" class="gp-btn gp-btn--primary gp-btn--block gp-btn--lg">אני רוצה להצטרף לפיילוט</button></div>
-          <div class="form-error" id="formError">אופס — משהו השתבש בשליחה. נסו שוב, או כתבו לנו ל-chavi744@gmail.com.</div>
+          <p class="form-consent" data-i18n="consent">השאלות אופציונליות ועוזרות לנו להבין את הצורך. בלחיצה אתם מסכימים שניצור קשר בנוגע לפיילוט בלבד. ללא ספאם, ניתן להסיר בכל עת.</p>
+          <div class="form-submit-wrap"><button type="submit" class="gp-btn gp-btn--primary gp-btn--block gp-btn--lg" data-i18n="submit">אני רוצה להצטרף לפיילוט</button></div>
+          <div class="form-error" id="formError" data-i18n="errorMsg">אופס — משהו השתבש בשליחה. נסו שוב, או כתבו לנו ל-chavi744@gmail.com.</div>
         </form>
         <div class="form-success" id="formSuccess">
           <div class="form-success__icn"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></div>
-          <h3>תודה! קיבלנו את הפרטים.</h3>
-          <p>נחזור אליכם בקרוב לשיחת היכרות קצרה על התיעוד הקבוצתי שלכם.</p>
+          <h3 data-i18n="successTitle">תודה! קיבלנו את הפרטים.</h3>
+          <p data-i18n="successBody">נחזור אליכם בקרוב לשיחת היכרות קצרה על התיעוד הקבוצתי שלכם.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <footer class="footer">
   <div class="wrap">
     <div class="footer__top">
       <div class="footer__brand">
-        <span class="brand__word">Group<span class="p">Pulse</span></span>
-        <p class="footer__tag">לתעד קבוצה טיפולית זה מורכב. GroupPulse עוזרת לעשות בזה סדר.</p>
+        <span class="brand__word">Grou<span class="p">Pulse</span></span>
+        <p class="footer__tag" data-i18n="footTag">לתעד קבוצה טיפולית זה מורכב. GrouPulse עוזרת לעשות בזה סדר.</p>
       </div>
       <div class="footer__links">
-        <a href="#problem">המורכבות</a>
-        <a href="#solution">הפתרון</a>
-        <a href="#how">איך זה עובד</a>
-        <a href="#join">הצטרפות לפיילוט</a>
+        <a href="#problem" data-i18n="navProblem">המורכבות</a>
+        <a href="#solution" data-i18n="navSolution">הפתרון</a>
+        <a href="#how" data-i18n="navHow">איך זה עובד</a>
+        <a href="#join" data-i18n="footJoin">הצטרפות לפיילוט</a>
       </div>
     </div>
-    <div class="footer__bottom">© 2026 GroupPulse · כל הזכויות שמורות</div>
+    <div class="footer__bottom" data-i18n="footRights">© 2026 GrouPulse · כל הזכויות שמורות</div>
   </div>
 </footer>
 
 <script>
-/* ===== Beta/pilot qualifying questions (Hebrew) ===== */
+const I18N = {
+  he:{ dir:"rtl",
+    navProblem:"המורכבות", navSolution:"הפתרון", navHow:"איך זה עובד", navWho:"למי זה מיועד", navCta:"הצטרפו לפיילוט", footJoin:"הצטרפות לפיילוט",
+    heroChip:"הבית המקצועי למנחי קבוצות טיפוליות",
+    heroH1:"לתעד קבוצה טיפולית לא אמור לקחת יותר מהמפגש עצמו",
+    heroSub:"GrouPulse — הבית המקצועי למנחי קבוצות טיפוליות",
+    heroBody:"אחרי כל מפגש קבוצתי צריך לתעד גם את מה שקרה בקבוצה, גם את התהליך של כל משתתף, וגם את הדינמיקה שנוצרה ביניהם. בפועל, התיעוד נדחה, מתקצר, נשאר טכני — או פשוט הולך לאיבוד. GrouPulse נבנית כדי לעזור למנחים להפוך תיאור קצר אחרי מפגש לטיוטת תיעוד מקצועית.",
+    heroCta1:"אני רוצה להצטרף לפיילוט", heroCta2:"▶ צפו בהדגמה",
+    heroB1:"סיכום קבוצתי + נקודות אישיות — מתיאור קצר אחד", heroB2:"דינמיקות מרכזיות, תמות חוזרות ונקודות למעקב", heroB3:"המנחה עורך ומאשר — שיקול הדעת תמיד שלו",
+    demoEyebrow:"הדגמה", demoTitle:"ראו איך זה עובד", demoLede:"ממפגש שהסתיים, דרך תיאור קצר אחד, ועד טיוטת תיעוד מסודרת — קבוצתית ואישית.", demoCap:"סרטון הסבר קצר — כך GrouPulse עוזרת לעשות סדר בתיעוד הקבוצתי.",
+    probEyebrow:"המורכבות", probTitle:'לתעד קבוצה טיפולית זה הרבה יותר מלכתוב "מה היה במפגש"', probLede:"בתיעוד אישי יש מטופל אחד, תהליך אחד, מוקד אחד. בתיעוד קבוצתי יש כמה משתתפים, כמה תהליכים במקביל, ודינמיקה קבוצתית שמשפיעה על כולם.", probPanelH:"מה המנחה צריך להחזיק אחרי כל מפגש",
+    p1:"מה היה הנושא המרכזי של המפגש", p2:"אילו דינמיקות הופיעו בקבוצה", p3:"איך כל משתתף היה נוכח", p4:"מה השתנה לעומת מפגשים קודמים", p5:"מי דורש תשומת לב מיוחדת", p6:"מה כדאי להמשיך לבדוק בפעם הבאה", p7:"איך לנסח את כל זה בצורה מקצועית, קצרה וברורה",
+    probNote:"בפועל, התיעוד נעשה לא פעם אחרי יום עמוס, בין פגישות או בלילה — כשהפרטים כבר מתחילים להתערבב. כך ידע מקצועי חשוב נשאר בראש של המנחה, במקום להפוך לתיעוד שמסייע למעקב, להדרכה ולהכנה למפגש הבא.",
+    famEyebrow:"נשמע מוכר?", famTitle:"האם זה מוכר לך?", famLede:"הרבה מנחים מתעדים פחות ממה שהם באמת יודעים — לא כי אין מה לומר, אלא כי אין זמן וקשה להתחיל.",
+    fam1:"מסיימים מפגש ויודעים שהיה שם הרבה חומר חשוב — אבל אין כוח לפתוח מסמך.", fam2:"כותבים כמה שורות כלליות, למרות שקרו דברים משמעותיים עם כמה משתתפים.", fam3:"זוכרים שהייתה דינמיקה חשובה — אבל קשה לנסח אותה באופן מקצועי.", fam4:"דוחים את התיעוד לאחר כך — ואז חלק מהפרטים פשוט נעלמים.", fam5:"צריך לכתוב גם סיכום קבוצתי וגם התייחסות אישית לכל משתתף.", fam6:"התיעוד הקיים טכני מדי — לא מחזיק את העומק של העבודה הקבוצתית.",
+    solEyebrow:"הפתרון", solTitle:"כאן GrouPulse נכנסת לתמונה", solLede:"במקום לשבת מול מסמך ריק, המנחה מכתיב או כותב בכמה דקות תיאור חופשי של מה שקרה במפגש. המערכת מסייעת להפוך אותו לתיעוד מסודר:",
+    o1:"סיכום קבוצתי של המפגש", o2:"הערות אישיות לכל משתתף", o3:"ניסוח דינמיקות מרכזיות", o4:"נקודות למעקב", o5:"סימון משתתפים שדורשים תשומת לב", o6:"תובנות לקראת המפגש הבא", o7:"בסיס לדוח מקצועי ברור וקצר",
+    solNote:"המטרה אינה להחליף את שיקול הדעת של המנחה — אלא לעזור לו להפוך את מה שכבר ראה, הרגיש והבין לתיעוד מקצועי שאפשר להשתמש בו.",
+    difEyebrow:"למה זה שונה", difTitle:"לא עוד טופס כללי", difLede:"רוב מערכות התיעוד נבנו סביב טיפול פרטני, אדמיניסטרציה או ניהול תיק. קבוצה טיפולית דורשת תיעוד מסוג אחר.",
+    d1t:"לא רק מה נאמר", d1b:"אלא מה התרחש בין המשתתפים — האינטראקציות והדינמיקה שנוצרה בקבוצה.", d2t:"לא רק מי דיבר", d2b:"אלא מי התקדם, מי נמנע, מי השפיע על האקלים הקבוצתי, ואיזו תנועה נוצרה בקבוצה.", d3t:"לא רק רשומה מנהלית", d3b:"אלא תיעוד שמשרת את החשיבה המקצועית של המנחה — לא רק את הארכיון.",
+    howEyebrow:"התהליך", howTitle:"איך זה עובד", howLede:"שלושה צעדים: מתארים את המפגש, המערכת מארגנת את החומר, והמנחה עורך ומאשר.",
+    scr1t:"מתארים", scr1c:"בקול או בכתב — תיאור חופשי וקצר של המפגש", scr2t:"המערכת מארגנת", scr2c:"הפיכת התיאור הגולמי לתיעוד מובנה", scr3t:"סיכום קבוצתי", scr3c:"תמונת המפגש כולה ודינמיקות מרכזיות", scr4t:"נקודות אישיות", scr4c:"התייחסות לכל משתתף ונקודות למעקב", scr5t:"עריכה ואישור", scr5c:"המנחה עורך לפי שיקול דעתו ומאשר",
+    whoEyebrow:"למי זה מיועד", whoTitle:"למי GrouPulse מיועדת", whoLede:"הפיילוט הראשוני מיועד למנחים שמרגישים שהתיעוד הקבוצתי גוזל זמן, נשאר חלקי, או לא באמת משקף את מורכבות המפגש.",
+    w1t:"מנחי קבוצות טיפוליות", w1b:"מנחים שמעבירים קבוצות טיפוליות באופן קבוע.", w2t:"מטפלים רגשיים בקבוצות", w2b:"מטפלים רגשיים שעובדים גם בפורמט קבוצתי.", w3t:"מנחי קבוצות בבתי ספר", w3b:"אנשי חינוך וטיפול שמובילים קבוצות בבית הספר.", w4t:"מסגרות חינוכיות וטיפוליות", w4b:"מנחים במסגרות חינוכיות וטיפוליות מגוונות.", w5t:"מדריכים בהכשרות", w5b:"מדריכים בהכשרות טיפוליות שצריכים תיעוד ברור.", w6t:"ארגונים שמפעילים קבוצות", w6b:"ארגונים שנדרשים לתיעוד, מעקב והדרכה סביב קבוצות.",
+    pilEyebrow:"מה מקבלים בפיילוט", pilTitle:"מה כולל הפיילוט", pilLede:"משתתפי הפיילוט יוזמנו לשיחת היכרות קצרה, שבה נבין יחד את אופן העבודה שלכם:",
+    pc1:"איך אתם מתעדים כיום מפגשים קבוצתיים", pc2:"מה החלק הכי קשה בתיעוד", pc3:"כמה זמן התיעוד לוקח", pc4:"איזה מידע הולך לאיבוד", pc5:"איזה פלט היה באמת עוזר לכם אחרי מפגש",
+    pilNote:"בהמשך, מנחים מתאימים יוכלו להתנסות בגרסה ראשונית של GrouPulse ולהשפיע ישירות על הפיתוח.",
+    joinEyebrow:"הצטרפות לפיילוט", joinTitle:"אנחנו בונים את GrouPulse עם מנחים מהשטח", joinSub:"GrouPulse נמצאת בשלבי פיתוח ראשוניים — ואנחנו רוצים לבנות אותה איתכם.", joinBody:"השאירו פרטים ונחזור אליכם לשיחת היכרות קצרה. המטרה היא לבנות כלי שמתאים לעבודה האמיתית של מנחי קבוצות — לא עוד מערכת כללית שצריך להתאים אליה את העבודה.",
+    joinT1:"כלי שמתאים לעבודה האמיתית של מנחי קבוצות", joinT2:"המנחה תמיד עורך ומאשר", joinT3:"השפעה ישירה על הפיתוח",
+    fName:"שם מלא", fNamePh:"לדוגמה: דנה לוי", fEmail:"אימייל", fEmailPh:"name@clinic.co.il",
+    openLabel:"אם הייתה לך מערכת שעוזרת בתיעוד קבוצות — מה היית רוצה שהיא תכתוב עבורך אחרי כל מפגש?", openPh:"כמה מילים חופשיות…",
+    consent:"השאלות אופציונליות ועוזרות לנו להבין את הצורך. בלחיצה אתם מסכימים שניצור קשר בנוגע לפיילוט בלבד. ללא ספאם, ניתן להסיר בכל עת.",
+    submit:"אני רוצה להצטרף לפיילוט", sending:"שולח…",
+    errorMsg:"אופס — משהו השתבש בשליחה. נסו שוב, או כתבו לנו ל-chavi744@gmail.com.",
+    successTitle:"תודה! קיבלנו את הפרטים.", successBody:"נחזור אליכם בקרוב לשיחת היכרות קצרה על התיעוד הקבוצתי שלכם.",
+    footTag:"לתעד קבוצה טיפולית זה מורכב. GrouPulse עוזרת לעשות בזה סדר.", footRights:"© 2026 GrouPulse · כל הזכויות שמורות",
+    selectPh:"בחר/י…", optHint:"אפשר לבחור כמה", sysNamePh:"שם המערכת…"
+  },
+  en:{ dir:"ltr",
+    navProblem:"The complexity", navSolution:"The solution", navHow:"How it works", navWho:"Who it's for", navCta:"Join the pilot", footJoin:"Join the pilot",
+    heroChip:"The professional home for group facilitators",
+    heroH1:"Documenting a therapy group shouldn't take longer than the session itself",
+    heroSub:"GrouPulse — the professional home for group facilitators",
+    heroBody:"After every group session you need to document what happened in the group, each participant's process, and the dynamics between them. In practice, documentation gets delayed, shortened, stays technical — or simply gets lost. GrouPulse helps facilitators turn a short post-session description into a professional documentation draft.",
+    heroCta1:"I want to join the pilot", heroCta2:"▶ Watch the demo",
+    heroB1:"Group summary + individual notes — from one short description", heroB2:"Key dynamics, recurring themes and follow-up points", heroB3:"The facilitator edits and approves — judgment always stays yours",
+    demoEyebrow:"Demo", demoTitle:"See how it works", demoLede:"From a finished session, through one short description, to an organized documentation draft — group and individual.", demoCap:"A short explainer — how GrouPulse brings order to group documentation.",
+    probEyebrow:"The complexity", probTitle:"Documenting a therapy group is much more than writing “what happened”", probLede:"Individual documentation has one client, one process, one focus. Group documentation has several participants, several parallel processes, and a group dynamic that affects everyone.", probPanelH:"What the facilitator has to hold after every session",
+    p1:"The main theme of the session", p2:"What dynamics appeared in the group", p3:"How each participant was present", p4:"What changed compared to previous sessions", p5:"Who needs special attention", p6:"What to keep checking next time", p7:"How to phrase all of this professionally, briefly and clearly",
+    probNote:"In practice, documentation often happens after a busy day, between meetings or at night — when the details have already begun to blur. Important professional knowledge stays in the facilitator's head instead of becoming documentation that supports follow-up, supervision and preparation for the next session.",
+    famEyebrow:"Sound familiar?", famTitle:"Does this sound familiar?", famLede:"Many facilitators document less than they actually know — not because there's nothing to say, but because there's no time and it's hard to start.",
+    fam1:"You finish a session knowing there was a lot of important material — but you have no energy to open a document.", fam2:"You write a few general lines, even though meaningful things happened with several participants.", fam3:"You remember there was an important dynamic — but it's hard to phrase it professionally.", fam4:"You postpone the documentation — and then some details simply disappear.", fam5:"You need to write both a group summary and an individual reference for each participant.", fam6:"The existing documentation is too technical — it doesn't hold the depth of group work.",
+    solEyebrow:"The solution", solTitle:"This is where GrouPulse comes in", solLede:"Instead of sitting in front of a blank document, the facilitator dictates or types a short free description of what happened. The system helps turn it into organized documentation:",
+    o1:"A group summary of the session", o2:"Individual notes for each participant", o3:"Phrasing of key dynamics", o4:"Follow-up points", o5:"Flagging participants who need attention", o6:"Insights toward the next session", o7:"A basis for a clear, concise professional report",
+    solNote:"The goal is not to replace the facilitator's judgment — but to help turn what they already saw, felt and understood into professional documentation they can use.",
+    difEyebrow:"Why it's different", difTitle:"Not another generic form", difLede:"Most documentation systems were built around individual therapy, administration or case management. Group therapy needs a different kind of documentation.",
+    d1t:"Not just what was said", d1b:"but what happened between participants — the interactions and the dynamic that formed in the group.", d2t:"Not just who spoke", d2b:"but who progressed, who withdrew, who shaped the group climate, and what movement formed.", d3t:"Not just an admin record", d3b:"but documentation that serves the facilitator's professional thinking — not just the archive.",
+    howEyebrow:"The process", howTitle:"How it works", howLede:"Three steps: describe the session, the system organizes the material, and the facilitator edits and approves.",
+    scr1t:"Describe", scr1c:"By voice or text — a short free description of the session", scr2t:"System organizes", scr2c:"Turning the raw description into structured documentation", scr3t:"Group summary", scr3c:"The whole session picture and key dynamics", scr4t:"Individual notes", scr4c:"A reference for each participant and follow-up points", scr5t:"Edit & approve", scr5c:"The facilitator edits at their discretion and approves",
+    whoEyebrow:"Who it's for", whoTitle:"Who GrouPulse is for", whoLede:"The initial pilot is for facilitators who feel group documentation takes too long, stays partial, or doesn't reflect the complexity of the session.",
+    w1t:"Group therapy facilitators", w1b:"Facilitators who run therapy groups regularly.", w2t:"Emotional therapists in groups", w2b:"Emotional therapists who also work in a group format.", w3t:"School group facilitators", w3b:"Education and care staff leading groups at school.", w4t:"Educational & care settings", w4b:"Facilitators across educational and therapeutic settings.", w5t:"Training supervisors", w5b:"Supervisors in therapeutic training who need clear documentation.", w6t:"Organizations running groups", w6b:"Organizations that need documentation, follow-up and supervision around groups.",
+    pilEyebrow:"What you get in the pilot", pilTitle:"What the pilot includes", pilLede:"Pilot participants will be invited to a short intro call, where we'll understand your way of working together:",
+    pc1:"How you currently document group sessions", pc2:"The hardest part of documentation", pc3:"How long documentation takes", pc4:"What information gets lost", pc5:"What output would actually help you after a session",
+    pilNote:"Later, suitable facilitators will be able to try an early version of GrouPulse and directly influence its development.",
+    joinEyebrow:"Join the pilot", joinTitle:"We're building GrouPulse with facilitators from the field", joinSub:"GrouPulse is in early development — and we want to build it with you.", joinBody:"Leave your details and we'll get back to you for a short intro call. The goal is to build a tool that fits the real work of group facilitators — not another generic system you have to adapt your work to.",
+    joinT1:"A tool that fits the real work of group facilitators", joinT2:"The facilitator always edits and approves", joinT3:"Direct influence on development",
+    fName:"Full name", fNamePh:"e.g. Dana Levi", fEmail:"Email", fEmailPh:"name@clinic.com",
+    openLabel:"If you had a system that helps document groups — what would you want it to write for you after each session?", openPh:"A few free words…",
+    consent:"The questions are optional and help us understand the need. By submitting you agree we may contact you about the pilot only. No spam, unsubscribe anytime.",
+    submit:"I want to join the pilot", sending:"Sending…",
+    errorMsg:"Oops — something went wrong. Please try again, or email us at chavi744@gmail.com.",
+    successTitle:"Thanks! We've got your details.", successBody:"We'll be in touch soon for a short intro call about your group documentation.",
+    footTag:"Documenting a therapy group is complex. GrouPulse brings order to it.", footRights:"© 2026 GrouPulse · All rights reserved",
+    selectPh:"Select…", optHint:"select all that apply", sysNamePh:"System name…"
+  }
+};
+
 const QUESTIONS = [
-  { name:"role", multi:true, label:"מה התפקיד שלך?", opts:[
-    {v:"facilitator", t:"מנחה קבוצות"},
-    {v:"emotional",   t:"מטפל/ת רגשי/ת בקבוצות"},
-    {v:"school",      t:"מנחה בבית ספר / חינוך"},
-    {v:"supervisor",  t:"מדריך/ה בהכשרה"},
-    {v:"org",         t:"ארגון שמפעיל קבוצות"},
-    {v:"other",       t:"אחר"} ]},
-  { name:"groups_per_month", label:"כמה קבוצות את/ה מנחה בממוצע בחודש?", opts:[
-    {v:"1-4",t:"1–4"},{v:"5-10",t:"5–10"},{v:"11-20",t:"11–20"},{v:"20+",t:"20+"} ]},
-  { name:"doc_time", label:"כמה זמן את/ה משקיע/ה כיום בתיעוד אחרי מפגש קבוצתי?", opts:[
-    {v:"under_15",t:"פחות מ-15 דקות"},{v:"15-30",t:"15–30 דקות"},{v:"30-60",t:"30–60 דקות"},{v:"over_60",t:"יותר משעה"} ]},
-  { name:"pain", multi:true, label:"מה הכי קשה לך בתיעוד הקבוצתי?", opts:[
-    {v:"time",t:"גוזל יותר מדי זמן"},
-    {v:"start",t:"קשה להתחיל / מסמך ריק"},
-    {v:"phrasing",t:"קשה לנסח באופן מקצועי"},
-    {v:"per_member",t:"קשה לתעד כל משתתף בנפרד"},
-    {v:"dynamics",t:"קשה לתפוס את הדינמיקה הקבוצתית"},
-    {v:"partial",t:"התיעוד נשאר חלקי / נדחה"},
-    {v:"other",t:"אחר"} ]},
-  { name:"outputs", multi:true, label:"איזה פלט היה הכי עוזר לך אחרי מפגש?", opts:[
-    {v:"group",t:"סיכום קבוצתי"},
-    {v:"individual",t:"הערות אישיות לכל משתתף"},
-    {v:"dynamics",t:"ניסוח דינמיקות מרכזיות"},
-    {v:"followup",t:"נקודות למעקב והמפגש הבא"},
-    {v:"report",t:"בסיס לדוח מקצועי"} ]},
-  { name:"current_tool", label:"איך את/ה מתעד/ת כיום?", opts:[
-    {v:"none",t:"אין / מהזיכרון"},
-    {v:"paper_word",t:"דפים / Word"},
-    {v:"institution",t:"מערכת פנימית של המסגרת"},
-    {v:"external",t:"מערכת חיצונית בתשלום", withText:true} ]},
-  { name:"pilot", label:"האם תהיה/י מוכן/ה להשתתף בפיילוט ראשוני?", opts:[
-    {v:"yes",t:"כן"},{v:"maybe",t:"אולי"},{v:"not_now",t:"לא כרגע"} ]}
+  { name:"role", multi:true, he:"מה התפקיד שלך?", en:"Your role?", opts:[
+    {v:"facilitator", he:"מנחה קבוצות", en:"Group facilitator"},
+    {v:"emotional",   he:"מטפל/ת רגשי/ת בקבוצות", en:"Emotional therapist in groups"},
+    {v:"school",      he:"מנחה בבית ספר / חינוך", en:"School / education facilitator"},
+    {v:"supervisor",  he:"מדריך/ה בהכשרה", en:"Training supervisor"},
+    {v:"org",         he:"ארגון שמפעיל קבוצות", en:"Organization running groups"},
+    {v:"other",       he:"אחר", en:"Other"} ]},
+  { name:"groups_per_month", he:"כמה קבוצות את/ה מנחה בממוצע בחודש?", en:"Groups you facilitate per month (avg)?", opts:[
+    {v:"1-4",he:"1–4",en:"1–4"},{v:"5-10",he:"5–10",en:"5–10"},{v:"11-20",he:"11–20",en:"11–20"},{v:"20+",he:"20+",en:"20+"} ]},
+  { name:"doc_time", he:"כמה זמן את/ה משקיע/ה כיום בתיעוד אחרי מפגש קבוצתי?", en:"Time you spend documenting after a group session today?", opts:[
+    {v:"under_15",he:"פחות מ-15 דקות",en:"Under 15 min"},{v:"15-30",he:"15–30 דקות",en:"15–30 min"},{v:"30-60",he:"30–60 דקות",en:"30–60 min"},{v:"over_60",he:"יותר משעה",en:"Over an hour"} ]},
+  { name:"pain", multi:true, he:"מה הכי קשה לך בתיעוד הקבוצתי?", en:"What's hardest about group documentation for you?", opts:[
+    {v:"time",he:"גוזל יותר מדי זמן",en:"Takes too much time"},
+    {v:"start",he:"קשה להתחיל / מסמך ריק",en:"Hard to start / blank page"},
+    {v:"phrasing",he:"קשה לנסח באופן מקצועי",en:"Hard to phrase professionally"},
+    {v:"per_member",he:"קשה לתעד כל משתתף בנפרד",en:"Hard to document each participant"},
+    {v:"dynamics",he:"קשה לתפוס את הדינמיקה הקבוצתית",en:"Hard to capture group dynamics"},
+    {v:"partial",he:"התיעוד נשאר חלקי / נדחה",en:"Documentation stays partial / delayed"},
+    {v:"other",he:"אחר",en:"Other"} ]},
+  { name:"outputs", multi:true, he:"איזה פלט היה הכי עוזר לך אחרי מפגש?", en:"Which output would help you most after a session?", opts:[
+    {v:"group",he:"סיכום קבוצתי",en:"Group summary"},
+    {v:"individual",he:"הערות אישיות לכל משתתף",en:"Individual notes per participant"},
+    {v:"dynamics",he:"ניסוח דינמיקות מרכזיות",en:"Phrasing key dynamics"},
+    {v:"followup",he:"נקודות למעקב והמפגש הבא",en:"Follow-up & next-session points"},
+    {v:"report",he:"בסיס לדוח מקצועי",en:"Basis for a professional report"} ]},
+  { name:"current_tool", he:"איך את/ה מתעד/ת כיום?", en:"How do you document today?", opts:[
+    {v:"none",he:"אין / מהזיכרון",en:"None / from memory"},
+    {v:"paper_word",he:"דפים / Word",en:"Pages / Word"},
+    {v:"institution",he:"מערכת פנימית של המסגרת",en:"Institution's internal system"},
+    {v:"external",he:"מערכת חיצונית בתשלום",en:"External paid system", withText:true} ]},
+  { name:"pilot", he:"האם תהיה/י מוכן/ה להשתתף בפיילוט ראשוני?", en:"Open to joining an initial pilot?", opts:[
+    {v:"yes",he:"כן",en:"Yes"},{v:"maybe",he:"אולי",en:"Maybe"},{v:"not_now",he:"לא כרגע",en:"Not right now"} ]}
 ];
 
-function buildQuestions(){
-  const wrap=document.getElementById('qFields'); if(!wrap) return;
-  wrap.innerHTML = QUESTIONS.map(q=>{
-    if(q.multi){
-      const chips=q.opts.map(o=>`<label class="chip"><input type="checkbox" name="${q.name}" value="${o.v}"><span>${o.t}</span></label>`).join('');
-      return `<div class="gp-field"><label>${q.label} <span class="opt-hint">(אפשר לבחור כמה)</span></label><div class="chips">${chips}</div></div>`;
-    }
-    const opts=['<option value="" disabled selected>בחר/י…</option>'].concat(q.opts.map(o=>`<option value="${o.v}">${o.t}</option>`)).join('');
-    const textOpt=q.opts.find(o=>o.withText);
-    let extra='';
-    if(textOpt){ extra=`<input type="text" class="gp-input qtext" id="q_${q.name}__text" name="${q.name}_name" placeholder="שם המערכת…" data-show="${textOpt.v}" style="display:none;margin-top:4px">`; }
-    return `<div class="gp-field"><label for="q_${q.name}">${q.label}</label><select class="gp-select" id="q_${q.name}" name="${q.name}">${opts}</select>${extra}</div>`;
-  }).join('');
-  wrap.querySelectorAll('.qtext').forEach(t=>{
-    const sel=document.getElementById(t.id.replace('__text',''));
-    if(!sel) return;
-    sel.addEventListener('change',()=>{ const show=sel.value===t.getAttribute('data-show'); t.style.display=show?'block':'none'; if(!show) t.value=''; });
-  });
+let LANG="he";
+function setLang(l){
+  LANG=l; const d=I18N[l];
+  document.documentElement.lang=l; document.documentElement.dir=d.dir;
+  document.getElementById('he').classList.toggle('on',l==='he');
+  document.getElementById('en').classList.toggle('on',l==='en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ const k=el.getAttribute('data-i18n'); if(d[k]!==undefined) el.innerHTML=d[k]; });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ const k=el.getAttribute('data-i18n-ph'); if(d[k]!==undefined) el.placeholder=d[k]; });
+  buildQuestions(l);
 }
 
-/* ===== Pilot signup → Web3Forms ===== */
+function buildQuestions(lang){
+  const wrap=document.getElementById('qFields'); if(!wrap) return;
+  const d=I18N[lang]; const ph=d.selectPh, hint=d.optHint, namePh=d.sysNamePh;
+  const prevS={}, prevM={}, prevT={};
+  wrap.querySelectorAll('select').forEach(s=>{ if(s.value) prevS[s.name]=s.value; });
+  wrap.querySelectorAll('.chips input:checked').forEach(c=>{ (prevM[c.name]=prevM[c.name]||[]).push(c.value); });
+  wrap.querySelectorAll('.qtext').forEach(t=>{ if(t.value) prevT[t.name]=t.value; });
+  wrap.innerHTML = QUESTIONS.map(q=>{
+    if(q.multi){
+      const chips=q.opts.map(o=>{ const on=(prevM[q.name]||[]).includes(o.v)?' checked':''; return `<label class="chip"><input type="checkbox" name="${q.name}" value="${o.v}"${on}><span>${o[lang]}</span></label>`; }).join('');
+      return `<div class="gp-field"><label>${q[lang]} <span class="opt-hint">(${hint})</span></label><div class="chips">${chips}</div></div>`;
+    }
+    const opts=[`<option value="" disabled${prevS[q.name]?'':' selected'}>${ph}</option>`].concat(q.opts.map(o=>`<option value="${o.v}"${prevS[q.name]===o.v?' selected':''}>${o[lang]}</option>`)).join('');
+    const textOpt=q.opts.find(o=>o.withText); let extra='';
+    if(textOpt){ const show=prevS[q.name]===textOpt.v; const tv=prevT[q.name+'_name']?` value="${prevT[q.name+'_name'].replace(/"/g,'&quot;')}"`:''; extra=`<input type="text" class="gp-input qtext" id="q_${q.name}__text" name="${q.name}_name" placeholder="${namePh}"${tv} data-show="${textOpt.v}" style="display:${show?'block':'none'};margin-top:4px">`; }
+    return `<div class="gp-field"><label for="q_${q.name}">${q[lang]}</label><select class="gp-select" id="q_${q.name}" name="${q.name}">${opts}</select>${extra}</div>`;
+  }).join('');
+  wrap.querySelectorAll('.qtext').forEach(t=>{ const sel=document.getElementById(t.id.replace('__text','')); if(!sel) return; sel.addEventListener('change',()=>{ const show=sel.value===t.getAttribute('data-show'); t.style.display=show?'block':'none'; if(!show) t.value=''; }); });
+}
+
 const WEB3FORMS_KEY="989734b3-0ca4-4ff9-99b2-4bfc0f70dfdd";
 const form=document.getElementById('signupForm');
 form.addEventListener('submit', async function(e){
   e.preventDefault();
+  const d=I18N[LANG];
   const email=document.getElementById('email').value.trim();
   const name=document.getElementById('name').value.trim();
-  const errEl=document.getElementById('formError');
-  errEl.classList.remove('show');
+  const errEl=document.getElementById('formError'); errEl.classList.remove('show');
   if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ document.getElementById('email').focus(); return; }
   try{ const leads=JSON.parse(localStorage.getItem('gp_beta_leads')||'[]'); leads.push({name,email}); localStorage.setItem('gp_beta_leads',JSON.stringify(leads)); }catch(_){}
   const btn=form.querySelector('button[type=submit]'); const orig=btn.textContent;
-  btn.disabled=true; btn.textContent="שולח…";
+  btn.disabled=true; btn.textContent=d.sending;
   try{
     const fd=new FormData(form);
     QUESTIONS.filter(q=>q.multi).forEach(q=>{ fd.set(q.name, fd.getAll(q.name).join(", ")); });
     fd.set("access_key",WEB3FORMS_KEY);
-    fd.set("subject","GroupPulse — בקשה להצטרף לפיילוט");
-    fd.set("from_name","GroupPulse Landing");
-    if(!name) fd.set("name","(לא צוין)");
+    fd.set("subject","GrouPulse — בקשה להצטרף לפיילוט / Pilot request");
+    fd.set("from_name","GrouPulse Landing");
+    if(!name) fd.set("name","(לא צוין / not provided)");
     const res=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Accept":"application/json"},body:fd});
     const json=await res.json();
     if(json.success){ form.style.display='none'; document.getElementById('formSuccess').classList.add('show'); }
@@ -571,13 +614,12 @@ form.addEventListener('submit', async function(e){
   }catch(err){ btn.disabled=false; btn.textContent=orig; errEl.classList.add('show'); }
 });
 
-/* ===== nav scroll + reveal ===== */
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{ nav.classList.toggle('nav--scrolled', window.scrollY>10); },{passive:true});
 const io=new IntersectionObserver((es)=>{ es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); },{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-buildQuestions();
+setLang('he');
 </script>
 </body>
 </html>
