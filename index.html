@@ -120,6 +120,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 .vcard{background:var(--surface-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);transition:box-shadow var(--duration-base),transform var(--duration-base),border-color var(--duration-base);}
 .vcard:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--green-200);}
 .vcard__icn{width:50px;height:50px;border-radius:var(--radius-md);margin-bottom:20px;display:inline-flex;align-items:center;justify-content:center;background:var(--surface-tint);color:var(--brand);}
+.vcard__num{font-weight:700;font-size:20px;}
 .vcard h3{font-size:18px;font-weight:600;margin-bottom:10px;}
 .vcard p{font-size:14.5px;color:var(--text-muted);line-height:var(--leading-relaxed);}
 
@@ -234,7 +235,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
     <p class="hero__body" data-i18n="heroBody">אחרי כל מפגש קבוצתי צריך לתעד גם את מה שקרה בקבוצה, גם את התהליך של כל משתתף, וגם את הדינמיקה שנוצרה ביניהם. בפועל, התיעוד נדחה, מתקצר, נשאר טכני — או פשוט הולך לאיבוד. GrouPulse נבנית כדי לעזור למנחים להפוך תיאור קצר אחרי מפגש לטיוטת תיעוד מקצועית.</p>
     <div class="hero__cta">
       <a href="#join" class="gp-btn gp-btn--primary gp-btn--lg" data-i18n="heroCta1">אני רוצה להצטרף לפיילוט</a>
-      <a href="#demo" class="gp-btn gp-btn--ghost gp-btn--lg" data-i18n="heroCta2">▶ צפו בהדגמה</a>
+      <a href="#how" class="gp-btn gp-btn--ghost gp-btn--lg" data-i18n="heroCta2">איך זה עובד</a>
     </div>
     <ul class="hero__bullets">
       <li><span class="tick"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="heroB1">סיכום קבוצתי + נקודות אישיות — מתיאור קצר אחד</span></li>
@@ -244,22 +245,9 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
   </div>
 </section>
 
-<section class="section reveal" id="demo">
-  <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">02</span><span class="eyebrow__label" data-i18n="demoEyebrow">הדגמה</span></div>
-    <div class="section-head"><h2 data-i18n="demoTitle">ראו איך זה עובד</h2><p class="lede" data-i18n="demoLede">ממפגש שהסתיים, דרך תיאור קצר אחד, ועד טיוטת תיעוד מסודרת — קבוצתית ואישית.</p></div>
-  </div>
-  <div class="wrap">
-    <div class="demo-frame">
-      <video class="demo-video" controls preload="metadata" playsinline title="GrouPulse explainer"><source src="groupulse-explainer.mp4" type="video/mp4"></video>
-    </div>
-    <p class="demo-cap" data-i18n="demoCap">סרטון הסבר קצר — כך GrouPulse עוזרת לעשות סדר בתיעוד הקבוצתי.</p>
-  </div>
-</section>
-
 <section class="section reveal" id="problem">
   <div class="wrap">
-    <div class="eyebrow"><span class="eyebrow__num">03</span><span class="eyebrow__label" data-i18n="probEyebrow">המורכבות</span></div>
+    <div class="eyebrow"><span class="eyebrow__num">02</span><span class="eyebrow__label" data-i18n="probEyebrow">המורכבות</span></div>
     <div class="section-head"><h2 data-i18n="probTitle">לתעד קבוצה טיפולית זה הרבה יותר מלכתוב "מה היה במפגש"</h2><p class="lede" data-i18n="probLede">בתיעוד אישי יש מטופל אחד, תהליך אחד, מוקד אחד. בתיעוד קבוצתי יש כמה משתתפים, כמה תהליכים במקביל, ודינמיקה קבוצתית שמשפיעה על כולם.</p></div>
     <div class="panel">
       <h3 data-i18n="probPanelH">מה המנחה צריך להחזיק אחרי כל מפגש</h3>
@@ -279,7 +267,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 
 <section class="section reveal" id="familiar">
   <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">04</span><span class="eyebrow__label" data-i18n="famEyebrow">נשמע מוכר?</span></div>
+    <div class="eyebrow"><span class="eyebrow__num">03</span><span class="eyebrow__label" data-i18n="famEyebrow">נשמע מוכר?</span></div>
     <div class="section-head"><h2 data-i18n="famTitle">האם זה מוכר לך?</h2><p class="lede" data-i18n="famLede">הרבה מנחים מתעדים פחות ממה שהם באמת יודעים — לא כי אין מה לומר, אלא כי אין זמן וקשה להתחיל.</p></div>
   </div>
   <div class="wrap">
@@ -296,7 +284,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 
 <section class="section reveal" id="solution">
   <div class="wrap">
-    <div class="eyebrow"><span class="eyebrow__num">05</span><span class="eyebrow__label" data-i18n="solEyebrow">הפתרון</span></div>
+    <div class="eyebrow"><span class="eyebrow__num">04</span><span class="eyebrow__label" data-i18n="solEyebrow">הפתרון</span></div>
     <div class="section-head"><h2 data-i18n="solTitle">כאן GrouPulse נכנסת לתמונה</h2><p class="lede" data-i18n="solLede">במקום לשבת מול מסמך ריק, המנחה מכתיב או כותב בכמה דקות תיאור חופשי של מה שקרה במפגש. המערכת מסייעת להפוך אותו לתיעוד מסודר:</p></div>
     <div class="panel">
       <ul class="checklist">
@@ -315,7 +303,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 
 <section class="section reveal" id="different">
   <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">06</span><span class="eyebrow__label" data-i18n="difEyebrow">למה זה שונה</span></div>
+    <div class="eyebrow"><span class="eyebrow__num">05</span><span class="eyebrow__label" data-i18n="difEyebrow">למה זה שונה</span></div>
     <div class="section-head"><h2 data-i18n="difTitle">לא עוד טופס כללי</h2><p class="lede" data-i18n="difLede">רוב מערכות התיעוד נבנו סביב טיפול פרטני, אדמיניסטרציה או ניהול תיק. קבוצה טיפולית דורשת תיעוד מסוג אחר.</p></div>
   </div>
   <div class="wrap">
@@ -338,23 +326,21 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 
 <section class="section reveal" id="how">
   <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">07</span><span class="eyebrow__label" data-i18n="howEyebrow">התהליך</span></div>
+    <div class="eyebrow"><span class="eyebrow__num">06</span><span class="eyebrow__label" data-i18n="howEyebrow">התהליך</span></div>
     <div class="section-head"><h2 data-i18n="howTitle">איך זה עובד</h2><p class="lede" data-i18n="howLede">שלושה צעדים: מתארים את המפגש, המערכת מארגנת את החומר, והמנחה עורך ומאשר.</p></div>
   </div>
   <div class="wrap">
-    <div class="screens-grid">
-      <figure class="screen-card"><div class="screen-shot"><img src="screens/1-dictate.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">01</span><h3 data-i18n="scr1t">מתארים</h3><p data-i18n="scr1c">בקול או בכתב — תיאור חופשי וקצר של המפגש</p></figure>
-      <figure class="screen-card"><div class="screen-shot"><img src="screens/2-process.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">02</span><h3 data-i18n="scr2t">המערכת מארגנת</h3><p data-i18n="scr2c">הפיכת התיאור הגולמי לתיעוד מובנה</p></figure>
-      <figure class="screen-card"><div class="screen-shot"><img src="screens/3-group.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">03</span><h3 data-i18n="scr3t">סיכום קבוצתי</h3><p data-i18n="scr3c">תמונת המפגש כולה ודינמיקות מרכזיות</p></figure>
-      <figure class="screen-card"><div class="screen-shot"><img src="screens/4-individual.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">04</span><h3 data-i18n="scr4t">נקודות אישיות</h3><p data-i18n="scr4c">התייחסות לכל משתתף ונקודות למעקב</p></figure>
-      <figure class="screen-card"><div class="screen-shot"><img src="screens/5-approve.png" alt="GrouPulse" loading="lazy"></div><span class="screen-step mono">05</span><h3 data-i18n="scr5t">עריכה ואישור</h3><p data-i18n="scr5c">המנחה עורך לפי שיקול דעתו ומאשר</p></figure>
+    <div class="cards-3">
+      <div class="vcard"><span class="vcard__icn vcard__num mono">01</span><h3 data-i18n="st1t">מתארים את המפגש</h3><p data-i18n="st1b">בקול או בכתב — המנחה מוסר תיאור חופשי וקצר: מה היה, מי בלט, אילו רגעים היו משמעותיים ומה חשוב לזכור.</p></div>
+      <div class="vcard"><span class="vcard__icn vcard__num mono">02</span><h3 data-i18n="st2t">המערכת מארגנת</h3><p data-i18n="st2b">GrouPulse הופכת את התיאור הגולמי לתיעוד מובנה: סיכום קבוצתי, נקודות אישיות, דינמיקות, תמות חוזרות ונקודות למעקב.</p></div>
+      <div class="vcard"><span class="vcard__icn vcard__num mono">03</span><h3 data-i18n="st3t">עריכה ואישור</h3><p data-i18n="st3b">המנחה מקבל טיוטה מסודרת, עורך אותה לפי שיקול דעתו, ומשתמש בה למעקב, הדרכה והכנה למפגש הבא.</p></div>
     </div>
   </div>
 </section>
 
 <section class="section reveal" id="who">
   <div class="wrap center">
-    <div class="eyebrow"><span class="eyebrow__num">08</span><span class="eyebrow__label" data-i18n="whoEyebrow">למי זה מיועד</span></div>
+    <div class="eyebrow"><span class="eyebrow__num">07</span><span class="eyebrow__label" data-i18n="whoEyebrow">למי זה מיועד</span></div>
     <div class="section-head"><h2 data-i18n="whoTitle">למי GrouPulse מיועדת</h2><p class="lede" data-i18n="whoLede">הפיילוט הראשוני מיועד למנחים שמרגישים שהתיעוד הקבוצתי גוזל זמן, נשאר חלקי, או לא באמת משקף את מורכבות המפגש.</p></div>
   </div>
   <div class="wrap">
@@ -371,7 +357,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 
 <section class="section reveal" id="pilot">
   <div class="wrap">
-    <div class="eyebrow"><span class="eyebrow__num">09</span><span class="eyebrow__label" data-i18n="pilEyebrow">מה מקבלים בפיילוט</span></div>
+    <div class="eyebrow"><span class="eyebrow__num">08</span><span class="eyebrow__label" data-i18n="pilEyebrow">מה מקבלים בפיילוט</span></div>
     <div class="section-head"><h2 data-i18n="pilTitle">מה כולל הפיילוט</h2><p class="lede" data-i18n="pilLede">משתתפי הפיילוט יוזמנו לשיחת היכרות קצרה, שבה נבין יחד את אופן העבודה שלכם:</p></div>
     <div class="panel">
       <ul class="checklist">
@@ -389,7 +375,7 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
 <section class="section join" id="join">
   <div class="wrap join__grid">
     <div>
-      <div class="eyebrow"><span class="eyebrow__num">10</span><span class="eyebrow__label" data-i18n="joinEyebrow">הצטרפות לפיילוט</span></div>
+      <div class="eyebrow"><span class="eyebrow__num">09</span><span class="eyebrow__label" data-i18n="joinEyebrow">הצטרפות לפיילוט</span></div>
       <h2 data-i18n="joinTitle">אנחנו בונים את GrouPulse עם מנחים מהשטח</h2>
       <p class="join__sub" data-i18n="joinSub">GrouPulse נמצאת בשלבי פיתוח ראשוניים — ואנחנו רוצים לבנות אותה איתכם.</p>
       <p class="join__body" data-i18n="joinBody">השאירו פרטים ונחזור אליכם לשיחת היכרות קצרה. המטרה היא לבנות כלי שמתאים לעבודה האמיתית של מנחי קבוצות — לא עוד מערכת כללית שצריך להתאים אליה את העבודה.</p>
@@ -452,7 +438,10 @@ const I18N = {
     heroH1:"לתעד קבוצה טיפולית לא אמור לקחת יותר מהמפגש עצמו",
     heroSub:"GrouPulse — הבית המקצועי למנחי קבוצות טיפוליות",
     heroBody:"אחרי כל מפגש קבוצתי צריך לתעד גם את מה שקרה בקבוצה, גם את התהליך של כל משתתף, וגם את הדינמיקה שנוצרה ביניהם. בפועל, התיעוד נדחה, מתקצר, נשאר טכני — או פשוט הולך לאיבוד. GrouPulse נבנית כדי לעזור למנחים להפוך תיאור קצר אחרי מפגש לטיוטת תיעוד מקצועית.",
-    heroCta1:"אני רוצה להצטרף לפיילוט", heroCta2:"▶ צפו בהדגמה",
+    heroCta1:"אני רוצה להצטרף לפיילוט", heroCta2:"איך זה עובד",
+    st1t:"מתארים את המפגש", st1b:"בקול או בכתב — המנחה מוסר תיאור חופשי וקצר: מה היה, מי בלט, אילו רגעים היו משמעותיים ומה חשוב לזכור.",
+    st2t:"המערכת מארגנת", st2b:"GrouPulse הופכת את התיאור הגולמי לתיעוד מובנה: סיכום קבוצתי, נקודות אישיות, דינמיקות, תמות חוזרות ונקודות למעקב.",
+    st3t:"עריכה ואישור", st3b:"המנחה מקבל טיוטה מסודרת, עורך אותה לפי שיקול דעתו, ומשתמש בה למעקב, הדרכה והכנה למפגש הבא.",
     heroB1:"סיכום קבוצתי + נקודות אישיות — מתיאור קצר אחד", heroB2:"דינמיקות מרכזיות, תמות חוזרות ונקודות למעקב", heroB3:"המנחה עורך ומאשר — שיקול הדעת תמיד שלו",
     demoEyebrow:"הדגמה", demoTitle:"ראו איך זה עובד", demoLede:"ממפגש שהסתיים, דרך תיאור קצר אחד, ועד טיוטת תיעוד מסודרת — קבוצתית ואישית.", demoCap:"סרטון הסבר קצר — כך GrouPulse עוזרת לעשות סדר בתיעוד הקבוצתי.",
     probEyebrow:"המורכבות", probTitle:'לתעד קבוצה טיפולית זה הרבה יותר מלכתוב "מה היה במפגש"', probLede:"בתיעוד אישי יש מטופל אחד, תהליך אחד, מוקד אחד. בתיעוד קבוצתי יש כמה משתתפים, כמה תהליכים במקביל, ודינמיקה קבוצתית שמשפיעה על כולם.", probPanelH:"מה המנחה צריך להחזיק אחרי כל מפגש",
@@ -489,7 +478,10 @@ const I18N = {
     heroH1:"Documenting a therapy group shouldn't take longer than the session itself",
     heroSub:"GrouPulse — the professional home for group facilitators",
     heroBody:"After every group session you need to document what happened in the group, each participant's process, and the dynamics between them. In practice, documentation gets delayed, shortened, stays technical — or simply gets lost. GrouPulse helps facilitators turn a short post-session description into a professional documentation draft.",
-    heroCta1:"I want to join the pilot", heroCta2:"▶ Watch the demo",
+    heroCta1:"I want to join the pilot", heroCta2:"How it works",
+    st1t:"Describe the session", st1b:"By voice or text — the facilitator gives a short free description: what happened, who stood out, which moments mattered, and what's important to remember.",
+    st2t:"The system organizes", st2b:"GrouPulse turns the raw description into structured documentation: a group summary, individual notes, dynamics, recurring themes and follow-up points.",
+    st3t:"Edit & approve", st3b:"The facilitator gets an organized draft, edits it at their discretion, and uses it for follow-up, supervision and preparing the next session.",
     heroB1:"Group summary + individual notes — from one short description", heroB2:"Key dynamics, recurring themes and follow-up points", heroB3:"The facilitator edits and approves — judgment always stays yours",
     demoEyebrow:"Demo", demoTitle:"See how it works", demoLede:"From a finished session, through one short description, to an organized documentation draft — group and individual.", demoCap:"A short explainer — how GrouPulse brings order to group documentation.",
     probEyebrow:"The complexity", probTitle:"Documenting a therapy group is much more than writing “what happened”", probLede:"Individual documentation has one client, one process, one focus. Group documentation has several participants, several parallel processes, and a group dynamic that affects everyone.", probPanelH:"What the facilitator has to hold after every session",
