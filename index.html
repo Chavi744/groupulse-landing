@@ -471,37 +471,43 @@ const I18N = {
 
 const QUESTIONS = [
   { name:"role", multi:true, he:"מה התפקיד שלך?", en:"Your role?", opts:[
-    {v:"facilitator", he:"מנחה קבוצות", en:"Group facilitator"},
-    {v:"emotional",   he:"מטפל/ת רגשי/ת בקבוצות", en:"Emotional therapist in groups"},
-    {v:"school",      he:"מנחה בבית ספר / חינוך", en:"School / education facilitator"},
-    {v:"supervisor",  he:"מדריך/ה בהכשרה", en:"Training supervisor"},
-    {v:"org",         he:"ארגון שמפעיל קבוצות", en:"Organization running groups"},
-    {v:"other",       he:"אחר", en:"Other"} ]},
-  { name:"groups_per_month", he:"כמה קבוצות את/ה מנחה בממוצע בחודש?", en:"Groups you facilitate per month (avg)?", opts:[
-    {v:"1-4",he:"1–4",en:"1–4"},{v:"5-10",he:"5–10",en:"5–10"},{v:"11-20",he:"11–20",en:"11–20"},{v:"20+",he:"20+",en:"20+"} ]},
-  { name:"doc_time", he:"כמה זמן את/ה משקיע/ה כיום בתיעוד אחרי מפגש קבוצתי?", en:"Time you spend documenting after a group session today?", opts:[
-    {v:"under_15",he:"פחות מ-15 דקות",en:"Under 15 min"},{v:"15-30",he:"15–30 דקות",en:"15–30 min"},{v:"30-60",he:"30–60 דקות",en:"30–60 min"},{v:"over_60",he:"יותר משעה",en:"Over an hour"} ]},
-  { name:"pain", multi:true, he:"מה הכי קשה לך בתיעוד הקבוצתי?", en:"What's hardest about group documentation for you?", opts:[
-    {v:"time",he:"גוזל יותר מדי זמן",en:"Takes too much time"},
-    {v:"start",he:"קשה להתחיל / מסמך ריק",en:"Hard to start / blank page"},
-    {v:"phrasing",he:"קשה לנסח באופן מקצועי",en:"Hard to phrase professionally"},
-    {v:"per_member",he:"קשה לתעד כל משתתף בנפרד",en:"Hard to document each participant"},
-    {v:"dynamics",he:"קשה לתפוס את הדינמיקה הקבוצתית",en:"Hard to capture group dynamics"},
-    {v:"partial",he:"התיעוד נשאר חלקי / נדחה",en:"Documentation stays partial / delayed"},
-    {v:"other",he:"אחר",en:"Other"} ]},
-  { name:"outputs", multi:true, he:"איזה פלט היה הכי עוזר לך אחרי מפגש?", en:"Which output would help you most after a session?", opts:[
-    {v:"group",he:"סיכום קבוצתי",en:"Group summary"},
-    {v:"individual",he:"הערות אישיות לכל משתתף",en:"Individual notes per participant"},
-    {v:"dynamics",he:"ניסוח דינמיקות מרכזיות",en:"Phrasing key dynamics"},
-    {v:"followup",he:"נקודות למעקב והמפגש הבא",en:"Follow-up & next-session points"},
-    {v:"report",he:"בסיס לדוח מקצועי",en:"Basis for a professional report"} ]},
-  { name:"current_tool", he:"איך את/ה מתעד/ת כיום?", en:"How do you document today?", opts:[
-    {v:"none",he:"אין / מהזיכרון",en:"None / from memory"},
-    {v:"paper_word",he:"דפים / Word",en:"Pages / Word"},
-    {v:"institution",he:"מערכת פנימית של המסגרת",en:"Institution's internal system"},
-    {v:"external",he:"מערכת חיצונית בתשלום",en:"External paid system", withText:true} ]},
-  { name:"pilot", he:"האם תהיה/י מוכן/ה להשתתף בפיילוט ראשוני?", en:"Open to joining an initial pilot?", opts:[
-    {v:"yes",he:"כן",en:"Yes"},{v:"maybe",he:"אולי",en:"Maybe"},{v:"not_now",he:"לא כרגע",en:"Not right now"} ]}
+    {v:"independent", he:"מטפל/ת עצמאי/ת",      en:"Independent therapist"},
+    {v:"facilitator", he:"מנחה קבוצות",          en:"Group facilitator"},
+    {v:"director",    he:"מנהל/ת מרכז טיפולי",    en:"Clinic / center director"},
+    {v:"supervisor",  he:"מדריך/ה קליני/ת",       en:"Clinical supervisor"},
+    {v:"other",       he:"אחר",                  en:"Other"} ]},
+  { name:"groups_per_month", he:"כמה קבוצות טיפוליות את/ה מנחה בממוצע בחודש?", en:"Therapy groups you facilitate per month (avg)?", opts:[
+    {v:"1-4",   he:"1–4",   en:"1–4"},
+    {v:"5-10",  he:"5–10",  en:"5–10"},
+    {v:"11-20", he:"11–20", en:"11–20"},
+    {v:"20+",   he:"20+",   en:"20+"} ]},
+  { name:"doc_time", he:"כמה זמן את/ה משקיע/ה כיום בתיעוד לאחר מפגש קבוצתי?", en:"Time you spend on documentation after a group session today?", opts:[
+    {v:"under_15", he:"פחות מ-15 דקות", en:"Under 15 min"},
+    {v:"15-30",    he:"15–30 דקות",     en:"15–30 min"},
+    {v:"30-60",    he:"30–60 דקות",     en:"30–60 min"},
+    {v:"over_60",  he:"יותר משעה",       en:"Over an hour"} ]},
+  { name:"pain", multi:true, he:"מה הכאב הגדול ביותר בתהליך התיעוד?", en:"Biggest pain in the documentation process?", opts:[
+    {v:"time",        he:"גוזל יותר מדי זמן",         en:"Takes too much time"},
+    {v:"repetitive",  he:"כתיבה חוזרת ומונוטונית",    en:"Repetitive, monotonous writing"},
+    {v:"accuracy",    he:"חשש מאי דיוק",              en:"Worry about inaccuracy"},
+    {v:"per_patient", he:"קושי לתעד כל משתתף בנפרד",  en:"Hard to document each participant"},
+    {v:"compliance",  he:"דרישות רגולציה/ביטוח",       en:"Regulatory / insurance requirements"},
+    {v:"other",       he:"אחר",                      en:"Other"} ]},
+  { name:"outputs", multi:true, he:"אילו תוצרים היו הכי עוזרים לך?", en:"Which outputs would help you most?", opts:[
+    {v:"soap",        he:"סיכום קבוצתי",             en:"Group summary"},
+    {v:"individual",  he:"סיכומים אישיים לכל משתתף",   en:"Individual summary per participant"},
+    {v:"goals",       he:"מעקב אחר מטרות טיפול",       en:"Treatment-goal tracking"},
+    {v:"ehr_integ",   he:"שילוב עם תוכנת תיעוד",       en:"Documentation-software integration"},
+    {v:"supervision", he:"דוחות להדרכה ופיקוח",        en:"Supervision & oversight reports"} ]},
+  { name:"ehr", he:"באיזו תוכנת תיעוד/EHR את/ה משתמש/ת?", en:"Which documentation / EHR software do you use?", opts:[
+    {v:"none",          he:"אין",                  en:"None"},
+    {v:"paper_word",    he:"דפים / Word",           en:"Pages / Word"},
+    {v:"institution",   he:"מערכת פנימית של המוסד",   en:"Institution's internal system"},
+    {v:"external_paid", he:"מערכת חיצונית בתשלום",    en:"External paid system", withText:true} ]},
+  { name:"interview", he:"האם תהיה/י מוכן/ה להשתתף בראיון קצר של 15 דקות?", en:"Open to a short 15-minute interview?", opts:[
+    {v:"yes",   he:"כן",   en:"Yes"},
+    {v:"maybe", he:"אולי", en:"Maybe"},
+    {v:"no",    he:"לא",   en:"No"} ]}
 ];
 
 let LANG="he";
