@@ -283,12 +283,22 @@ p{margin:0;} a{color:inherit;text-decoration:none;} button{font-family:inherit;}
   <div class="wrap">
     <div class="eyebrow"><span class="eyebrow__num">04</span><span class="eyebrow__label" data-i18n="solEyebrow">הפתרון</span></div>
     <div class="section-head"><h2 data-i18n="solTitle">כאן GrouPulse נכנסת לתמונה</h2><p class="lede" data-i18n="solLede">במקום לשבת מול מסמך ריק, המנחה מכתיב או כותב בכמה דקות תיאור חופשי של מה שקרה במפגש. המערכת מסייעת להפוך אותו לתיעוד מסודר:</p></div>
-    <div class="panel">
-      <ul class="checklist">
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o1">סיכום קבוצתי של המפגש</span></li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o2">נקודות אישיות לכל משתתף</span></li>
-        <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="o4">דינמיקות ונקודות למעקב להמשך</span></li>
-      </ul>
+    <div class="cards-3">
+      <div class="vcard">
+        <span class="vcard__icn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3 data-i18n="o1">סיכום קבוצתי של המפגש</h3>
+        <p data-i18n="o1d">תמונת המפגש כולה — הנושא המרכזי, האווירה ומהלך הקבוצה.</p>
+      </div>
+      <div class="vcard">
+        <span class="vcard__icn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <h3 data-i18n="o2">נקודות אישיות לכל משתתף</h3>
+        <p data-i18n="o2d">מה עלה אצל כל משתתף, ומי דורש תשומת לב מיוחדת.</p>
+      </div>
+      <div class="vcard">
+        <span class="vcard__icn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+        <h3 data-i18n="o4">דינמיקות ונקודות למעקב</h3>
+        <p data-i18n="o4d">מה התרחש בין המשתתפים, ומה כדאי לבדוק בפעם הבאה.</p>
+      </div>
     </div>
     <p class="note-line" data-i18n="solNote">זה לא עוד טופס כללי — אלא תיעוד שבנוי למורכבות הקבוצתית: מה התרחש בין המשתתפים, ולא רק מה נאמר. והמטרה אינה להחליף את שיקול הדעת של המנחה — אלא לעזור להפוך את מה שכבר ראה והבין לתיעוד מקצועי שאפשר להשתמש בו.</p>
   </div>
@@ -406,7 +416,8 @@ const I18N = {
     famEyebrow:"נשמע מוכר?", famTitle:"האם זה מוכר לך?", famLede:"הרבה מנחים מתעדים פחות ממה שהם באמת יודעים — לא כי אין מה לומר, אלא כי אין זמן וקשה להתחיל.",
     fam1:"מסיימים מפגש ויודעים שהיה שם הרבה חומר חשוב — אבל אין כוח לפתוח מסמך.", fam2:"כותבים כמה שורות כלליות, למרות שקרו דברים משמעותיים עם כמה משתתפים.", fam3:"זוכרים שהייתה דינמיקה חשובה — אבל קשה לנסח אותה באופן מקצועי.", fam4:"דוחים את התיעוד לאחר כך — ואז חלק מהפרטים פשוט נעלמים.", fam5:"צריך לכתוב גם סיכום קבוצתי וגם התייחסות אישית לכל משתתף.", fam6:"התיעוד הקיים טכני מדי — לא מחזיק את העומק של העבודה הקבוצתית.",
     solEyebrow:"הפתרון", solTitle:"כאן GrouPulse נכנסת לתמונה", solLede:"במקום לשבת מול מסמך ריק, המנחה מכתיב או כותב בכמה דקות תיאור חופשי של מה שקרה במפגש. המערכת מסייעת להפוך אותו לתיעוד מסודר:",
-    o1:"סיכום קבוצתי של המפגש", o2:"נקודות אישיות לכל משתתף", o4:"דינמיקות ונקודות למעקב להמשך",
+    o1:"סיכום קבוצתי של המפגש", o2:"נקודות אישיות לכל משתתף", o4:"דינמיקות ונקודות למעקב",
+    o1d:"תמונת המפגש כולה — הנושא המרכזי, האווירה ומהלך הקבוצה.", o2d:"מה עלה אצל כל משתתף, ומי דורש תשומת לב מיוחדת.", o4d:"מה התרחש בין המשתתפים, ומה כדאי לבדוק בפעם הבאה.",
     solNote:"זה לא עוד טופס כללי — אלא תיעוד שבנוי למורכבות הקבוצתית: מה התרחש בין המשתתפים, ולא רק מה נאמר. והמטרה אינה להחליף את שיקול הדעת של המנחה — אלא לעזור להפוך את מה שכבר ראה והבין לתיעוד מקצועי שאפשר להשתמש בו.",
     difEyebrow:"למה זה שונה", difTitle:"לא עוד טופס כללי", difLede:"רוב מערכות התיעוד נבנו סביב טיפול פרטני, אדמיניסטרציה או ניהול תיק. קבוצה טיפולית דורשת תיעוד מסוג אחר.",
     d1t:"לא רק מה נאמר", d1b:"אלא מה התרחש בין המשתתפים — האינטראקציות והדינמיקה שנוצרה בקבוצה.", d2t:"לא רק מי דיבר", d2b:"אלא מי התקדם, מי נמנע, מי השפיע על האקלים הקבוצתי, ואיזו תנועה נוצרה בקבוצה.", d3t:"לא רק רשומה מנהלית", d3b:"אלא תיעוד שמשרת את החשיבה המקצועית של המנחה — לא רק את הארכיון.",
@@ -446,7 +457,8 @@ const I18N = {
     famEyebrow:"Sound familiar?", famTitle:"Does this sound familiar?", famLede:"Many facilitators document less than they actually know — not because there's nothing to say, but because there's no time and it's hard to start.",
     fam1:"You finish a session knowing there was a lot of important material — but you have no energy to open a document.", fam2:"You write a few general lines, even though meaningful things happened with several participants.", fam3:"You remember there was an important dynamic — but it's hard to phrase it professionally.", fam4:"You postpone the documentation — and then some details simply disappear.", fam5:"You need to write both a group summary and an individual reference for each participant.", fam6:"The existing documentation is too technical — it doesn't hold the depth of group work.",
     solEyebrow:"The solution", solTitle:"This is where GrouPulse comes in", solLede:"Instead of sitting in front of a blank document, the facilitator dictates or types a short free description of what happened. The system helps turn it into organized documentation:",
-    o1:"A group summary of the session", o2:"Individual notes for each participant", o4:"Key dynamics and follow-up points",
+    o1:"A group summary of the session", o2:"Individual notes for each participant", o4:"Key dynamics & follow-up",
+    o1d:"The whole session picture — the main theme, the mood and how the group moved.", o2d:"What came up for each participant, and who needs special attention.", o4d:"What happened between participants, and what to check next time.",
     solNote:"This isn't another generic form — it's documentation built for group complexity: what happened between participants, not just what was said. And the goal is not to replace the facilitator's judgment — but to help turn what they already saw and understood into professional documentation they can use.",
     difEyebrow:"Why it's different", difTitle:"Not another generic form", difLede:"Most documentation systems were built around individual therapy, administration or case management. Group therapy needs a different kind of documentation.",
     d1t:"Not just what was said", d1b:"but what happened between participants — the interactions and the dynamic that formed in the group.", d2t:"Not just who spoke", d2b:"but who progressed, who withdrew, who shaped the group climate, and what movement formed.", d3t:"Not just an admin record", d3b:"but documentation that serves the facilitator's professional thinking — not just the archive.",
@@ -494,7 +506,7 @@ const QUESTIONS = [
     {v:"per_patient", he:"קושי לתעד כל משתתף בנפרד",  en:"Hard to document each participant"},
     {v:"compliance",  he:"דרישות רגולציה/ביטוח",       en:"Regulatory / insurance requirements"},
     {v:"other",       he:"אחר",                      en:"Other"} ]},
-  { name:"outputs", multi:true, he:"אילו תוצרים היו הכי עוזרים לך?", en:"Which outputs would help you most?", opts:[
+  { name:"outputs", multi:true, he:"אילו תוצרים הכי חשובים לך?", en:"Which outputs would help you most?", opts:[
     {v:"soap",        he:"סיכום קבוצתי",             en:"Group summary"},
     {v:"individual",  he:"סיכומים אישיים לכל משתתף",   en:"Individual summary per participant"},
     {v:"goals",       he:"מעקב אחר מטרות טיפול",       en:"Treatment-goal tracking"},
