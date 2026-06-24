@@ -1521,7 +1521,7 @@
           { v: "facilitator", he: "מנחה קבוצות", en: "Group facilitator" },
           { v: "director", he: "מנהל/ת מרכז טיפולי", en: "Clinic / center director" },
           { v: "supervisor", he: "מדריך/ה קליני/ת", en: "Clinical supervisor" },
-          { v: "other", he: "אחר", en: "Other" }]
+          { v: "other", he: "אחר", en: "Other", withText: true, tph: { he: "פרט/י…", en: "Please specify…" } }]
       },
       {
         name: "groups_per_month", he: "כמה קבוצות טיפוליות את/ה מנחה בממוצע בחודש?", en: "Therapy groups you facilitate per month (avg)?", opts: [
@@ -1544,7 +1544,7 @@
           { v: "accuracy", he: "חשש מאי דיוק", en: "Worry about inaccuracy" },
           { v: "per_patient", he: "קושי לתעד כל משתתף בנפרד", en: "Hard to document each participant" },
           { v: "compliance", he: "דרישות רגולציה/ביטוח", en: "Regulatory / insurance requirements" },
-          { v: "other", he: "אחר", en: "Other" }]
+          { v: "other", he: "אחר", en: "Other", withText: true, tph: { he: "פרט/י…", en: "Please specify…" } }]
       },
       {
         name: "outputs", multi: true, he: "אילו תוצרים הכי חשובים לך?", en: "Which outputs matter most to you?", opts: [
@@ -1559,7 +1559,7 @@
           { v: "none", he: "אין", en: "None" },
           { v: "paper_word", he: "דפים / Word", en: "Pages / Word" },
           { v: "institution", he: "מערכת פנימית של המוסד", en: "Institution's internal system" },
-          { v: "external_paid", he: "מערכת חיצונית בתשלום", en: "External paid system", withText: true }]
+          { v: "external_paid", he: "מערכת חיצונית בתשלום", en: "External paid system", withText: true, tph: { he: "שם המערכת…", en: "System name…" } }]
       },
       {
         name: "interview", he: "האם תהיה/י מוכן/ה להשתתף בראיון קצר של 15 דקות?", en: "Open to a short 15-minute interview?", opts: [
@@ -1594,22 +1594,38 @@
 
     function buildQuestions(lang) {
       const wrap = document.getElementById('qFields'); if (!wrap) return;
-      const ui = lang === 'en' ? EN : HE_UI; const ph = ui.selectPh, hint = ui.optHint, namePh = ui.sysNamePh;
+      const ui = lang === 'en' ? EN : HE_UI; const ph = ui.selectPh, hint = ui.optHint;
       const prevS = {}, prevM = {}, prevT = {};
       wrap.querySelectorAll('select').forEach(s => { if (s.value) prevS[s.name] = s.value; });
       wrap.querySelectorAll('.chips input:checked').forEach(c => { (prevM[c.name] = prevM[c.name] || []).push(c.value); });
       wrap.querySelectorAll('.qtext').forEach(t => { if (t.value) prevT[t.name] = t.value; });
       wrap.innerHTML = QUESTIONS.map(q => {
+        const textOpt = q.opts.find(o => o.withText);
         if (q.multi) {
           const chips = q.opts.map(o => { const on = (prevM[q.name] || []).includes(o.v) ? ' checked' : ''; return `<label class="chip"><input type="checkbox" name="${q.name}" value="${o.v}"${on}><span>${o[lang]}</span></label>`; }).join('');
-          return `<div class="gp-field"><label>${q[lang]} <span class="opt-hint">(${hint})</span></label><div class="chips">${chips}</div></div>`;
+          let extra = '';
+          if (textOpt) {
+            const show = (prevM[q.name] || []).includes(textOpt.v);
+            const tv = prevT[q.name + '_other'] ? ` value="${prevT[q.name + '_other'].replace(/"/g, '&quot;')}"` : '';
+            extra = `<input type="text" class="gp-input qtext" name="${q.name}_other" placeholder="${textOpt.tph[lang]}"${tv} data-show="${textOpt.v}" data-multi="${q.name}" style="display:${show ? 'block' : 'none'};margin-top:8px">`;
+          }
+          return `<div class="gp-field"><label>${q[lang]} <span class="opt-hint">(${hint})</span></label><div class="chips">${chips}</div>${extra}</div>`;
         }
         const opts = [`<option value="" disabled${prevS[q.name] ? '' : ' selected'}>${ph}</option>`].concat(q.opts.map(o => `<option value="${o.v}"${prevS[q.name] === o.v ? ' selected' : ''}>${o[lang]}</option>`)).join('');
-        const textOpt = q.opts.find(o => o.withText); let extra = '';
-        if (textOpt) { const show = prevS[q.name] === textOpt.v; const tv = prevT[q.name + '_name'] ? ` value="${prevT[q.name + '_name'].replace(/"/g, '&quot;')}"` : ''; extra = `<input type="text" class="gp-input qtext" id="q_${q.name}__text" name="${q.name}_name" placeholder="${namePh}"${tv} data-show="${textOpt.v}" style="display:${show ? 'block' : 'none'};margin-top:4px">`; }
+        let extra = '';
+        if (textOpt) { const show = prevS[q.name] === textOpt.v; const tv = prevT[q.name + '_name'] ? ` value="${prevT[q.name + '_name'].replace(/"/g, '&quot;')}"` : ''; extra = `<input type="text" class="gp-input qtext" id="q_${q.name}__text" name="${q.name}_name" placeholder="${textOpt.tph[lang]}"${tv} data-show="${textOpt.v}" style="display:${show ? 'block' : 'none'};margin-top:4px">`; }
         return `<div class="gp-field"><label for="q_${q.name}">${q[lang]}</label><select class="gp-select" id="q_${q.name}" name="${q.name}">${opts}</select>${extra}</div>`;
       }).join('');
-      wrap.querySelectorAll('.qtext').forEach(t => { const sel = document.getElementById(t.id.replace('__text', '')); if (!sel) return; sel.addEventListener('change', () => { const show = sel.value === t.getAttribute('data-show'); t.style.display = show ? 'block' : 'none'; if (!show) t.value = ''; }); });
+      wrap.querySelectorAll('.qtext').forEach(t => {
+        const showVal = t.getAttribute('data-show'); const multiName = t.getAttribute('data-multi');
+        if (multiName) {
+          const cb = wrap.querySelector(`input[type=checkbox][name="${multiName}"][value="${showVal}"]`); if (!cb) return;
+          cb.addEventListener('change', () => { t.style.display = cb.checked ? 'block' : 'none'; if (!cb.checked) t.value = ''; });
+        } else {
+          const sel = document.getElementById(t.id.replace('__text', '')); if (!sel) return;
+          sel.addEventListener('change', () => { const show = sel.value === showVal; t.style.display = show ? 'block' : 'none'; if (!show) t.value = ''; });
+        }
+      });
     }
 
     const WEB3FORMS_KEY = "989734b3-0ca4-4ff9-99b2-4bfc0f70dfdd";
