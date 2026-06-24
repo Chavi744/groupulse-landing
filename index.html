@@ -1560,7 +1560,8 @@
           { v: "none", he: "אין", en: "None" },
           { v: "paper_word", he: "דפים / Word", en: "Pages / Word" },
           { v: "institution", he: "מערכת פנימית של המוסד", en: "Institution's internal system" },
-          { v: "external_paid", he: "מערכת חיצונית בתשלום", en: "External paid system", withText: true, tph: { he: "שם המערכת…", en: "System name…" } }]
+          { v: "external_paid", he: "מערכת חיצונית בתשלום", en: "External paid system", withText: true, tph: { he: "שם המערכת…", en: "System name…" } },
+          { v: "external_free", he: "מערכת חיצונית חינמית", en: "External free system", withText: true, tph: { he: "שם המערכת…", en: "System name…" } }]
       },
       {
         name: "interview", he: "האם תהיה/י מוכן/ה להשתתף בראיון קצר של 15 דקות?", en: "Open to a short 15-minute interview?", opts: [
@@ -1614,7 +1615,8 @@
         }
         const opts = [`<option value="" disabled${prevS[q.name] ? '' : ' selected'}>${ph}</option>`].concat(q.opts.map(o => `<option value="${o.v}"${prevS[q.name] === o.v ? ' selected' : ''}>${o[lang]}</option>`)).join('');
         let extra = '';
-        if (textOpt) { const show = prevS[q.name] === textOpt.v; const tv = prevT[q.name + '_name'] ? ` value="${prevT[q.name + '_name'].replace(/"/g, '&quot;')}"` : ''; extra = `<input type="text" class="gp-input qtext" id="q_${q.name}__text" name="${q.name}_name" placeholder="${textOpt.tph[lang]}"${tv} data-show="${textOpt.v}" style="display:${show ? 'block' : 'none'};margin-top:4px">`; }
+        const textOpts = q.opts.filter(o => o.withText);
+        if (textOpts.length) { const triggers = textOpts.map(o => o.v); const show = triggers.includes(prevS[q.name]); const tv = prevT[q.name + '_name'] ? ` value="${prevT[q.name + '_name'].replace(/"/g, '&quot;')}"` : ''; extra = `<input type="text" class="gp-input qtext" id="q_${q.name}__text" name="${q.name}_name" placeholder="${textOpts[0].tph[lang]}"${tv} data-show="${triggers.join('|')}" style="display:${show ? 'block' : 'none'};margin-top:4px">`; }
         return `<div class="gp-field"><label for="q_${q.name}">${q[lang]}</label><select class="gp-select" id="q_${q.name}" name="${q.name}">${opts}</select>${extra}</div>`;
       }).join('');
       wrap.querySelectorAll('.qtext').forEach(t => {
@@ -1624,7 +1626,8 @@
           cb.addEventListener('change', () => { t.style.display = cb.checked ? 'block' : 'none'; if (!cb.checked) t.value = ''; });
         } else {
           const sel = document.getElementById(t.id.replace('__text', '')); if (!sel) return;
-          sel.addEventListener('change', () => { const show = sel.value === showVal; t.style.display = show ? 'block' : 'none'; if (!show) t.value = ''; });
+          const vals = showVal.split('|');
+          sel.addEventListener('change', () => { const show = vals.includes(sel.value); t.style.display = show ? 'block' : 'none'; if (!show) t.value = ''; });
         }
       });
     }
