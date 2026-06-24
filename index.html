@@ -1470,51 +1470,7 @@
   </footer>
 
   <script>
-    const I18N = {
-      he: {
-        dir: "rtl",
-        navProblem: "המורכבות", navSolution: "הפתרון", navHow: "איך זה עובד", navWho: "למי זה מיועד", navCta: "למילוי השאלון", footJoin: "מילוי השאלון",
-        heroChip: "הבית המקצועי למנחי קבוצות טיפוליות",
-        heroH1: "אחרי מפגש קבוצתי — כמה זמן לוקח לך לתעד גם את הקבוצה וגם כל משתתף בנפרד?",
-        heroSub: "GrouPulse — הבית המקצועי למנחי קבוצות טיפוליות",
-        heroBody: "אחרי כל מפגש קבוצתי צריך לתעד גם את מה שקרה בקבוצה, גם את התהליך של כל משתתף, וגם את הדינמיקה שנוצרה ביניהם. בפועל, התיעוד נדחה, מתקצר, נשאר טכני — או פשוט הולך לאיבוד. GrouPulse נבנית כדי לעזור למנחים להפוך תיאור קצר אחרי מפגש לטיוטת תיעוד מקצועית.",
-        heroCta1: "למילוי שאלון קצר", heroCta2: "איך זה עוזר",
-        st1t: "מתארים את המפגש", st1b: "בקול או בכתב — המנחה מוסר תיאור חופשי וקצר: מה היה, מי בלט, אילו רגעים היו משמעותיים ומה חשוב לזכור.",
-        st2t: "המערכת מארגנת", st2b: "GrouPulse הופכת את התיאור הגולמי לתיעוד מובנה: סיכום קבוצתי, נקודות אישיות, דינמיקות, תמות חוזרות ונקודות למעקב.",
-        st3t: "עריכה ואישור", st3b: "המנחה מקבל טיוטה מסודרת, עורך אותה לפי שיקול דעתו, ומשתמש בה למעקב, הדרכה והכנה למפגש הבא.",
-        heroB1: "סיכום קבוצתי + נקודות אישיות — מתיאור קצר אחד", heroB2: "דינמיקות מרכזיות, תמות חוזרות ונקודות למעקב", heroB3: "המנחה עורך ומאשר — שיקול הדעת תמיד שלו",
-        demoEyebrow: "הדגמה", demoTitle: "ראו איך זה עובד", demoLede: "ממפגש שהסתיים, דרך תיאור קצר אחד, ועד טיוטת תיעוד מסודרת — קבוצתית ואישית.", demoCap: "סרטון הסבר קצר — כך GrouPulse עוזרת לעשות סדר בתיעוד הקבוצתי.",
-        probEyebrow: "המורכבות", probTitle: 'לתעד קבוצה טיפולית זה הרבה יותר מלכתוב "מה היה במפגש"', probLede: "בתיעוד אישי יש מטופל אחד, תהליך אחד, מוקד אחד. בתיעוד קבוצתי יש כמה משתתפים, כמה תהליכים במקביל, ודינמיקה קבוצתית שמשפיעה על כולם.", probPanelH: "מה המנחה צריך להחזיק אחרי כל מפגש",
-        p1: "מה היה הנושא המרכזי ואילו דינמיקות הופיעו", p2: "איך כל משתתף היה נוכח ומה השתנה אצלו", p3: "מי דורש תשומת לב ומה לבדוק בפעם הבאה", p4: "ואיך לנסח את הכול בצורה מקצועית, קצרה וברורה",
-        probNote: "בפועל, התיעוד נעשה לא פעם אחרי יום עמוס, בין פגישות או בלילה — כשהפרטים כבר מתחילים להתערבב. כך ידע מקצועי חשוב נשאר בראש של המנחה, במקום להפוך לתיעוד שמסייע למעקב, להדרכה ולהכנה למפגש הבא.",
-        famEyebrow: "נשמע מוכר?", famTitle: "האם זה מוכר לך?", famLede: "הרבה מנחים מתעדים פחות ממה שהם באמת יודעים — לא כי אין מה לומר, אלא כי אין זמן וקשה להתחיל.",
-        fam1: "מסיימים מפגש ויודעים שהיה שם הרבה חומר חשוב — אבל אין כוח לפתוח מסמך.", fam2: "כותבים כמה שורות כלליות, למרות שקרו דברים משמעותיים עם כמה משתתפים.", fam3: "זוכרים שהייתה דינמיקה חשובה — אבל קשה לנסח אותה באופן מקצועי.", fam4: "דוחים את התיעוד לאחר כך — ואז חלק מהפרטים פשוט נעלמים.", fam5: "צריך לכתוב גם סיכום קבוצתי וגם התייחסות אישית לכל משתתף.", fam6: "התיעוד הקיים טכני מדי — לא מחזיק את העומק של העבודה הקבוצתית.",
-        solEyebrow: "הפתרון", solTitle: "כאן GrouPulse נכנסת לתמונה", solLede: "במקום לשבת מול מסמך ריק, המנחה מכתיב או כותב בכמה דקות תיאור חופשי של מה שקרה במפגש. המערכת מסייעת להפוך אותו לתיעוד מסודר:",
-        o1: "סיכום קבוצתי של המפגש", o2: "תיעוד אישי לתיק הטיפולי של כל משתתף", o4: "דינמיקות ונקודות למעקב",
-        o1d: "תמונת המפגש כולה — הנושא המרכזי, האווירה ומהלך הקבוצה.", o2d: "מידע אישי, מוכוון יעדי טיפול וללא חשיפת משתתפים אחרים", o4d: "מה התרחש בין המשתתפים, ומה כדאי לבדוק בפעם הבאה.",
-        solNote: "המטרה אינה להחליף את שיקול הדעת של המנחה — אלא לעזור להפוך את מה שכבר ראה והבין לתיעוד מקצועי שאפשר להשתמש בו.",
-        difEyebrow: "למה זה שונה", difTitle: "לא עוד טופס כללי", difLede: "רוב מערכות התיעוד נבנו סביב טיפול פרטני, אדמיניסטרציה או ניהול תיק. קבוצה טיפולית דורשת תיעוד מסוג אחר.",
-        d1t: "לא רק מה נאמר", d1b: "אלא מה התרחש בין המשתתפים — האינטראקציות והדינמיקה שנוצרה בקבוצה.", d2t: "לא רק מי דיבר", d2b: "אלא מי התקדם, מי נמנע, מי השפיע על האקלים הקבוצתי, ואיזו תנועה נוצרה בקבוצה.", d3t: "לא רק רשומה מנהלית", d3b: "אלא תיעוד שמשרת את החשיבה המקצועית של המנחה — לא רק את הארכיון.",
-        howEyebrow: "התהליך", howTitle: "איך זה עובד", howLede: "שלושה צעדים: מתארים את המפגש, המערכת מארגנת את החומר, והמנחה עורך ומאשר.",
-        scr1t: "מתארים", scr1c: "בקול או בכתב — תיאור חופשי וקצר של המפגש", scr2t: "המערכת מארגנת", scr2c: "הפיכת התיאור הגולמי לתיעוד מובנה", scr3t: "סיכום קבוצתי", scr3c: "תמונת המפגש כולה ודינמיקות מרכזיות", scr4t: "נקודות אישיות", scr4c: "התייחסות לכל משתתף ונקודות למעקב", scr5t: "עריכה ואישור", scr5c: "המנחה עורך לפי שיקול דעתו ומאשר",
-        whoEyebrow: "למי זה מיועד", whoTitle: "למי GrouPulse מיועד", whoLede: "הפיילוט הראשוני מיועד למנחים שמרגישים שהתיעוד הקבוצתי גוזל זמן, נשאר חלקי, או לא באמת משקף את מורכבות המפגש.",
-        w1t: "מנחי קבוצות ומטפלים", w1b: "פסיכולוגים, עו״ס ומטפלים רגשיים שמנחים קבוצות טיפוליות.", w2t: "מרכזי טיפול ומכונים לבריאות הנפש", w2b: "מרכזי טיפול ומכונים שמפעילים קבוצות ונדרשים לתיעוד ומעקב עקביים לכל הצוות.", w3t: "מכוני הכשרה והדרכה למטפלים", w3b: "מכונים להכשרת מטפלים שצריכים כלי משלים למעקב אחר ההתקדמות של הסטודנטים והמתמחים.",
-        pilEyebrow: "מה מקבלים בפיילוט", pilTitle: "מה כולל הפיילוט", pilLede: "בפיילוט נכיר את אופן העבודה שלכם ונבין יחד:",
-        pc1: "איך אתם מתעדים כיום מפגשים קבוצתיים", pc2: "מה החלק הכי קשה בתיעוד", pc3: "כמה זמן התיעוד לוקח", pc4: "איזה מידע הולך לאיבוד", pc5: "איזה פלט היה באמת עוזר לכם אחרי מפגש",
-        pilNote: "בהמשך, מנחים מתאימים יוכלו להתנסות בגרסה ראשונית של GrouPulse ולהשפיע ישירות על הפיתוח.",
-        joinEyebrow: "מילוי שאלון", joinTitle: "אנחנו בונים את GrouPulse עם מנחים מהשטח", joinSub: "GrouPulse כבר בשלבי פיתוח מתקדמים — וזה בדיוק הרגע שבו עדיין אפשר להשפיע על מה שייבנה.", joinBody: "המטרה היא לבנות כלי שמתאים לעבודה האמיתית של מנחי קבוצות — לא עוד מערכת כללית שצריך להתאים אליה את העבודה.",
-        joinT1: "כלי שמתאים לעבודה האמיתית של מנחי קבוצות", joinT2: "המנחה תמיד עורך ומאשר", joinT3: "השפעה ישירה על הפיתוח",
-        fName: "שם מלא", fNamePh: "לדוגמה: דנה לוי", fEmail: "אימייל", fEmailPh: "name@clinic.co.il",
-        openLabel: "אם הייתה לך מערכת שעוזרת בתיעוד קבוצות — מה היית רוצה שהיא תכתוב עבורך אחרי כל מפגש?", openPh: "כמה מילים חופשיות…",
-        consent: "השאלות אופציונליות ועוזרות לנו להבין את הצורך. בלחיצה אתם מסכימים שניצור קשר בנוגע לפיילוט בלבד. ללא ספאם, ניתן להסיר בכל עת.",
-        submit: "שליחת השאלון", sending: "שולח…",
-        errorMsg: "אופס — משהו השתבש בשליחה. נסו שוב, או כתבו לנו ל-chavi744@gmail.com.",
-        successTitle: "תודה על מילוי השאלון!", successBody: "כל תשובה כאן עוזרת לנו לעצב את GrouPulse סביב הצרכים האמיתיים של מנחי קבוצות — וההשתתפות שלך באמת מקדמת את המיזם. נעדכן אותך ברגע שהגרסה הראשונה תצא לדרך.",
-        footTag: "לתעד קבוצה טיפולית זה מורכב. GrouPulse עוזרת לעשות בזה סדר.", footRights: "© 2026 GrouPulse · כל הזכויות שמורות",
-        selectPh: "בחר/י…", optHint: "אפשר לבחור כמה", sysNamePh: "שם המערכת…"
-      },
-      en: {
-        dir: "ltr",
+    const EN = {
         navProblem: "The complexity", navSolution: "The solution", navHow: "How it works", navWho: "Who it's for", navCta: "Take the survey", footJoin: "Take the survey",
         heroChip: "The professional home for group facilitators",
         heroH1: "After a group session — how long does it take you to document both the group and each participant separately?",
@@ -1551,11 +1507,12 @@
         consent: "The questions are optional and help us understand the need. By submitting you agree we may contact you about the pilot only. No spam, unsubscribe anytime.",
         submit: "Submit the survey", sending: "Sending…",
         errorMsg: "Oops — something went wrong. Please try again, or email us at chavi744@gmail.com.",
-        successTitle: "Thanks for filling out the survey!", successBody: "Every answer here helps us shape GrouPulse around the real needs of group facilitators — your input genuinely moves the project forward. We'll update you the moment the first version is out.",
+        successTitle: "Thanks for filling out the survey!", successBody: "Every answer here helps us shape GrouPulse around the real needs of group facilitators — your input moves the project forward. We'll update you the moment the first version is out.",
         footTag: "Documenting a therapy group is complex. GrouPulse brings order to it.", footRights: "© 2026 GrouPulse · All rights reserved",
         selectPh: "Select…", optHint: "select all that apply", sysNamePh: "System name…"
-      }
     };
+    // Hebrew strings used only by JS-generated UI (the rest of the Hebrew lives in the HTML).
+    const HE_UI = { selectPh: "בחר/י…", optHint: "אפשר לבחור כמה", sysNamePh: "שם המערכת…", sending: "שולח…" };
 
     const QUESTIONS = [
       {
@@ -1590,7 +1547,7 @@
           { v: "other", he: "אחר", en: "Other" }]
       },
       {
-        name: "outputs", multi: true, he: "אילו תוצרים הכי חשובים לך?", en: "Which outputs would help you most?", opts: [
+        name: "outputs", multi: true, he: "אילו תוצרים הכי חשובים לך?", en: "Which outputs matter most to you?", opts: [
           { v: "soap", he: "סיכום קבוצתי", en: "Group summary" },
           { v: "individual", he: "סיכומים אישיים לכל משתתף", en: "Individual summary per participant" },
           { v: "goals", he: "מעקב אחר מטרות טיפול", en: "Treatment-goal tracking" },
@@ -1619,19 +1576,25 @@
     ];
 
     let LANG = "he";
+    let ORIG_HE = null; // cache of the Hebrew authored directly in the HTML (the source of truth)
     function setLang(l) {
-      LANG = l; const d = I18N[l];
-      document.documentElement.lang = l; document.documentElement.dir = d.dir;
+      LANG = l;
+      if (!ORIG_HE) {
+        ORIG_HE = { t: {}, p: {} };
+        document.querySelectorAll('[data-i18n]').forEach(el => { ORIG_HE.t[el.getAttribute('data-i18n')] = el.innerHTML; });
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => { ORIG_HE.p[el.getAttribute('data-i18n-ph')] = el.placeholder; });
+      }
+      document.documentElement.lang = l; document.documentElement.dir = l === 'en' ? 'ltr' : 'rtl';
       document.getElementById('he').classList.toggle('on', l === 'he');
       document.getElementById('en').classList.toggle('on', l === 'en');
-      document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); if (d[k] !== undefined) el.innerHTML = d[k]; });
-      document.querySelectorAll('[data-i18n-ph]').forEach(el => { const k = el.getAttribute('data-i18n-ph'); if (d[k] !== undefined) el.placeholder = d[k]; });
+      document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); const v = l === 'en' ? EN[k] : ORIG_HE.t[k]; if (v !== undefined) el.innerHTML = v; });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => { const k = el.getAttribute('data-i18n-ph'); const v = l === 'en' ? EN[k] : ORIG_HE.p[k]; if (v !== undefined) el.placeholder = v; });
       buildQuestions(l);
     }
 
     function buildQuestions(lang) {
       const wrap = document.getElementById('qFields'); if (!wrap) return;
-      const d = I18N[lang]; const ph = d.selectPh, hint = d.optHint, namePh = d.sysNamePh;
+      const ui = lang === 'en' ? EN : HE_UI; const ph = ui.selectPh, hint = ui.optHint, namePh = ui.sysNamePh;
       const prevS = {}, prevM = {}, prevT = {};
       wrap.querySelectorAll('select').forEach(s => { if (s.value) prevS[s.name] = s.value; });
       wrap.querySelectorAll('.chips input:checked').forEach(c => { (prevM[c.name] = prevM[c.name] || []).push(c.value); });
@@ -1653,14 +1616,13 @@
     const form = document.getElementById('signupForm');
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      const d = I18N[LANG];
       const email = document.getElementById('email').value.trim();
       const name = document.getElementById('name').value.trim();
       const errEl = document.getElementById('formError'); errEl.classList.remove('show');
       if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { document.getElementById('email').focus(); return; }
       try { const leads = JSON.parse(localStorage.getItem('gp_beta_leads') || '[]'); leads.push({ name, email }); localStorage.setItem('gp_beta_leads', JSON.stringify(leads)); } catch (_) { }
       const btn = form.querySelector('button[type=submit]'); const orig = btn.textContent;
-      btn.disabled = true; btn.textContent = d.sending;
+      btn.disabled = true; btn.textContent = (LANG === 'en' ? EN.sending : HE_UI.sending);
       try {
         const fd = new FormData(form);
         QUESTIONS.filter(q => q.multi).forEach(q => { fd.set(q.name, fd.getAll(q.name).join(", ")); });
